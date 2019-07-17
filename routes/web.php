@@ -15,4 +15,4 @@
 //     return view('welcome');
 // });
 
-Route::get("/", 'DashboardController@index');
+Route::get("/dashboard", 'DashboardController@index');
