@@ -15,4 +15,8 @@
 //     return view('welcome');
 // });
 
-Route::get("/dashboard", 'DashboardController@index');
+// Route::get("/", 'DashboardController@index');
+
+Route::get("/", 'SMEController@index');
+Route::get("/sme/create-so", 'SMEController@create');
+Route::get("/sme/pending", 'SMEController@pendingPage');
