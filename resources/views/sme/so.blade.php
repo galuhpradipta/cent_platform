@@ -56,12 +56,12 @@
                
                 @for ($i = 0; $i < 10; $i++)
                     <tr>
-                        <th class="text-center">{{ $i + 1 }}</th>
-                        <th>992811</th>
-                        <th>Galuh Pradipta</th>
-                        <th>122211</th>
-                        <th>galuh@centbook.com</th>
-                        <th class="text-center"><a href="http://www.africau.edu/images/default/sample.pdf"><i class="fas fa-file-pdf"></i></a></th>
+                        <th class="text-center"><small><strong>{{ $i + 1 }}</strong></small></th>
+                        <th><small><strong>992811</strong></small></th>
+                        <th><small><strong>Galuh Pradipta</strong></small></th>
+                        <th><small><strong>122211</strong></small></th>
+                        <th class="text-center"><small><strong>galuh@centbook.com</strong></small></th>
+                        <th class="text-center"><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank"><i class="fas fa-file-pdf"></i></a></th>
                         <th class="text-center">
                             <a href="#" data-toggle="modal" data-target="#detail-so-modal">
                                 <i class="fas fa-search">

@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color:#F1903F" id="accordionSidebar">
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
     <div class="sidebar-brand-icon rotate-n-15">
@@ -72,6 +72,24 @@
       <i class="fas fa-fw fa-table"></i>
       <span><b>Report</b></span></a>
   </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block">
+  
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#masterMenu" aria-expanded="true" aria-controls="masterMenu">
+      <i class="fas fa-fw fa-wrench"></i>
+      <span><b>Master</b></span>
+    </a>
+    <div id="masterMenu" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="utilities-color.html"><b>User</b></a>
+        <a class="collapse-item" href="utilities-border.html"><b>Level</b></a>
+        <a class="collapse-item" href="utilities-border.html"><b>Divisi</b></a>
+      </div>
+    </div>
+  </li>
+
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
