@@ -6113,6 +6113,7 @@ a.close.disabled {
 .modal-dialog {
   position: relative;
   width: auto;
+  /* width: 1024px; */
   margin: 0.5rem;
   pointer-events: none;
 }

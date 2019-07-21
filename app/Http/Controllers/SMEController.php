@@ -17,4 +17,24 @@ class SMEController extends Controller
     public function pendingPage() {
         return view('sme.pending');
     }
+
+    public function salesOrder() {
+        return view('sme.so');
+    }
+
+    public function deliveryOrder() {
+        return view('sme.do');
+    }
+
+    public function invoice() {
+        return view('sme.invoice');
+    }
+
+    public function uangMasuk() {
+        return view('sme.uang-masuk');
+    }
+
+    public function history() {
+        return view('sme.history');
+    }
 }
