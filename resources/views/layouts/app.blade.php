@@ -28,7 +28,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    @include('sme.layouts.left-sidebar')
+    @include('layouts.left-sidebar')
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->

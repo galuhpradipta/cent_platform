@@ -85,13 +85,64 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="utilities-color.html"><b>User</b></a>
         <a class="collapse-item" href="utilities-border.html"><b>Level</b></a>
-        <a class="collapse-item" href="utilities-border.html"><b>Divisi</b></a>
+        <a class="collapse-item" href="{{ route('division.index') }}"><b>Division</b></a>
       </div>
     </div>
   </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block">
+  
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#accountMenu" aria-expanded="true" aria-controls="accountMenu">
+      <i class="fas fa-fw fa-wrench"></i>
+      <span><b>Account</b></span>
+    </a>
+    <div id="accountMenu" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="{{ route('logout') }}" 
+          onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+          {{ __('Logout') }}
+        </a>
+      </div>
+    </div>
+  </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block">
+  @guest
+  <li class="nav-item">
+      <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+  </li>
+  @if (Route::has('register'))
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+        </li>
+    @endif
+  @else
+    <li class="nav-item dropdown">
+        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }} <span class="caret"></span>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
+    </li>
+  @endguest
 
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
   </div>
 </ul>
+
