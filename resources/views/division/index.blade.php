@@ -35,6 +35,7 @@
                   </a>
               </div>
           </div>
+
   
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -52,26 +53,33 @@
                     @if (count($divisions) > 0)
                       @foreach ($divisions as $division)
                         <tr>
-                          <th class="text-center">{{ $division->name }}</th>
-                          <th class="text-center">{{ $division->code }}</th>
-                          <th>
-                              <div class="row">
-                                <div class="col-md-6 text-center">
-                                    <a href="#" data-toggle="modal" data-target="#edit-division-modal" class="btn btn-primary btn-circle">
-                                      <i class="fas fa-edit"></i>
-                                    </a>
-                                </div>
+                          <td class="text-center">{{ $division->name }}</td>
+                          <td class="text-center">{{ $division->code }}</td>
+                          <td>                       
+                            <div class="row">
+                              <div class="col-md-6 text-center">
+                                <a href="#" class="btn btn-primary btn-circle" id="edit"
+                                    data-division-id="{{ $division->id }}"
+                                    data-division-name={{ $division->name }}
+                                    data-division-code={{ $division->code }}
+                                    data-toggle="modal" 
+                                    data-target="#editModal">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                              </div>
 
-                                <div class="col-md-6 text-center">
-                                  <a href="#" data-toggle="modal" data-target="#delete-division-modal" class="btn btn-danger btn-circle">
-                                    <i class="fas fa-trash"></i>  
-                                  </a>                        
+                              <div class="col-md-6 text-center">
+                                  <a href="#" class="btn btn-danger btn-circle" id="delete"
+                                    data-division-id="{{ $division->id }}"
+                                    data-toggle="modal" 
+                                    data-target="#deleteModal">
+                                    <i class="fas fa-trash"></i>
+                                  </a>      
                                 </div>
                               </div>
-                          </th>
+                          </td>  
                         </tr>
-                      @endforeach       
-
+                      @endforeach
                     @endif
                 </tbody>
               </table>
@@ -79,13 +87,40 @@
           </div>
         </div>
   
-        <!-- Modal-->
-        @include('division.modals.create')
-        @include('division.modals.delete')
-        @include('division.modals.edit')
+      {{-- modal --}}
+      @include('division.modals.create')
+      @include('division.modals.delete')
+      @include('division.modals.edit')
+ 
       </div>
 @endsection
 
-@section('script')
-   
+@section('scripts')
+
+<script>
+$(document).ready(function() {
+
+  $('#editModal').on('show.bs.modal', function(e) {
+    var button = $(e.relatedTarget);
+    var divisionID = button.data('division-id');     
+    var divisionName = button.data('division-name');     
+    var divisionCode = button.data('division-code');     
+
+    $('#fedit-division-id').val(divisionID);
+    $('#fedit-name').val(divisionName);
+    $('#fedit-code').val(divisionCode);
+  });
+
+  $('#deleteModal').on('show.bs.modal', function(e) {
+    var button = $(e.relatedTarget);
+
+    var divisionID = button.data('division-id');
+
+    $('#fdelete-division-id').val(divisionID);
+
+    console.log(divisionID);
+  })
+})
+</script>
+
 @endsection

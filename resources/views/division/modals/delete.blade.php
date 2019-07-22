@@ -1,4 +1,4 @@
-<div class="modal fade" id="delete-division-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -21,7 +21,9 @@
                             <form action="/master/division/{{ $division->id }}" method="POST">
                                 @method('DELETE')
                                 @csrf
-    
+
+                                <input type="hidden" name="id" id="fdelete-division-id" value="">
+
                                 <button type="submit" class="btn btn-danger btn-block">Delete</button>
                             </form>
                         </div>

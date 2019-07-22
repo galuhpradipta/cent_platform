@@ -28,21 +28,21 @@
                 <div class="row">
                     <div class="col-md-12">
                         <form action="{{ route('division.store') }}" method="POST">
-                            <div class="form-row">
+                            <div class="form-row">                                                   
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="name"><strong>Division Name</strong></label>
-                                        <input type="text" name="name" class="form-control" id="name">
+                                        <input type="text" name="name" class="form-control" id="name" required>
                                     </div>                                    
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="code"><strong>Code</strong></label>
-                                        <input type="text" name="code" class="form-control" id="code">
+                                        <input type="text" name="code" class="form-control" id="code" required>
                                     </div>                                    
                                 </div>
-                                
+                                @csrf
                                 <div class="col-md-3">                                                                
                                     <a href="#" class="btn btn-primary btn-block mt-4">
                                         <button type="submit" class="btn btn-primary">Submit</button>
