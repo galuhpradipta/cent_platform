@@ -104,14 +104,19 @@
           onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
           {{ __('Logout') }}
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+            
+          </form>
         </a>
       </div>
     </div>
   </li>
+  {{ $errors }}
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
-  @guest
+  {{-- @guest
   <li class="nav-item">
       <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
   </li>
@@ -138,7 +143,7 @@
             </form>
         </div>
     </li>
-  @endguest
+  @endguest --}}
 
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">

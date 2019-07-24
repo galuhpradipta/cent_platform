@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -26,12 +26,73 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Nomor Telepon') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="phone_number" type="phone_number" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
+
+                                @error('phone_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="business_name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Usaha') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="business_name" type="business_name" class="form-control @error('business_name') is-invalid @enderror" name="business_name" value="{{ old('business_name') }}" required autocomplete="business_name">
+
+                                @error('business_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="business_type" class="col-md-4 col-form-label text-md-right">{{ __('Type Usaha') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="business_type" type="business_type" class="form-control @error('business_type') is-invalid @enderror" name="business_type" value="{{ old('business_type') }}" required autocomplete="business_type">
+
+                                @error('business_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                {{-- <select name="business_type" id="business_type" class="form-control">
+                                    <option selected="true" disabled="true" >Pilih Jenis Usaha</option>
+                                    <option value="1">Dagang</option>
+                                    <option value="2">Jasa</option>                                
+                                </select> --}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="business_income" class="col-md-4 col-form-label text-md-right">{{ __('Omzet') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="business_income" type="business_income" class="form-control @error('business_income') is-invalid @enderror" name="business_income" value="{{ old('business_income') }}" required autocomplete="business_income">
+
+                                @error('business_income')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -52,6 +113,7 @@
                                 @enderror
                             </div>
                         </div>
+
 
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>

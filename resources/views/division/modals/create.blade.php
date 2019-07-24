@@ -4,8 +4,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <h4 class="modal-title" id="exampleModalLabel"><strong>Create Division</strong></h4>
-                        
+                        <h4 class="modal-title" id="exampleModalLabel"><strong>Create Division</strong></h4>        
                     </div>
     
                     <div class="col-md-6">

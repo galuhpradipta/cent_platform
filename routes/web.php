@@ -30,6 +30,31 @@ Route::patch("/master/division", 'DivisionController@update')->name('division.up
 Route::delete("/master/division/{id}", 'DivisionController@destroy')->name('division.destroy');
 
 
+// Account Receiveable
+Route::get("/ar/sales-order", 'AccountReceiveableController@salesOrder')->name('ar.so');
+
+
+// Sales Order
+Route::post("/ar/sales-order", "SalesOrderController@store")->name('sales-order.store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// custom login
+Route::post('/login/custom', 'LoginController@login')->name('login.custom');
+
+
+// Enterprise Admin
+Route::get('/ent/admin', 'EntAdminController@index')->name('ent-admin.index');
+
+// Enterprise Supervisor
+Route::get('/ent/spv', 'EntSpvController@index')->name('ent-spv.index');
+
+// Enterprise Master Account
+Route::get('/ent/spv/master/account', 'EntMasterAccountController@index')->name('ent-spv.master-account');
+Route::post('/ent/spv/master/account', 'EntMasterAccountController@store')->name('ent-spv.master-account.store');
+Route::patch('/ent/spv/master/account', 'EntMasterAccountController@update')->name('ent-spv.master-account.update');
+Route::delete('/ent/spv/master/account/{id}', 'EntMasterAccountController@destroy')->name('ent-spv.master-account.destroy');
+
+

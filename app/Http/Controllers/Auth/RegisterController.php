@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use Redirect;
 use App\User;
+use App\Business;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -62,11 +65,24 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
-        return User::create([
+    {     
+        $business = Business::create([
+            'name' => $data['business_name'],
+            'type' => $data['business_type'],
+            'income' => $data['business_income'],
+        ]);
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'unencrypted_password' => $data['password'],
+            'phone_number' => $data['phone_number'],
+            'role' => 0,
+            'business_id' => $business->id,
         ]);
+
+        Auth::login($user);
+        return Redirect::to('dashboard');
     }
 }

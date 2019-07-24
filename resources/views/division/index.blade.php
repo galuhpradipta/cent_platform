@@ -9,6 +9,10 @@
    
 @endsection
 
+@section('left-sidebar')
+  @include('layouts.left-sidebar')
+@endsection
+
 @section('content')
 <div class="container-fluid">
         <!-- Page Heading -->
@@ -119,7 +123,7 @@ $(document).ready(function() {
     $('#fdelete-division-id').val(divisionID);
 
     console.log(divisionID);
-  })
+  });
 })
 </script>
 
