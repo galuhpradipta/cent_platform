@@ -14,11 +14,9 @@ class LoginController extends Controller
             'email' => request()->email,
             'password' => request()->password
         ])) {
-            $user = User::where('email', request()->email)->first();
-            // if ($user->business_type == 1) {
-            //     return redirect()->route('ar.so');
-            // }
 
+            $user = User::where('email', request()->email)->first();
+        
             if ($user->supervisor()) {
                 return redirect()->route('ent-spv.index');
             }
@@ -27,11 +25,8 @@ class LoginController extends Controller
             if ($user->admin()) {
                 return redirect()->route('ent-admin.index');
             }
- 
-            
-
-
         }
-        return redirect()->back();
+
+        return redirect(route('login'));
     }
 }

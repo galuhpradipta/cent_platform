@@ -106,8 +106,10 @@
   
       {{-- modal --}}
       @include('ent.spv.modals.create')
-      @include('ent.spv.modals.edit')
-      @include('ent.spv.modals.delete')
+      @if (count($accounts) > 0)
+        @include('ent.spv.modals.edit')
+        @include('ent.spv.modals.delete')
+      @endif
  
       </div>
 @endsection

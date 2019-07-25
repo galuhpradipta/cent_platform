@@ -44,7 +44,7 @@ class EntMasterAccountController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $admin = User::where(['id'=> $request->registered_by])->first();
 
         request()->validate([
@@ -111,7 +111,8 @@ class EntMasterAccountController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;    
         $user->address = $request->address;    
-        $user->phone_number = $request->phone_number;    
+        $user->phone_number = $request->phone_number;
+        $user->role = $request->role; 
         $user->password = Hash::make($request->password);    
         $user->unencrypted_password = $request->password;
         $user->setUpdatedAt(Carbon::now());
