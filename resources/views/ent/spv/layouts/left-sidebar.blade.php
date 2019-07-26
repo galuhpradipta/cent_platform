@@ -8,15 +8,24 @@
         </a>
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-        <!-- Nav Item - Dashboard -->
-        {{-- <li class="nav-item">
+      <!-- Nav Item - Dashboard -->
+       <li class="nav-item">
           <a class="nav-link" href="{{ route('ent-spv.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span><b>Dashboard</b></span></a>
         </li>
 
         <hr class="sidebar-divider">
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('ent-spv.report') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span><b>Report</b></span></a>
+        </li>
+
+        <hr class="sidebar-divider">
        
+        {{-- 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
           <a class="nav-link" href="tables.html">
@@ -32,7 +41,6 @@
         </li> --}}
       
         <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
         
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#masterMenu" aria-expanded="true" aria-controls="masterMenu">

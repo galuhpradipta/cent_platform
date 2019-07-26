@@ -14,17 +14,17 @@ class LoginController extends Controller
             'email' => request()->email,
             'password' => request()->password
         ])) {
-
             $user = User::where('email', request()->email)->first();
-        
-            if ($user->supervisor()) {
-                return redirect()->route('ent-spv.index');
-            }
 
-            // if user role == 4 (admin) redirect to admin page only
-            if ($user->admin()) {
+
+            if ($user->role == "Admin") {
                 return redirect()->route('ent-admin.index');
             }
+
+            if ($user->role == "Supervisor") {
+                return redirect()->route('ent-spv.index');
+            }
+            
         }
 
         return redirect(route('login'));

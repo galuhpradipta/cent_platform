@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Dashboard</title>
+    <title>Report</title>
 @endsection
 
 @section('custom-css')
@@ -22,7 +22,7 @@
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
-                    <span class="text">Dashboard - Approval</span>
+                    <span class="text">Dashboard - Report</span>
                 </a>
             </div>            
         </div>

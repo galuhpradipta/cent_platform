@@ -48,8 +48,11 @@ Route::post('/login/custom', 'LoginController@login')->name('login.custom');
 // Enterprise Admin
 Route::get('/ent/admin', 'EntAdminController@index')->name('ent-admin.index');
 
-// Enterprise Supervisor
+// Enterprise Supervisor Dashboard / Approval
 Route::get('/ent/spv', 'EntSpvController@index')->name('ent-spv.index');
+
+// Enterprise Supervisor Report
+Route::get('/ent/spv/report', 'EntReportController@index')->name('ent-spv.report');
 
 // Enterprise Master Account
 Route::get('/ent/spv/master/account', 'EntMasterAccountController@index')->name('ent-spv.master-account');
@@ -57,4 +60,6 @@ Route::post('/ent/spv/master/account', 'EntMasterAccountController@store')->name
 Route::patch('/ent/spv/master/account', 'EntMasterAccountController@update')->name('ent-spv.master-account.update');
 Route::delete('/ent/spv/master/account/{id}', 'EntMasterAccountController@destroy')->name('ent-spv.master-account.destroy');
 
+// Enterprise Admin Account Receiveable
+Route::get('/ent/admin/ar/sales-order', 'EntSalesOrderController@index')->name('ent-admin.sales-order');
 
