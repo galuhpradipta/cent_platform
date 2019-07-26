@@ -62,4 +62,7 @@ Route::delete('/ent/spv/master/account/{id}', 'EntMasterAccountController@destro
 
 // Enterprise Admin Account Receiveable
 Route::get('/ent/admin/ar/sales-order', 'EntSalesOrderController@index')->name('ent-admin.sales-order');
-
+Route::get('/ent/admin/ar/delivery-order', 'EntDeliveryOrderController@index')->name('ent-admin.delivery-order');
+Route::get('/ent/admin/ar/invoice', 'EntInvoiceController@index')->name('ent-admin.invoice');
+Route::get('/ent/admin/ar/uang-masuk', 'EntUangMasukController@index')->name('ent-admin.uang-masuk');
+Route::get('/ent/admin/ar/history', 'EntHistoryController@index')->name('ent-admin.history');

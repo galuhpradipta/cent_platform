@@ -67,7 +67,7 @@
                                 <td class="text-center">Faiz Makmur</td>
                                 <td class="text-center">18127717</td>
                                 <td class="text-center">12-04-2019</td>
-                                <td class="text-center">Manager</td>
+                                <td class="text-center">Supervisor</td>
                                 <td class="text-center"><a href="#"><i class="fas fa-file-pdf"></i></a></td>
                                 <td class="text-center">
                                     <a href="#" data-toggle="modal" data-target="#detailSO"><i class="fas fa-search"></i>

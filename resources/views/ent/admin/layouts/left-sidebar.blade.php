@@ -30,10 +30,10 @@
             <div class="bg-white py-2 collapse-inner rounded">
               {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
               <a class="collapse-item" href="{{ route('ent-admin.sales-order') }}"><b>Sales Order</b></a>
-              <a class="collapse-item" href="{{ route('sme.deliveryOrder') }}"><b>Delivery Order</b></a>
-              <a class="collapse-item" href="{{ route('sme.invoice') }}"><b>Invoice</b></a>
-              <a class="collapse-item" href="{{ route('sme.uangMasuk') }}"><b>Uang Masuk</b></a>
-              <a class="collapse-item" href="{{ route('sme.history') }}"><b>History</b></a>
+              <a class="collapse-item" href="{{ route('ent-admin.delivery-order') }}"><b>Delivery Order</b></a>
+              <a class="collapse-item" href="{{ route('ent-admin.invoice') }}"><b>Invoice</b></a>
+              <a class="collapse-item" href="{{ route('ent-admin.uang-masuk') }}"><b>Uang Masuk</b></a>
+              <a class="collapse-item" href="{{ route('ent-admin.history') }}"><b>History</b></a>
             </div>
           </div>
         </li>

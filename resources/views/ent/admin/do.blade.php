@@ -10,7 +10,7 @@
 
 @section('content')
     @section('left-sidebar')
-        @include('ent.admin.layouts.left-sidebar')
+      @include('ent.admin.layouts.left-sidebar')
     @endsection
      <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -21,19 +21,7 @@
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
-                    <span class="text">Account Receivable - Sales Order</span>
-                </a>
-            </div>
-
-            <div class="col-md-4" >
-            </div>
-            
-            <div class="col-md-4">
-                <a href="#" class="btn btn-success btn-icon-split mt-4 mb-4 float-right" data-toggle="modal" data-target="#createSO">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-flag"></i>
-                    </span>
-                    <span class="text">Create</span>
+                    <span class="text">Account Receivable - Delivery Order</span>
                 </a>
             </div>
         </div>
@@ -67,9 +55,12 @@
                                 <td class="text-center">Faiz Makmur</td>
                                 <td class="text-center">18127717</td>
                                 <td class="text-center">12-04-2019</td>
-                                <td class="text-center">Manager</td>
+                                <td class="text-center">Supervisor</td>
                                 <td class="text-center"><a href="#"><i class="fas fa-file-pdf"></i></a></td>
-                                <td class="text-center"><a href="#"><i class="fas fa-search"></i></a></td>
+                                <td class="text-center">
+                                  <a href="#" data-toggle="modal" data-target="#detailSO">
+                                    <i class="fas fa-search"></i>
+                                  </a></td>
                             </tr>
                           @endfor   
                       </tbody>
@@ -84,7 +75,7 @@
     <!-- /.container-fluid -->
 
     {{-- modal --}}
-    @include('ent.admin.modals.createSO')
+    @include('ent.admin.modals.detailSO')
 @endsection
 
 @section('script')
