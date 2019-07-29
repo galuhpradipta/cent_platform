@@ -1,7 +1,7 @@
 <div class="modal fade" id="create-account-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
+    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-body">
                 <div class="row">
                     <div class="col-md-4">
                         <h4 class="modal-title" id="exampleModalLabel"><strong>Create Account</strong></h4>        
@@ -86,7 +86,7 @@
                         </form>
                     </div>
                 </div>
-            </div>    
-        </div>
-        </div>
+        </div>    
     </div>
+    </div>
+</div>

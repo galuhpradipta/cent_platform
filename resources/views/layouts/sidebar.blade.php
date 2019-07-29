@@ -28,7 +28,7 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-        <a class="collapse-item" href="#"><b>Sales Order</b></a>
+        <a class="collapse-item" href="{{ route('so.index') }}"><b>Sales Order</b></a>
         <a class="collapse-item" href="#"><b>Delivery Order</b></a>
         <a class="collapse-item" href="#"><b>Invoice</b></a>
         <a class="collapse-item" href="#"><b>Uang Masuk</b></a>

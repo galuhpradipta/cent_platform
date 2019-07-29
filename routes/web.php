@@ -43,9 +43,19 @@ Route::get("/", function() {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// custom login
+Route::post('/login/custom', 'LoginController@login')->name('login.custom');
 
+// custom register
+Route::post('/register/custom', 'RegisterController@register')->name('register.custom');
+
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'DashboardController@index')->name('dashboard.index');
+
+// Sales Order
+Route::get('/ar/sales-order', 'SalesOrderController@index')->name('so.index');
+Route::post('/ar/sales-order', 'SalesOrderController@store')->name('so.store');
+
 
 // Account
 Route::get("/master/account", 'AccountController@index')->name('account.index');
@@ -53,11 +63,7 @@ Route::post('/master/account', 'AccountController@store')->name('account.store')
 Route::patch('/master/account', 'AccountController@update')->name('account.update');
 Route::delete('/master/account/{id}', 'AccountController@destroy')->name('account.destroy');
 
-// custom login
-Route::post('/login/custom', 'LoginController@login')->name('login.custom');
 
-// custom register
-Route::post('/register/custom', 'RegisterController@register')->name('register.custom');
 
 
 // Enterprise Admin
