@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <h4 class="modal-title"><strong>Edit</strong></h4>
             </div>
-            <form action="{{ route('ent-spv.master-account.update') }}" method="POST">
+            <form action="{{ route('account.update') }}" method="POST">
 
             <div class="modal-body">
                 <div class="row">

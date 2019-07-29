@@ -28,7 +28,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    @yield('left-sidebar')
+    @include('layouts.sidebar')
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -36,7 +36,7 @@
 
       <!-- Main Content -->
       <div id="content">
-        @yield('navbar')
+        @include('layouts.navbar')
 
         <div class="container-fluid">
           @yield('content')

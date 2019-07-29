@@ -12,57 +12,65 @@
 */
 
 
+Route::get("/", function() {
+    redirect(route('login'));
+});
+
 // SME
-Route::get("/", 'SMEController@index');
-Route::get("/sme", 'SMEController@index');
-Route::get("/sme/create-so", 'SMEController@create');
-Route::get("/sme/pending", 'SMEController@pendingPage');
-Route::get("/sme/sales-order", 'SMEController@salesOrder')->name('sme.salesOrder');
-Route::get("/sme/delvery-order", 'SMEController@deliveryOrder')->name('sme.deliveryOrder');
-Route::get("/sme/invoice", 'SMEController@invoice')->name('sme.invoice');
-Route::get("/sme/uang-masuk", 'SMEController@uangMasuk')->name('sme.uangMasuk');
-Route::get("/sme/history", 'SMEController@history')->name('sme.history');
+// Route::get("/", 'SMEController@index');
+// Route::get("/sme", 'SMEController@index');
+// Route::get("/sme/create-so", 'SMEController@create');
+// Route::get("/sme/pending", 'SMEController@pendingPage');
+// Route::get("/sme/sales-order", 'SMEController@salesOrder')->name('sme.salesOrder');
+// Route::get("/sme/delvery-order", 'SMEController@deliveryOrder')->name('sme.deliveryOrder');
+// Route::get("/sme/invoice", 'SMEController@invoice')->name('sme.invoice');
+// Route::get("/sme/uang-masuk", 'SMEController@uangMasuk')->name('sme.uangMasuk');
+// Route::get("/sme/history", 'SMEController@history')->name('sme.history');
 
 // Master
-Route::get("/master/division", 'DivisionController@index')->name('division.index');
-Route::post("/master/division", 'DivisionController@store')->name('division.store');
-Route::patch("/master/division", 'DivisionController@update')->name('division.update');
-Route::delete("/master/division/{id}", 'DivisionController@destroy')->name('division.destroy');
+// Route::get("/master/division", 'DivisionController@index')->name('division.index');
+// Route::post("/master/division", 'DivisionController@store')->name('division.store');
+// Route::patch("/master/division", 'DivisionController@update')->name('division.update');
+// Route::delete("/master/division/{id}", 'DivisionController@destroy')->name('division.destroy');
 
 
 // Account Receiveable
-Route::get("/ar/sales-order", 'AccountReceiveableController@salesOrder')->name('ar.so');
+// Route::get("/ar/sales-order", 'AccountReceiveableController@salesOrder')->name('ar.so');
 
 
 // Sales Order
-Route::post("/ar/sales-order", "SalesOrderController@store")->name('sales-order.store');
+// Route::post("/ar/sales-order", "SalesOrderController@store")->name('sales-order.store');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'DashboardController@index')->name('dashboard.index');
+
+// Account
+Route::get("/master/account", 'AccountController@index')->name('account.index');
+Route::post('/master/account', 'AccountController@store')->name('account.store');
+Route::patch('/master/account', 'AccountController@update')->name('account.update');
+Route::delete('/master/account/{id}', 'AccountController@destroy')->name('account.destroy');
 
 // custom login
 Route::post('/login/custom', 'LoginController@login')->name('login.custom');
 
 
 // Enterprise Admin
-Route::get('/ent/admin', 'EntAdminController@index')->name('ent-admin.index');
+// Route::get('/ent/admin', 'EntAdminController@index')->name('ent-admin.index');
 
 // Enterprise Supervisor Dashboard / Approval
-Route::get('/ent/spv', 'EntSpvController@index')->name('ent-spv.index');
+// Route::get('/ent/spv', 'EntSpvController@index')->name('ent-spv.index');
 
 // Enterprise Supervisor Report
-Route::get('/ent/spv/report', 'EntReportController@index')->name('ent-spv.report');
+// Route::get('/ent/spv/report', 'EntReportController@index')->name('ent-spv.report');
 
-// Enterprise Master Account
-Route::get('/ent/spv/master/account', 'EntMasterAccountController@index')->name('ent-spv.master-account');
-Route::post('/ent/spv/master/account', 'EntMasterAccountController@store')->name('ent-spv.master-account.store');
-Route::patch('/ent/spv/master/account', 'EntMasterAccountController@update')->name('ent-spv.master-account.update');
-Route::delete('/ent/spv/master/account/{id}', 'EntMasterAccountController@destroy')->name('ent-spv.master-account.destroy');
+
 
 // Enterprise Admin Account Receiveable
-Route::get('/ent/admin/ar/sales-order', 'EntSalesOrderController@index')->name('ent-admin.sales-order');
-Route::get('/ent/admin/ar/delivery-order', 'EntDeliveryOrderController@index')->name('ent-admin.delivery-order');
-Route::get('/ent/admin/ar/invoice', 'EntInvoiceController@index')->name('ent-admin.invoice');
-Route::get('/ent/admin/ar/uang-masuk', 'EntUangMasukController@index')->name('ent-admin.uang-masuk');
-Route::get('/ent/admin/ar/history', 'EntHistoryController@index')->name('ent-admin.history');
+// Route::get('/ent/admin/ar/sales-order', 'EntSalesOrderController@index')->name('ent-admin.sales-order');
+// Route::get('/ent/admin/ar/delivery-order', 'EntDeliveryOrderController@index')->name('ent-admin.delivery-order');
+// Route::get('/ent/admin/ar/invoice', 'EntInvoiceController@index')->name('ent-admin.invoice');
+// Route::get('/ent/admin/ar/uang-masuk', 'EntUangMasukController@index')->name('ent-admin.uang-masuk');
+// Route::get('/ent/admin/ar/history', 'EntHistoryController@index')->name('ent-admin.history');

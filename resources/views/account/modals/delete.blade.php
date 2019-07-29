@@ -17,7 +17,7 @@
 
                     @if (count($accounts) > 0 )
                         <div class="col-md-6">
-                            <form action="/ent/spv/master/account/{{ $account->id }}" method="POST">
+                            <form action="/master/account/{{ $account->id }}" method="POST">
                                 @method('DELETE')
                                 @csrf
 

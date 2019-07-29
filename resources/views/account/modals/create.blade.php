@@ -21,7 +21,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="{{ route('ent-spv.master-account.store') }}" method="POST">
+                        <form action="{{ route('account.store') }}" method="POST">
                             @csrf
 
                             <input type="hidden" name="registered_by" value="{{ Auth::user()->id }}">

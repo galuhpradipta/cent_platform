@@ -1,23 +1,5 @@
 @extends('layouts.app')
 
-@section('title')
-    <title>Master Account</title>
-@endsection
-
-@section('custom-css')
-   
-@endsection
-
-
-@section('left-sidebar')
-    @include('ent.spv.layouts.left-sidebar')
-@endsection
-
-@section('navbar')
-    @include('ent.spv.layouts.navbar')
-@endsection
-
-
 @section('content')
 
     @section('content')
@@ -111,10 +93,10 @@
         </div>
   
       {{-- modal --}}
-      @include('ent.spv.modals.create')
+      @include('account.modals.create')
       @if (count($accounts) > 0)
-        @include('ent.spv.modals.edit')
-        @include('ent.spv.modals.delete')
+        @include('account.modals.edit')
+        @include('account.modals.delete')
       @endif
  
       </div>

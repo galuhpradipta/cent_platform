@@ -18,11 +18,11 @@ class LoginController extends Controller
 
 
             if ($user->role == "Admin") {
-                return redirect()->route('ent-admin.index');
+                return redirect()->route('home');
             }
 
             if ($user->role == "Supervisor") {
-                return redirect()->route('ent-spv.index');
+                return redirect()->route('home');
             }
             
         }
