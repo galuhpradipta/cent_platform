@@ -39,6 +39,13 @@
                     <h1 class="h4 text-gray-900 mb-4">CentBook Login</h1>
                   </div>
 
+                  @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>	
+                            <strong>{{ $message }}</strong>
+                    </div>
+                  @endif
+
                   @if (count($errors) > 0 )
                     <div class="alert alert-danger" role="alert">
                       <small>{{ $errors->first() }}</small>
@@ -56,9 +63,9 @@
                                     
                     <div class="row">
                         <div class="col-lg-6 offset-lg-3">
-                                <button type="submit" class="btn btn-primary btn-block">
-                                        Login
-                                    </button>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Login
+                            </button>
                         </div>
                     </div>
                         

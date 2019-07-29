@@ -56,6 +56,9 @@ Route::delete('/master/account/{id}', 'AccountController@destroy')->name('accoun
 // custom login
 Route::post('/login/custom', 'LoginController@login')->name('login.custom');
 
+// custom register
+Route::post('/register/custom', 'RegisterController@register')->name('register.custom');
+
 
 // Enterprise Admin
 // Route::get('/ent/admin', 'EntAdminController@index')->name('ent-admin.index');

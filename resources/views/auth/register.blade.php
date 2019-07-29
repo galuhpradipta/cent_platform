@@ -1,139 +1,124 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>CentBook - Register</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="{{ asset('sb-admin2/vendor/fontawesome-free/css/all.min.css') }} rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="{{ asset('sb-admin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body style="background-color: #F1903F">
+
+  <div class="container">
+
+    <!-- Outer Row -->
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+      <div class="col-xl-10 col-lg-12 col-md-9">
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 offset-lg-3">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">CentBook Register</h1>
+                  </div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                  @if (count($errors) > 0 )
+                    <div class="alert alert-danger" role="alert">
+                      <small>{{ $errors->first() }}</small>
+                    </div>
+                  @endif
+                  <form class="user" method="POST" action="{{ route('register.custom') }}">
+                  @csrf
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    <div class="form-group">
+                      <label for="email">Email :</label>
+                      <input type="email" class="form-control" name="email" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="password">Password :</label>
+                      <input type="password" class="form-control" name="password" id="password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Name :</label>
+                        <input type="text" class="form-control" name="name" id="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone_number">Phone Number :</label>
+                        <input type="text" class="form-control" name="phone_number" id="phone_number" required>
+                    </div>
+                               
+                    <div class="form-group">
+                        <label for="company_name">Company :</label>
+                        <input type="text" class="form-control" name="company_name" id="company_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company_type">Company Type :</label>
+                        <select name="company_type" id="company_type" class="form-control">
+                            <option selected disabled>Type of Business</option>
+                            <option value="1">Services</option>
+                            <option value="1">Commerce</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company_income">Company Income (Rp.) :</label>
+                        <input type="text" class="form-control" name="company_income" id="company_income" required placeholder="Rp. ">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-3">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Register
+                            </button>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Nomor Telepon') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="phone_number" type="phone_number" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
-
-                                @error('phone_number')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="business_name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Usaha') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="business_name" type="business_name" class="form-control @error('business_name') is-invalid @enderror" name="business_name" value="{{ old('business_name') }}" required autocomplete="business_name">
-
-                                @error('business_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="business_type" class="col-md-4 col-form-label text-md-right">{{ __('Type Usaha') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="business_type" type="business_type" class="form-control @error('business_type') is-invalid @enderror" name="business_type" value="{{ old('business_type') }}" required autocomplete="business_type">
-
-                                @error('business_type')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                {{-- <select name="business_type" id="business_type" class="form-control">
-                                    <option selected="true" disabled="true" >Pilih Jenis Usaha</option>
-                                    <option value="1">Dagang</option>
-                                    <option value="2">Jasa</option>                                
-                                </select> --}}
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="business_income" class="col-md-4 col-form-label text-md-right">{{ __('Omzet') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="business_income" type="business_income" class="form-control @error('business_income') is-invalid @enderror" name="business_income" value="{{ old('business_income') }}" required autocomplete="business_income">
-
-                                @error('business_income')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                        
+                  </form>
+                  <hr>
+            
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+
+      </div>
+
     </div>
-</div>
-@endsection
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{{ asset('sb-admin2/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('sb-admin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{{ asset('sb-admin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{{ asset('sb-admin2/js/sb-admin-2.min.js') }}"></script>
+
+</body>
+
+</html>
