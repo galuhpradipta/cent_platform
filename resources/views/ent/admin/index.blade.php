@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Sales Order</title>
+    <title>Dashboard</title>
 @endsection
 
 @section('custom-css')

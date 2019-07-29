@@ -9,11 +9,15 @@
 @endsection
 
 
-@section('content')
-    @section('left-sidebar')
-        @include('ent.spv.layouts.left-sidebar')
-    @endsection
+@section('left-sidebar')
+    @include('ent.spv.layouts.left-sidebar')
+@endsection
 
+@section('navbar')
+    @include('ent.spv.layouts.navbar')
+@endsection
+
+@section('content')
     <div class="container-fluid">
         <!-- Page Heading -->
         <div class="row">

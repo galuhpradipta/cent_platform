@@ -1,4 +1,5 @@
 <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color:#F1903F" id="accordionSidebar">
+
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
     <div class="sidebar-brand-icon rotate-n-15">
@@ -10,7 +11,7 @@
   <hr class="sidebar-divider my-0">
   <!-- Nav Item - Dashboard -->
   <li class="nav-item">
-    <a class="nav-link" href="{{ url('/') }}">
+    <a class="nav-link" href="{{ url('/ent.spv') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span><b>Dashboard</b></span></a>
   </li>
@@ -149,5 +150,5 @@
   <div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
   </div>
-</ul>
 
+</ul>
