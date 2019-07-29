@@ -36,8 +36,14 @@
               <div class="col-lg-6 offset-lg-3">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">CentBook Login</h1>
                   </div>
+
+                  @if (count($errors) > 0 )
+                    <div class="alert alert-danger" role="alert">
+                      <small>{{ $errors->first() }}</small>
+                    </div>
+                  @endif
                   <form class="user" method="POST" action="{{ route('login.custom') }}">
                   @csrf
 

@@ -27,6 +27,6 @@ class LoginController extends Controller
             
         }
 
-        return redirect(route('login'));
+        return redirect()->back()->withErrors(['Email and Password didn\'t match or not exist']);;
     }
 }
