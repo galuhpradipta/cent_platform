@@ -6,7 +6,7 @@
         <!-- Page Heading -->
           <div class="row">
               <div class="col-md-4">
-                  <a href="#" class="btn btn-primary btn-icon-split mt-4 mb-4">
+                  <a href="#" class="btn btn-primary btn-icon-split mt-1 mb-2">
                       <span class="icon text-white-50">
                           <i class="fas fa-flag"></i>
                       </span>
@@ -19,7 +19,7 @@
               </div>
   
               <div class="col-md-4">
-                  <a href="#" class="btn btn-success btn-icon-split mt-4 mb-4 float-right" data-toggle="modal" data-target="#create-account-modal">
+                  <a href="#" class="btn btn-success btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#create-account-modal">
                       <span class="icon text-white-50">
                           <i class="fas fa-plus"></i>
                       </span>

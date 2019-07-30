@@ -63,11 +63,23 @@
                                                 <td class="text-center">{{ $customer->phone_number }}</td>
                                                 <td class="text-center">{{ $customer->address }}</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-primary">
+                                                    <button class="btn btn-primary"
+                                                    data-toggle="modal"
+                                                    data-target="#editCustomer"
+                                                    data-customer-id="{{ $customer->id }}"
+                                                    data-customer-name="{{ $customer->name }}"
+                                                    data-customer-email="{{ $customer->email }}"
+                                                    data-customer-phone-number="{{ $customer->phone_number }}"
+                                                    data-customer-address="{{ $customer->address }}"
+                                                    >
                                                         Edit
                                                     </button>
     
-                                                    <button class="btn btn-danger">
+                                                    <button class="btn btn-danger"
+                                                    data-toggle="modal"
+                                                    data-target="#deleteCustomer"
+                                                    data-customer-id={{ $customer->id }}
+                                                    >
                                                         Delete
                                                     </button>
                                                 </td>
@@ -85,6 +97,43 @@
         </div>
         {{-- modals --}}
         @include('customer.modals.create')
+        @if (count($customers) > 0)
+            @include('customer.modals.edit')
+            @include('customer.modals.delete')
+
+        @endif
+        
     </div>
 
 @endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('#editCustomer').on('show.bs.modal', function(e) {
+            var button = $(e.relatedTarget);
+
+            var id = button.data('customer-id');
+            var name = button.data('customer-name');
+            var email = button.data('customer-email');
+            var phone_number = button.data('customer-phone-number');
+            var address = button.data('customer-address');
+
+            $('#fedit-id').val(id);
+            $('#fedit-name').val(name);
+            $('#fedit-email').val(email);
+            $('#fedit-phone-number').val(phone_number);
+            $('#fedit-address').val(address);
+        });
+
+        $('#deleteCustomer').on('show.bs.modal', function(e) {
+            var button = $(e.relatedTarget);
+
+            var customerID = button.data('customer-id');
+
+            $('#fdelete-id').val(customerID);
+        });
+    });
+</script>
+@endsection
+

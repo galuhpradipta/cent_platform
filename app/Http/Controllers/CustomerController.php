@@ -96,9 +96,26 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = request()->validate([
+            'id' => 'required',
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'phone_number' => 'required',
+            'address' => 'required',
+        ]);
+
+        $customer = Customer::find(request('id'));
+
+        $customer->name = request('name');
+        $customer->email = request('email');
+        $customer->phone_number = request('phone_number');
+        $customer->address = request('address');
+        
+        $customer->save();
+
+        return redirect(route('customer.index'))->with('success', 'Customer data updated');
     }
 
     /**
@@ -107,8 +124,15 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        request()->validate([
+            'customer_id' => 'required',
+        ]);
+
+        Customer::destroy(request('customer_id'));
+
+        return redirect(route('customer.index'))->with('success', 'Customer successfully deleted');
+
     }
 }
