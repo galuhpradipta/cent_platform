@@ -2,7 +2,6 @@
 
 @section('content')
 
-    @section('content')
     <div class="container-fluid">
         <!-- Page Heading -->
           <div class="row">

@@ -63,6 +63,9 @@ Route::post('/master/account', 'AccountController@store')->name('account.store')
 Route::patch('/master/account', 'AccountController@update')->name('account.update');
 Route::delete('/master/account/{id}', 'AccountController@destroy')->name('account.destroy');
 
+// Customer
+Route::get('/master/customer', 'CustomerController@index')->name('customer.index');
+Route::post('/master/customer', 'CustomerController@store')->name('customer.store');
 
 
 
