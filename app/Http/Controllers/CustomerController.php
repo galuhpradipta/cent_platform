@@ -54,7 +54,7 @@ class CustomerController extends Controller
             'address' => 'required',
         ]);
 
-        $user = User::find(request('id'))->first();
+        $user = User::find(request('id'));
 
         $customer = new Customer();
         $customer->name = request('name');
