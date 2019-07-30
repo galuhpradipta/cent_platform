@@ -69,6 +69,11 @@ Route::post('/master/customer', 'CustomerController@store')->name('customer.stor
 Route::patch('/master/customer', 'CustomerController@update')->name('customer.update');
 Route::delete('/master/customer', 'CustomerController@destroy')->name('customer.destroy');
 
+// Product
+Route::get('/master/product', 'ProductController@index')->name('product.index');
+Route::post('/master/product', 'ProductController@store')->name('product.store');
+Route::patch('/master/product', 'ProductController@update')->name('product.update');
+Route::delete('/master/product', 'ProductController@destroy')->name('product.destroy');
 
 
 

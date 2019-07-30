@@ -84,7 +84,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="{{ route('account.index') }}"><b>Account</b></a>
         <a class="collapse-item" href="{{ route('customer.index') }}"><b>Customer</b></a>
-        {{-- <a class="collapse-item" href="{{ route('product.index') }}"><b>Product</b></a> --}}
+        <a class="collapse-item" href="{{ route('product.index') }}"><b>Product</b></a>
       </div>
     </div>
   </li>
