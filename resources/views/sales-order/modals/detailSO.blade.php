@@ -33,7 +33,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th><small><b>123456</b></small></th>
+                                    <td id="detail-so-id" value="123"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -48,7 +48,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th><small><b>Galuh Pradipta</b></small></th>
+                                    <td id="detail-customer-name"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -62,7 +62,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><small><b>214</b></small></th>
+                                <td id="detail-customer-id"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -75,7 +75,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><small><b>12-04-2019</b></small></th>
+                                <td id="detail-so-order-date"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -88,7 +88,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><small><b>Barang Bagus</b></small></th>
+                                <td id="detail-product-name"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -102,7 +102,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><small><strong>20</strong></small></th>
+                                <td id="detail-so-quantity"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -115,7 +115,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><small><strong>Rp. 200.000</strong></small></th>
+                                <td id="detail-product-price"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -128,7 +128,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><small><strong>Rp. 200.000</strong></small></th>
+                                <td id="detail-so-subtotal-price"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -141,7 +141,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><small><strong>0</strong></small></th>
+                                <td id="detail-so-discount"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -154,7 +154,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><small><strong>Rp. 50.000</strong></small></th>
+                                <td id="detail-so-down-payment"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -168,7 +168,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><small><strong> - </strong></small></th>
+                                <td id="detail-so-bank"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -181,7 +181,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><small><strong>Rp. 20.000</strong></small></th>
+                                <td id="detail-so-ppn"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -194,7 +194,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th><small><strong>Rp. 220.000</strong></small></th>
+                                <td id="detail-so-total"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -202,7 +202,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th><strong>View PO Attachment</strong></th>
+                                <td id="detail-so-attachment"></td>
                             </tr>
                         </thead>
                         <tbody>

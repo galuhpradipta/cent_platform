@@ -9,9 +9,9 @@ use Auth;
 
 class ProductController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth');
-    }
+    // public function __construct() {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Display a listing of the resource.
@@ -129,5 +129,11 @@ class ProductController extends Controller
         Product::destroy(request('product_id'));
 
         return redirect(route('product.index'))->with('success', 'Product successfully deleted');
+    }
+
+    public function getProduct($id) {
+        $product = Product::find($id);
+
+        return response()->json($product);
     }
 }

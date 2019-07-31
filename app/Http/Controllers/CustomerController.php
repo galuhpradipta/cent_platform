@@ -10,9 +10,7 @@ use Auth;
 
 class CustomerController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Display a listing of the resource.
@@ -134,5 +132,11 @@ class CustomerController extends Controller
 
         return redirect(route('customer.index'))->with('success', 'Customer successfully deleted');
 
+    }
+
+    public function getCustomer($id) {
+        $customer = Customer::find($id);
+
+        return response()->json($customer);
     }
 }

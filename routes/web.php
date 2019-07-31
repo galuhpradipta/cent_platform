@@ -77,6 +77,7 @@ Route::delete('/master/product', 'ProductController@destroy')->name('product.des
 
 
 
+
 // Enterprise Admin
 // Route::get('/ent/admin', 'EntAdminController@index')->name('ent-admin.index');
 
