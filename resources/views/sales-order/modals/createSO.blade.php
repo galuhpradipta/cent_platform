@@ -34,7 +34,12 @@
 
                                         <div class="form-group">
                                             <label for="customer_name"><strong>Customer Name</strong></label>
-                                            <input type="text" name="customer_name" class="form-control" id="customer_name" required>
+                                            <select name="customer_name" id="customer_name" class="form-control">
+                                                <option value="" selected disabled>Choose Customer</option>
+                                                @foreach ($customers as $customer)
+                                                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>                                    
+                                                @endforeach
+                                            </select>
                                         </div>
 
                                         <div class="form-group">
@@ -48,8 +53,15 @@
                                         </div>      
                                         
                                         <div class="form-group">
-                                            <label for="item_name"><strong>Item Name</strong></label>
-                                            <input type="text" name="item_name" class="form-control" id="item_name" required>
+                                            <label for="product"><strong>Product</strong></label>
+                                            <div class="input-group">
+                                                <select name="prodcut_name" id="product_name" class="form-control">
+                                                    <option value="" disabled selected>Choose Product</option>
+                                                    @foreach ($products as $product)
+                                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                         
                                     </div>

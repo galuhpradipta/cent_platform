@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Product;
+use App\Customer;
+use Auth;
 
 class SalesOrderController extends Controller
 {
@@ -12,8 +16,14 @@ class SalesOrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('sales-order.index');
+    {   
+        $user = Auth::user();
+
+
+        $products = Product::where(['company_id' => $user->business->id ])->get();
+        $customers = Customer::where(['company_id' => $user->business->id ])->get();
+
+        return view('sales-order.index', compact('products', 'customers'));
     }
 
     /**
