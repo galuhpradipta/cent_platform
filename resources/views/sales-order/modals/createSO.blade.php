@@ -164,6 +164,26 @@
                     </div>
                 </div>
             </div>  
+            
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-danger ">
+                                    Cancel
+                                </button>
+                            </div>
+
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary ">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>  
         </div>
         </div>
