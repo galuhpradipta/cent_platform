@@ -48,24 +48,28 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                    <th class="text-center">Nomor SO</th>
-                    <th class="text-center">Nama Pelanggan</th>
-                    <th class="text-center">ID Pelanggan</th>
-                    <th class="text-center">Alamat Penagihan</th>
-                    <th class="text-center">Draft</th>
-                    <th class="text-center">Detail</th>
+                    <th class="text-center small font-weight-bold">Nomor SO</th>
+                    <th class="text-center small font-weight-bold">Nama Pelanggan</th>
+                    <th class="text-center small font-weight-bold">ID Pelanggan</th>
+                    <th class="text-center small font-weight-bold">Email Pelanggan</th>
+                    <th class="text-center small font-weight-bold">Tanggal Order</th>
+                    <th class="text-center small font-weight-bold">Alamat Penagihan</th>
+                    <th class="text-center small font-weight-bold">Draft</th>
+                    <th class="text-center small font-weight-bold">Detail</th>
                 </tr>
               </thead>
               <tbody>
                 @if (count($salesOrders) > 0)
                     @foreach ($salesOrders as $salesOrder)
                         <tr>
-                            <td class="text-center">{{ $salesOrder->id}}</td>
-                            <td class="text-center">{{ $salesOrder->customer->name }}</td>
-                            <td class="text-center">{{ $salesOrder->customer->id }}</td>
-                            <td class="text-center">{{ $salesOrder->customer->email }}</td>
-                            <td class="text-center"><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank"><i class="fas fa-file-pdf"></i></a></td>
-                            <td class="text-center">
+                            <td class="text-center small">{{ $salesOrder->id}}</td>
+                            <td class="text-center small">{{ $salesOrder->customer->name }}</td>
+                            <td class="text-center small">{{ $salesOrder->customer->id }}</td>
+                            <td class="text-center small">{{ $salesOrder->customer->email }}</td>
+                            <td class="text-center small">{{ $salesOrder->order_date }}</td>
+                            <td class="text-center small">{{ $salesOrder->customer->address }}</td>
+                            <td class="text-center small"><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank"><i class="fas fa-file-pdf"></i></a></td>
+                            <td class="text-center small">
                                 <a href="#" data-toggle="modal" data-target="#detailSO" data-so-id={{ $salesOrder->id }}>
                                     <i class="fas fa-search"></i>
                                 </a>
@@ -110,17 +114,26 @@
     });
 
     $('#customer_id').on('change', function() {
-      var customerID = $(this).children('option:selected').val()
+      var customerID = $(this).children('option:selected').val();
 
       $.get(baseURL+'/api/customer/'+customerID, function(data,status) {
-        $('#customer_id').val(data.id);
         $('#customer_email').val(data.email);
         $('#customer_address').val(data.address);
       });
     });
 
-    $('#quantity').on('change', function() {
-      
+    $('#bank_id').on('change', function() {
+      var bankID = $(this).children('option:selected').val();
+
+      $.get(baseURL+'/api/bank/'+bankID, function(data, status) {
+        $('#bank_name').val(data.name);
+        $('#bank_code').val(data.code);
+      });
+
+      console.log(bankID);
+    });
+
+    $('#quantity').on('change', function() {     
       var price = $('#product_price').val();
       var quantity = $('#quantity').val();
       var subtotalPrice = price * quantity;
@@ -140,12 +153,6 @@
               $('#detail-so-quantity').html(data.quantity);
               $('#detail-so-subtotal-price').html(data.subtotal_price);
               $('#detail-so-total').html(data.total);
-
-
-
-
-
-
 
               $.get(baseURL+'/api/product/'+data.product_id, function(data, status){
                 console.log(data);

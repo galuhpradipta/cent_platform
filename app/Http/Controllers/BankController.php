@@ -116,4 +116,10 @@ class BankController extends Controller
     {
         //
     }
+
+    public function getBank($id) {
+        $bank = Bank::find($id);
+
+        return response()->json($bank);
+    }
 }

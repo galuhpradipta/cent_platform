@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Bank;
 use App\Product;
 use App\Customer;
 use App\SalesOrder;
@@ -23,9 +24,10 @@ class SalesOrderController extends Controller
 
         $products = Product::where(['company_id' => $user->business->id ])->get();
         $customers = Customer::where(['company_id' => $user->business->id ])->get();
+        $banks = Bank::where(['company_id' => $user->business->id ])->get();
         $salesOrders = SalesOrder::where(['company_id' => $user->business->id ])->get();
 
-        return view('sales-order.index', compact('products', 'customers', 'salesOrders'));
+        return view('sales-order.index', compact('products', 'customers', 'salesOrders', 'banks'));
     }
 
     /**
