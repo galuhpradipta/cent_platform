@@ -75,8 +75,12 @@ Route::post('/master/product', 'ProductController@store')->name('product.store')
 Route::patch('/master/product', 'ProductController@update')->name('product.update');
 Route::delete('/master/product', 'ProductController@destroy')->name('product.destroy');
 
+// Bank
 
-
+Route::get('/master/bank', 'BankController@index')->name('bank.index');
+Route::post('/master/bank', 'BankController@store')->name('bank.store');
+Route::patch('/master/bank', 'BankController@update')->name('bank.update');
+Route::delete('/master/bank', 'BankController@destroy')->name('bank.destroy');
 
 // Enterprise Admin
 // Route::get('/ent/admin', 'EntAdminController@index')->name('ent-admin.index');
