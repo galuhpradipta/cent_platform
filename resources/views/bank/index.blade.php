@@ -57,19 +57,21 @@
                                 <tbody>
                                    @if (count($banks) > 0)
                                         @foreach ($banks as $bank)
-                                            <td class="text-center">{{ $bank->name }}</td>
-                                            <td class="text-center">{{ $bank->code }}</td>
-                                            <td class="text-center">Rp. {{ $bank->balance }}</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-primary btn-block"
-                                                    data-toggle="modal" data-target="#editBank"
-                                                    data-bank-id="{{ $bank->id }}"
-                                                    data-bank-name="{{ $bank->name }}"
-                                                    data-bank-code="{{ $bank->code }}"
-                                                    data-bank-balance="{{ $bank->balance }}">
-                                                    Edit
-                                                </button>
-                                            </td>
+                                            <tr>
+                                                <td class="text-center">{{ $bank->name }}</td>
+                                                <td class="text-center">{{ $bank->code }}</td>
+                                                <td class="text-center">Rp. {{ $bank->balance }}</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-primary btn-block"
+                                                        data-toggle="modal" data-target="#editBank"
+                                                        data-bank-id="{{ $bank->id }}"
+                                                        data-bank-name="{{ $bank->name }}"
+                                                        data-bank-code="{{ $bank->code }}"
+                                                        data-bank-balance="{{ $bank->balance }}">
+                                                        Edit
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                    @endif 
                                    
