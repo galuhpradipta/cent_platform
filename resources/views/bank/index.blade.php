@@ -95,7 +95,7 @@
             var button = $(e.relatedTarget);
 
             var bankID = button.data('bank-id');
-            var bankName = button.data('bank-code');
+            var bankName = button.data('bank-name');
             var bankCode = button.data('bank-code');
             var bankBalance = button.data('bank-balance');
             console.log(bankID, bankName, bankCode, bankBalance);

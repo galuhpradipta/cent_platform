@@ -18,23 +18,20 @@
                         <div class="col-md-12">
                             <form action="{{ route('bank.update') }}" method="POST">
                                 @csrf
+                                @method('PATCH')
     
-                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                        
+                                <input type="hidden" name="id" id="fedit-id">
+
+
                                 <div class="form-group">
                                     <label for="fedit-name"><strong>Name</strong></label>
-                                    <input type="text" name="fedit-name" class="form-control" id="fedit-name" required>
+                                    <input type="text" name="name" class="form-control" id="fedit-name" required>
                                 </div>
     
                                 <div class="form-group">
                                     <label for="fedit-code"><strong>Code</strong></label>
-                                    <input type="text" name="fedit-code" class="form-control" id="fedit-code" required>
-                                </div>
-    
-                                {{-- <div class="form-group">
-                                    <label for="fedit-balance"><strong>Initial Balance</strong></label>
-                                    <input type="text" name="fedit-balance" class="form-control" id="fedit-balance" required>
-                                </div>                                                   --}}
+                                    <input type="text" name="code" class="form-control" id="fedit-code" required>
+                                </div>                        
                                                                                                                                  
                                 <div class="col-md-6">
                                 </div>

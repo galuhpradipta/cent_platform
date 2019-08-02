@@ -90,9 +90,20 @@ class BankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = request()->validate([
+            'id' => 'required',
+            'name' => 'required',
+            'code' => 'required',
+        ]);
+
+        $bank = Bank::find(request('id'));
+        $bank->name = request('name');
+        $bank->code = request('code');
+        $bank->save();
+
+        return redirect(route('bank.index'))->with('success', 'Bank/Cash account successfully updated');
     }
 
     /**
