@@ -49,23 +49,23 @@ Route::post('/login/custom', 'LoginController@login')->name('login.custom');
 // custom register
 Route::post('/register/custom', 'RegisterController@register')->name('register.custom');
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'DashboardController@index')->name('dashboard.index');
+Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
+Route::get('/', 'DashboardController@index')->middleware('auth')->name('dashboard.index');
 
 // Sales Order
-Route::get('/ar/sales-order', 'SalesOrderController@index')->name('so.index');
-Route::post('/ar/sales-order', 'SalesOrderController@store')->name('so.store');
-Route::post('/ar/sales-order/approve', 'SalesOrderController@approve')->name('so.approve');
+Route::get('/ar/sales-order', 'SalesOrderController@index')->middleware('auth')->name('so.index');
+Route::post('/ar/sales-order', 'SalesOrderController@store')->middleware('auth')->name('so.store');
+Route::post('/ar/sales-order/approve', 'SalesOrderController@approve')->middleware('auth')->name('so.approve');
 
 // Deliver Order
-Route::get('/ar/delivery-order', 'DeliveryOrderController@index')->name('do.index');
-Route::patch('/ar/delivery-order', 'DeliveryOrderController@update')->name('do.update');
-Route::post('/ar/delivery-order/approve', 'DeliveryOrderController@approve')->name('do.approve');
+Route::get('/ar/delivery-order', 'DeliveryOrderController@index')->middleware('auth')->name('do.index');
+Route::patch('/ar/delivery-order', 'DeliveryOrderController@update')->middleware('auth')->name('do.update');
+Route::post('/ar/delivery-order/approve', 'DeliveryOrderController@approve')->middleware('auth')->name('do.approve');
 
 // Invoice
-Route::get('/ar/invoice', 'InvoiceController@index')->name('invoice.index');
-Route::patch('/ar/invoice', 'InvoiceController@update')->name('invoice.update');
-Route::post('/ar/invoice/approve', 'invoiceController@approve')->name('invoice.approve');
+Route::get('/ar/invoice', 'InvoiceController@index')->middleware('auth')->name('invoice.index');
+Route::patch('/ar/invoice', 'InvoiceController@update')->middleware('auth')->name('invoice.update');
+Route::post('/ar/invoice/approve', 'invoiceController@approve')->middleware('auth')->name('invoice.approve');
 
 
 
