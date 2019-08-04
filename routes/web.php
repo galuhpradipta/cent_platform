@@ -56,6 +56,18 @@ Route::get('/', 'DashboardController@index')->name('dashboard.index');
 Route::get('/ar/sales-order', 'SalesOrderController@index')->name('so.index');
 Route::post('/ar/sales-order', 'SalesOrderController@store')->name('so.store');
 
+// Purchase Request
+Route::get('/ap/purchase-request', 'PurchaseRequestController@index')->name('pr.index');
+Route::post('/ap/purchase-request', 'PurchaseRequestController@store')->name('pr.store');
+
+// Purchase Order
+Route::get('/ap/purchase-order', 'PurchaseOrderController@index')->name('po.index');
+Route::post('/ap/purchase-order', 'PurchaseOrderController@store')->name('po.store');
+
+//  Receipt
+Route::get('/ap/receipt', 'ReceiptController@index')->name('receipt.index');
+Route::post('/ap/receipt', 'ReceiptController@store')->name('receipt.store');
+
 
 // Account
 Route::get("/master/account", 'AccountController@index')->name('account.index');
@@ -81,6 +93,8 @@ Route::get('/master/bank', 'BankController@index')->name('bank.index');
 Route::post('/master/bank', 'BankController@store')->name('bank.store');
 Route::patch('/master/bank', 'BankController@update')->name('bank.update');
 Route::delete('/master/bank', 'BankController@destroy')->name('bank.destroy');
+
+
 
 // Enterprise Admin
 // Route::get('/ent/admin', 'EntAdminController@index')->name('ent-admin.index');

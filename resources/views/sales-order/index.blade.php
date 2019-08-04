@@ -100,8 +100,6 @@
 
 @section('scripts')
 <script>
-
-
   $(document).ready(function(){
     var baseURL = window.location.origin;
 
@@ -133,15 +131,30 @@
       console.log(bankID);
     });
 
-    $('#quantity').on('change', function() {     
+    $('#quantity').on('input', function() {     
       var price = $('#product_price').val();
       var quantity = $('#quantity').val();
       var subtotalPrice = price * quantity;
+      var totalPrice = (price * quantity);
 
       $('#subtotal_price').val(subtotalPrice);
-
-      console.log(price, quantity);
+      $('#total').val(totalPrice);
     });
+
+    $('#discount').on('input', function() {
+      var price = $('#product_price').val();
+      var quantity = $('#quantity').val();
+      var subtotalPrice = $('#subtotal_price').val();
+      var discount = $('#discount').val();
+      var totalPrice = (price * quantity);
+
+      totalPrice = totalPrice - (totalPrice * discount/100);
+
+
+      $('#total').val(totalPrice);
+    })
+
+
 
     $('#detailSO').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);

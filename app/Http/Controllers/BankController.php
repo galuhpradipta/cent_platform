@@ -45,6 +45,7 @@ class BankController extends Controller
         $data = request()->validate([
             'name' => 'required|min:2',
             'code' => 'required|min:2',
+            'category' => 'required',
             'balance' => 'required',
         ]);
 
@@ -54,6 +55,7 @@ class BankController extends Controller
             'name' => request('name'),
             'code' => request('code'),
             'initial_balance' => request('balance'),
+            'category' => request('category'),
             'balance' => request('balance'),
             'company_id' => $user->business->id,
         ]);

@@ -7,12 +7,9 @@
                 <div class="row">
                     <div class="col-md-4">
                             <h4 class="modal-title"><strong>Create Sales Order</strong></h4>        
-                    </div>
-                
-                    <div class="col-md-6">
-                        
-                    </div>
-    
+                    </div>                
+                    <div class="col-md-6">                        
+                    </div>    
                 </div>
 
                 <div class="div">
@@ -54,8 +51,6 @@
                                 </div>                                                                                                                
                             </div>
 
-
-
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="product_id"><strong>Product Name</strong></label>
@@ -96,7 +91,12 @@
 
                                 <div class="form-group">
                                     <label for="discount"><strong>Discount</strong></label>
-                                    <input type="number" step="any" name="discount" class="form-control" id="discount" value="0" required>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                        <input type="number" min="1" max="100" step="any" name="discount" class="form-control" id="discount" value="0" required>
+                                    </div>
                                 </div>                                       
                             </div>
 

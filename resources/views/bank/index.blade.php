@@ -49,6 +49,7 @@
                                     <tr>
                                         <th class="text-center">Name</th>
                                         <th class="text-center">Code</th>
+                                        <th class="text0-center">Category</th>
                                         <th class="text-center">Balance</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -60,6 +61,7 @@
                                             <tr>
                                                 <td class="text-center">{{ $bank->name }}</td>
                                                 <td class="text-center">{{ $bank->code }}</td>
+                                                <td class="text-center">{{ $bank->category }}</td>
                                                 <td class="text-center">Rp. {{ $bank->balance }}</td>
                                                 <td class="text-center">
                                                     <button class="btn btn-primary btn-block"

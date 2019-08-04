@@ -29,3 +29,6 @@ Route::get('/sales-order/{id}', 'SalesOrderController@getSalesOrder');
 
 // bank
 Route::get('/bank/{id}', 'BankController@getBank');
+
+// bank_categories
+Route::get('bank-categories/{id}', 'BankCategoriesController@getBankCategories');

@@ -30,10 +30,27 @@
                                     <label for="code"><strong>Code</strong></label>
                                     <input type="text" name="code" class="form-control" id="code" required>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="category">Category</label>
+                                    <div class="input-group">
+                                        <select name="category" id="category" class="form-control">
+                                            <option disabled>Pilih Kategory Akun</option>
+                                            <option value="Kas">Kas</option>
+                                            <option value="Rekening">Rekening</option>
+                                            <option value="Giro">Giro</option>
+                                        </select>
+                                    </div>
+                                </div>
     
                                 <div class="form-group">
                                     <label for="balance"><strong>Initial Balance</strong></label>
-                                    <input type="number" step="any" name="balance" class="form-control" id="balance" required>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Rp.</span>
+                                        </div>
+                                        <input type="number" step="any" name="balance" class="form-control" id="balance" required>
+                                    </div>
                                 </div>                                                  
                                                                                                                                  
                                 <div class="col-md-6">

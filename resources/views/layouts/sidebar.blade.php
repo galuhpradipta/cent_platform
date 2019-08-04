@@ -47,8 +47,12 @@
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         {{-- <h6 class="collapse-header">Custom Utilities:</h6> --}}
-        <a class="collapse-item" href="utilities-color.html"><b>Create PR</b></a>
-        <a class="collapse-item" href="utilities-border.html"><b>History</b></a>
+        <a class="collapse-item" href="{{ route('pr.index') }}"><b>Purchase Request</b></a>
+        <a class="collapse-item" href="{{ route('po.index') }}"><b>Purchase Order</b></a>
+        <a class="collapse-item" href="{{ route('receipt.index') }}"><b>Tanda Terima</b></a>
+        <a class="collapse-item" href="#"><b>Uang Keluar</b></a>
+
+
         {{-- <a class="collapse-item" href="utilities-animation.html">Animations</a> --}}
         {{-- <a class="collapse-item" href="utilities-other.html">Other</a> --}}
       </div>

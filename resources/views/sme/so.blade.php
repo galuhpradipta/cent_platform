@@ -80,7 +80,6 @@
       @include('sme.modals.createSO')
 
       @include('sme.modals.detailSO')
-
     </div>
     <!-- /.container-fluid -->
 @endsection
