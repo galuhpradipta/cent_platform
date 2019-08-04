@@ -65,54 +65,54 @@ Route::post('/ar/delivery-order/approve', 'DeliveryOrderController@approve')->na
 // Invoice
 Route::get('/ar/invoice', 'InvoiceController@index')->name('invoice.index');
 Route::patch('/ar/invoice', 'InvoiceController@update')->name('invoice.update');
-Route::post('/ar/invoice/approve', 'InvoiceController@approve')->name('invoice.approve');
+Route::post('/ar/invoice/approve', 'invoiceController@approve')->name('invoice.approve');
 
 
 
 
 // Purchase Request
-Route::get('/ap/purchase-request', 'PurchaseRequestController@index')->name('pr.index');
-Route::post('/ap/purchase-request', 'PurchaseRequestController@store')->name('pr.store');
+Route::get('/ap/purchase-request', 'PurchaseRequestController@index')->middleware('auth')->name('pr.index');
+Route::post('/ap/purchase-request', 'PurchaseRequestController@store')->middleware('auth')->name('pr.store');
 
 // Purchase Order
-Route::get('/ap/purchase-order', 'PurchaseOrderController@index')->name('po.index');
-Route::post('/ap/purchase-order', 'PurchaseOrderController@store')->name('po.store');
+Route::get('/ap/purchase-order', 'PurchaseOrderController@index')->middleware('auth')->name('po.index');
+Route::post('/ap/purchase-order', 'PurchaseOrderController@store')->middleware('auth')->name('po.store');
 
 //  Receipt
-Route::get('/ap/receipt', 'ReceiptController@index')->name('receipt.index');
-Route::post('/ap/receipt', 'ReceiptController@store')->name('receipt.store');
+Route::get('/ap/receipt', 'ReceiptController@index')->middleware('auth')->name('receipt.index');
+Route::post('/ap/receipt', 'ReceiptController@store')->middleware('auth')->name('receipt.store');
 
 
 // Account
-Route::get("/master/account", 'AccountController@index')->name('account.index');
-Route::post('/master/account', 'AccountController@store')->name('account.store');
-Route::patch('/master/account', 'AccountController@update')->name('account.update');
-Route::delete('/master/account/{id}', 'AccountController@destroy')->name('account.destroy');
+Route::get("/master/account", 'AccountController@index')->middleware('auth')->name('account.index');
+Route::post('/master/account', 'AccountController@store')->middleware('auth')->name('account.store');
+Route::patch('/master/account', 'AccountController@update')->middleware('auth')->name('account.update');
+Route::delete('/master/account/{id}', 'AccountController@destroy')->middleware('auth')->name('account.destroy');
 
 // Customer
-Route::get('/master/customer', 'CustomerController@index')->name('customer.index');
-Route::post('/master/customer', 'CustomerController@store')->name('customer.store');
-Route::patch('/master/customer', 'CustomerController@update')->name('customer.update');
-Route::delete('/master/customer', 'CustomerController@destroy')->name('customer.destroy');
+Route::get('/master/customer', 'CustomerController@index')->middleware('auth')->name('customer.index');
+Route::post('/master/customer', 'CustomerController@store')->middleware('auth')->name('customer.store');
+Route::patch('/master/customer', 'CustomerController@update')->middleware('auth')->name('customer.update');
+Route::delete('/master/customer', 'CustomerController@destroy')->middleware('auth')->name('customer.destroy');
 
 // Supplier
-Route::get('/master/supplier', 'SupplierController@index')->name('supplier.index');
-Route::post('/master/supplier', 'SupplierController@store')->name('supplier.store');
-Route::patch('/master/supplier', 'SupplierController@update')->name('supplier.update');
-Route::delete('/master/supplier', 'SupplierController@destroy')->name('supplier.destroy');
+Route::get('/master/supplier', 'SupplierController@index')->middleware('auth')->name('supplier.index');
+Route::post('/master/supplier', 'SupplierController@store')->middleware('auth')->name('supplier.store');
+Route::patch('/master/supplier', 'SupplierController@update')->middleware('auth')->name('supplier.update');
+Route::delete('/master/supplier', 'SupplierController@destroy')->middleware('auth')->name('supplier.destroy');
 
 
 // Product
-Route::get('/master/product', 'ProductController@index')->name('product.index');
-Route::post('/master/product', 'ProductController@store')->name('product.store');
-Route::patch('/master/product', 'ProductController@update')->name('product.update');
-Route::delete('/master/product', 'ProductController@destroy')->name('product.destroy');
+Route::get('/master/product', 'ProductController@index')->middleware('auth')->name('product.index');
+Route::post('/master/product', 'ProductController@store')->middleware('auth')->name('product.store');
+Route::patch('/master/product', 'ProductController@update')->middleware('auth')->name('product.update');
+Route::delete('/master/product', 'ProductController@destroy')->middleware('auth')->name('product.destroy');
 
 // Bank
-Route::get('/master/bank', 'BankController@index')->name('bank.index');
-Route::post('/master/bank', 'BankController@store')->name('bank.store');
-Route::patch('/master/bank', 'BankController@update')->name('bank.update');
-Route::delete('/master/bank', 'BankController@destroy')->name('bank.destroy');
+Route::get('/master/bank', 'BankController@index')->middleware('auth')->name('bank.index');
+Route::post('/master/bank', 'BankController@store')->middleware('auth')->name('bank.store');
+Route::patch('/master/bank', 'BankController@update')->middleware('auth')->name('bank.update');
+Route::delete('/master/bank', 'BankController@destroy')->middleware('auth')->name('bank.destroy');
 
 
 
