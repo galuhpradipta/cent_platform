@@ -8,6 +8,8 @@ use App\Bank;
 use App\Product;
 use App\Customer;
 use App\SalesOrder;
+use App\AccountReceiveable;
+use App\DeliveryOrder;
 use Auth;
 
 class SalesOrderController extends Controller
@@ -20,12 +22,13 @@ class SalesOrderController extends Controller
     public function index()
     {   
         $user = Auth::user();
-
-
         $products = Product::where(['company_id' => $user->business->id ])->get();
         $customers = Customer::where(['company_id' => $user->business->id ])->get();
         $banks = Bank::where(['company_id' => $user->business->id ])->get();
-        $salesOrders = SalesOrder::where(['company_id' => $user->business->id ])->get();
+        $salesOrders = SalesOrder::where([
+                'company_id' => $user->business->id,
+                'is_approved' => false, 
+            ])->get();
 
         return view('sales-order.index', compact('products', 'customers', 'salesOrders', 'banks'));
     }
@@ -83,35 +86,18 @@ class SalesOrderController extends Controller
         ]);
 
 
+
         $file = $request->file('attachment')->store('uploads', 'public');
 
         $so->attachment_url  = $file;
         $so->save();
 
-        // $this->storeImage($so);  
-
-        return redirect(route('so.index'))->with('success', 'Sales Order Successfully created');
-
-        // $table->bigIncrements('id');
-        //     $table->unsignedInteger('customer_id');
-        //     $table->unsignedInteger('product_id');
-        //     $table->date('order_date');
-        //     $table->integer('quantity');
-        //     $table->decimal('subtotal_price', 16, 2);
-        //     $table->decimal('discount', 16, 2);
-        //     $table->decimal('down_payment', 16, 2);
-        //     $table->decimal('bank', 16, 2);
-        //     $table->decimal('ppn', 16, 2);
-        //     $table->decimal('total', 16, 2);
-        //     $table->string('attachment_url');
-        //     $table->integer('status');
-        //     $table->timestamps();
-
-        $data = request()->validate([
-            'file' => 'file|max:5000',
+        AccountReceiveable::create([
+            'sales_order_id' => $so->id,
+            'status' => 1,
         ]);
 
-        dd($data);
+        return redirect(route('so.index'))->with('success', 'Sales Order Successfully created');
     }
 
     /**
@@ -176,5 +162,23 @@ class SalesOrderController extends Controller
         $so = SalesOrder::find($id);
 
         return response()->json($so);
+    }
+
+    public function approve() {
+
+        $user = Auth::user();
+
+        $so = SalesOrder::find(request('sales_order_id'));
+        $so->approved_by = $user->id;
+        $so->is_approved = true;
+        $so->save();
+
+        $do = DeliveryOrder::create([
+            'sales_order_id' => $so->id,
+            'company_id' => $so->company_id,
+        ]);
+
+        return redirect(route('so.index'))->with('success', 'Pesanan Penjualan berhasil di setujui');
+
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Business;
 use App\Product;
 use App\Customer;
+use App\DeliverOrder;
 
 
 class SalesOrder extends Model
@@ -22,5 +23,9 @@ class SalesOrder extends Model
 
     public function product() {
         return $this->belongsTo(Product::class);
+    }
+
+    public function deliverOrder() {
+        return $this->belongsTo(DeliveryOrder::class);
     }
 }

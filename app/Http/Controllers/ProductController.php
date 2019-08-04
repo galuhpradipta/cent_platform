@@ -49,6 +49,7 @@ class ProductController extends Controller
         $data = request()->validate([
             'name' => 'required',
             'code' => 'required',
+            'unit' => 'required',
             'price' => 'required',
         ]);
 
@@ -56,6 +57,7 @@ class ProductController extends Controller
 
         $product->name = request('name');
         $product->code = request('code');
+        $product->unit = request('unit');
         $product->price = request('price');
         $product->company_id = $user->business->id;
         $product->save();

@@ -8,7 +8,7 @@
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
-                    <span class="text">Product</span>
+                    <span class="text">Supplier</span>
                 </a>
             </div>
 
@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-md-4">
-                <a href="#" class="btn btn-success btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#createProduct">
+                <a href="#" class="btn btn-success btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#create">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -37,7 +37,7 @@
             <button type="button" class="close" data-dismiss="alert">×</button>	
                 <strong>{{ $message }}</strong>
         </div>
-        @endif
+         @endif
 
         <div class="row">
             <div class="col-md-12">
@@ -47,40 +47,40 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Nama</th>
-                                        <th class="text-center">Kode</th>
-                                        <th class="text-center">Satuan</th>
-                                        <th class="text-center">Harga Satuan (Rp.)</th>
-                                        <th class="text-center" width="20%">Action</th>                                    
-                                  
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Phone Number</th>
+                                        <th class="text-center">Address</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (count($products) > 0)
-                                        @foreach($products as $product)
+                                    @if (count($suppliers) > 0)
+                                        @foreach($suppliers as $supplier)
                                             <tr>
-                                                <td class="text-center">{{ $product->name}}</td>
-                                                <td class="text-center">{{ $product->code }}</td>
-                                                <td class="text-center"> {{ $product->unit }}</td>
-                                                <td class="text-center">{{ $product->price }}</td>
+                                                <td class="text-center">{{ $supplier->name}}</td>
+                                                <td class="text-center">{{ $supplier->email }}</td>
+                                                <td class="text-center">{{ $supplier->phone_number }}</td>
+                                                <td class="text-center">{{ $supplier->address }}</td>
                                                 <td class="text-center">
                                                     <button class="btn btn-primary"
                                                     data-toggle="modal"
-                                                    data-target="#editProduct"
-                                                    data-product-id="{{ $product->id }}"
-                                                    data-product-name="{{ $product->name }}"
-                                                    data-product-code="{{ $product->code }}"
-                                                    data-product-price="{{ $product->price }}"
+                                                    data-target="#edit"
+                                                    data-supplier-id="{{ $supplier->id }}"
+                                                    data-supplier-name="{{ $supplier->name }}"
+                                                    data-supplier-email="{{ $supplier->email }}"
+                                                    data-supplier-phone-number="{{ $supplier->phone_number }}"
+                                                    data-supplier-address="{{ $supplier->address }}"
                                                     >
-                                                    Edit
+                                                        Edit
                                                     </button>
     
                                                     <button class="btn btn-danger"
                                                     data-toggle="modal"
-                                                    data-target="#deleteProduct"
-                                                    data-product-id={{ $product->id }}
+                                                    data-target="#delete"
+                                                    data-supplier-id={{ $supplier->id }}
                                                     >
-                                                    Delete
+                                                        Delete
                                                     </button>
                                                 </td>
                                             </tr>
@@ -96,11 +96,10 @@
             </div>
         </div>
         {{-- modals --}}
-        @include('product.modals.create')
-        @if (count($products) > 0)
-            @include('product.modals.edit')
-            @include('product.modals.delete')
-
+        @include('supplier.modals.create')
+        @if (count($suppliers) > 0)
+            @include('supplier.modals.edit')
+            @include('supplier.modals.delete')
         @endif
         
     </div>
@@ -110,28 +109,28 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-        $('#editProduct').on('show.bs.modal', function(e) {
+        $('#edit').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
 
-            var productID = button.data('product-id');
-            var name = button.data('product-name');
-            var code = button.data('product-code');
-            var price = button.data('product-price');
+            var id = button.data('supplier-id');
+            var name = button.data('supplier-name');
+            var email = button.data('supplier-email');
+            var phone_number = button.data('supplier-phone-number');
+            var address = button.data('supplier-address');
 
-            console.log(productID, name, code, price);
-
-            $('#fedit-id').val(productID);
+            $('#fedit-id').val(id);
             $('#fedit-name').val(name);
-            $('#fedit-code').val(code);
-            $('#fedit-price').val(price);
+            $('#fedit-email').val(email);
+            $('#fedit-phone-number').val(phone_number);
+            $('#fedit-address').val(address);
         });
 
-        $('#deleteProduct').on('show.bs.modal', function(e) {
+        $('#delete').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
 
-            var productID = button.data('product-id');
+            var supplierID = button.data('supplier-id');
 
-            $('#fdelete-id').val(productID);
+            $('#fdelete-id').val(supplierID);
         });
     });
 </script>

@@ -28,9 +28,9 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-        <a class="collapse-item" href="{{ route('so.index') }}"><b>Sales Order</b></a>
-        <a class="collapse-item" href="#"><b>Delivery Order</b></a>
-        <a class="collapse-item" href="#"><b>Invoice</b></a>
+        <a class="collapse-item" href="{{ route('so.index') }}"><b>Pesanan Penjualan</b></a>
+        <a class="collapse-item" href="{{ route('do.index') }}"><b>Delivery Order</b></a>
+        <a class="collapse-item" href="{{ route('invoice.index') }}"><b>Invoice</b></a>
         <a class="collapse-item" href="#"><b>Uang Masuk</b></a>
         <a class="collapse-item" href="#"><b>History</b></a>
       </div>
@@ -58,16 +58,7 @@
       </div>
     </div>
   </li>
-  <!-- Divider -->
-  <hr class="sidebar-divider">
   
-  <!-- Heading -->
-  <!-- Nav Item - Tables -->
-  <li class="nav-item">
-    <a class="nav-link" href="tables.html">
-      <i class="fas fa-fw fa-table"></i>
-      <span><b>Approval</b></span></a>
-  </li>
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
   <li class="nav-item">
@@ -76,54 +67,48 @@
       <span><b>Report</b></span></a>
   </li>
 
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('customer.index') }}">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span><b>Customer</b></span>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('supplier.index') }}">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span><b>Supplier</b></span>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('product.index') }}">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span><b>Product</b></span>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('bank.index') }}">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span><b>Account</b></span>
+    </a>
+  </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0">
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('account.index') }}">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span><b>User</b></span>
+    </a>
+  </li>
+
+
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
   
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#masterMenu" aria-expanded="true" aria-controls="masterMenu">
-      <i class="fas fa-fw fa-wrench"></i>
-      <span><b>Master</b></span>
-    </a>
-    <div id="masterMenu" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="{{ route('account.index') }}"><b>Account</b></a>
-        <a class="collapse-item" href="{{ route('customer.index') }}"><b>Customer</b></a>
-        <a class="collapse-item" href="{{ route('product.index') }}"><b>Product</b></a>
-        <a class="collapse-item" href="{{ route('bank.index') }}"><b>Bank/Cash</b></a>
-      </div>
-    </div>
-  </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider d-none d-md-block">
-  {{-- @guest
-  <li class="nav-item">
-      <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-  </li>
-  @if (Route::has('register'))
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-        </li>
-    @endif
-  @else
-    <li class="nav-item dropdown">
-        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }} <span class="caret"></span>
-        </a>
-
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('logout') }}"
-              onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </div>
-    </li>
-  @endguest --}}
 
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">

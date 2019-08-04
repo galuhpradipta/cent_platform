@@ -7,209 +7,82 @@
                     <h4 class="modal-title" id="exampleModalLabel"><strong>Detail Sales Order</strong></h4>
                     
             </div>
-
-                <div class="col-md-6">
-                    
+                <div class="col-md-6">                    
             </div>
 
                 <div class="col-md-2">
                     <button class="close pull-right" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                        <span aria-hidden="true">X</span>
                     </button>
-                </div>
-                
+                </div>       
             </div>
 
             <hr>
 
             <div class="row">
-                <div class="col-md-4">
-                    <div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th><strong>Nomor SO</strong></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td id="detail-so-id" value="123"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th><strong>Nama Pelanggan</strong></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td id="detail-customer-name"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <table>
+                <div class="col-md-12">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th><strong>ID Pelanggan</strong></th>
+                                <th class="text-center">Nama Pelanggan</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Alamat</th>
+                                <th class="text-center">File</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td id="detail-customer-id"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><strong>Tanggal Order</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="detail-so-order-date"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><strong>Nama Barang</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="detail-product-name"></td>
+                                <td class="small text-center" id="detail-customer-name"></td>
+                                <td class="small text-center" id="detail-customer-email"></td>
+                                <td class="small text-center" id="detail-customer-address"></td>
+                                <td class="text-center">
+                                    <a href="" target="_blank" id="detail-so-file">
+                                        <i class="fas fa-file"></i>
+                                    </a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="col-md-4">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><strong>Kuantitas</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="detail-so-quantity"></td>
-                            </tr>
-                        </tbody>
-                    </table>
 
-                    <table>
+                <div class="col-md-12">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th><strong>Harga Satuan</strong></th>
+                                <th class="text-center">Nama Produk</th>
+                                <th class="text-center">Satuan</th>
+                                <th class="text-center">Harga Satuan</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td id="detail-product-price"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><strong>Sub Total Nilai</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="detail-so-subtotal-price"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><strong>Discount %</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="detail-so-discount"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><strong>Uang Muka</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="detail-so-down-payment"></td>
+                                <td class="small text-center" id="detail-product-name"></td>
+                                <td class="small text-center" id="detail-product-unit"></td>
+                                <td class="small text-center" id="detail-product-price"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="col-md-4">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><strong>Bank / Kas</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="detail-so-bank"></td>
-                            </tr>
-                        </tbody>
-                    </table>
 
-                    <table>
+                <div class="col-md-12">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th><strong>PPN</strong></th>
+                                <th class="text-center">No. Pesanan</th>
+                                <th class="text-center">Tanggal Order</th>
+                                <th class="text-center">Kuantitas</th>
+                                <th class="text-center">Subtotal</th>
+                                <th class="text-center">Total</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td id="detail-so-ppn"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <td class="small text-center" id="detail-so-id"></td>
+                                <td class="small text-center" id="detail-so-order-date"></td>
+                                <td class="small text-center" id="detail-so-quantity"></td>
+                                <td class="small text-center" id="detail-so-subtotal-price"></td>
+                                <td class="small text-center" id="detail-so-total"></td>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><strong>Total</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="detail-so-total"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <td id="detail-so-attachment"></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <a href=""><i class="fas fa-file-pdf" style="witdh:28px height: 28px; !important"></i></a>
-                                </th>
                             </tr>
                         </tbody>
                     </table>

@@ -10,7 +10,7 @@
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
-                    <span class="text">Account Receivable - Sales Order</span>
+                    <span class="text">Pesanan Penjualan</span>
                 </a>
             </div>
 
@@ -23,7 +23,7 @@
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
-                    <span class="text">Create</span>
+                    <span class="text">Buat</span>
                 </a>
             </div>
         </div>
@@ -56,6 +56,9 @@
                     <th class="text-center small font-weight-bold">Alamat Penagihan</th>
                     <th class="text-center small font-weight-bold">Draft</th>
                     <th class="text-center small font-weight-bold">Detail</th>
+                    @if (Auth::user()->role == 'Supervisor')
+                      <th class="text-center small font-weight-bold">Approve</th>
+                    @endif
                 </tr>
               </thead>
               <tbody>
@@ -74,25 +77,30 @@
                                     <i class="fas fa-search"></i>
                                 </a>
                             </td>
+                            @if (Auth::user()->role == 'Supervisor')
+                           
+                            <td class="text-center small">
+                                <a href="#" data-toggle="modal" data-target="#approve" data-so-id={{ $salesOrder->id }}>
+                                    <i class="fas fa-check"></i>
+                                </a>
+                            </td>
+                            @endif
                         </tr>
                     @endforeach
-                @endif
-               
-                @for ($i = 0; $i < 10; $i++)
-                    <tr>
-                        
-                    </tr>
-                @endfor
+                @endif             
               </tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <!-- Logout Modal-->
+      {{-- modal --}}
       @include('sales-order.modals.createSO')
 
-      @include('sales-order.modals.detailSO')
+      @if (count($salesOrders) > 0)
+        @include('sales-order.modals.detailSO')
+        @include('sales-order.modals.approve')
+      @endif
 
     </div>
     <!-- /.container-fluid -->
@@ -108,6 +116,7 @@
       
       $.get(baseURL+'/api/product/'+productID, function(data, status){
         $('#product_price').val(data.price);
+        $('#product_unit').val(data.unit);
       });  
     });
 
@@ -134,54 +143,85 @@
     $('#quantity').on('input', function() {     
       var price = $('#product_price').val();
       var quantity = $('#quantity').val();
+      // var discount = $('#discount').val();
       var subtotalPrice = price * quantity;
-      var totalPrice = (price * quantity);
+      // var totalPrice = (price * quantity - discount);
 
       $('#subtotal_price').val(subtotalPrice);
-      $('#total').val(totalPrice);
+      // $('#total').val(totalPrice);
+
     });
 
     $('#discount').on('input', function() {
-      var price = $('#product_price').val();
-      var quantity = $('#quantity').val();
+      // var price = $('#product_price').val();
+      // var quantity = $('#quantity').val();
+      // var discount = $('#discount').val();
+      // var subtotalPrice = $('#subtotal_price').val();
+      // var totalPrice =  $('#total').val();
+      // totalPrice = totalPrice - discount;
+
+      // $('#total').val(totalPrice);
+    });
+
+    $('#down_payment').on('input', function() {
       var subtotalPrice = $('#subtotal_price').val();
       var discount = $('#discount').val();
-      var totalPrice = (price * quantity);
-
-      totalPrice = totalPrice - (totalPrice * discount/100);
-
+      var downPayment = $('#down_payment').val();
+      var totalPrice = subtotalPrice - discount - downPayment;
+      console.log(subtotalPrice, discount, downPayment);
 
       $('#total').val(totalPrice);
-    })
+
+    });
+
+    // $('#discount').on('input', function() {
+    //   var price = $('#product_price').val();
+    //   var quantity = $('#quantity').val();
+    //   var subtotalPrice = $('#subtotal_price').val();
+    //   var discount = $('#discount').val();
+    //   var totalPrice = (price * quantity);
+
+    //   totalPrice = totalPrice - (totalPrice * discount/100);
+
+    //   $('total').val(totalPrice);
+    // })
 
 
 
     $('#detailSO').on('show.bs.modal', function(e) {
-            var button = $(e.relatedTarget);
-            var salesOrderID = button.data('so-id');
+        var button = $(e.relatedTarget);
+        var salesOrderID = button.data('so-id');
+        $.get(baseURL+'/api/sales-order/'+salesOrderID, function(data, status) {
+          $('#detail-so-id').html(data.id);
+          $('#detail-so-order-date').html(data.order_date);
+          $('#detail-so-quantity').html(data.quantity);
+          $('#detail-so-subtotal-price').html(data.subtotal_price);
+          $('#detail-so-total').html(data.total);
+          $('#detail-so-file').attr('href', baseURL + '/storage/' + data.attachment_url);
+          $.get(baseURL+'/api/product/'+data.product_id, function(data, status){
+            console.log(data);
+            $('#detail-product-name').html(data.name);
+            $('#detail-product-unit').html(data.unit);
+            $('#detail-product-price').html(data.price);
+            
+          });
+          $.get(baseURL+'/api/customer/'+data.customer_id, function(data, status){
+            $('#detail-customer-id').html(data.id);
+            $('#detail-customer-name').html(data.name);
+            $('#detail-customer-email').html(data.email);
+            $('#detail-customer-address').html(data.address);
+          });
+          
+        })
+    });
 
-            $.get(baseURL+'/api/sales-order/'+salesOrderID, function(data, status) {
-              $('#detail-so-id').html(data.id);
-              $('#detail-so-order-date').html(data.order_date);
-              $('#detail-so-quantity').html(data.quantity);
-              $('#detail-so-subtotal-price').html(data.subtotal_price);
-              $('#detail-so-total').html(data.total);
+    $('#approve').on('show.bs.modal', function(e) {
+      var button =  $(e.relatedTarget);
+      var salesOrderID = button.data('so-id');
 
-              $.get(baseURL+'/api/product/'+data.product_id, function(data, status){
-                console.log(data);
-                $('#detail-product-name').html(data.name);
-                $('#detail-product-price').html(data.price);
-                
-              });
-
-              $.get(baseURL+'/api/customer/'+data.customer_id, function(data, status){
-                $('#detail-customer-id').html(data.id);
-                $('#detail-customer-name').html(data.name);
-                $('#detail-customer-address').html(data.address);
-              });
-              
-            })
-        });
+      console.log(salesOrderID);
+      $('#approve_sales_order_id').val(salesOrderID); 
+    });
   });
 </script>    
 @endsection

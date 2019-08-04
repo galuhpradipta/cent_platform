@@ -55,6 +55,20 @@ Route::get('/', 'DashboardController@index')->name('dashboard.index');
 // Sales Order
 Route::get('/ar/sales-order', 'SalesOrderController@index')->name('so.index');
 Route::post('/ar/sales-order', 'SalesOrderController@store')->name('so.store');
+Route::post('/ar/sales-order/approve', 'SalesOrderController@approve')->name('so.approve');
+
+// Deliver Order
+Route::get('/ar/delivery-order', 'DeliveryOrderController@index')->name('do.index');
+Route::patch('/ar/delivery-order', 'DeliveryOrderController@update')->name('do.update');
+Route::post('/ar/delivery-order/approve', 'DeliveryOrderController@approve')->name('do.approve');
+
+// Invoice
+Route::get('/ar/invoice', 'InvoiceController@index')->name('invoice.index');
+Route::patch('/ar/invoice', 'InvoiceController@update')->name('invoice.update');
+Route::post('/ar/invoice/approve', 'InvoiceController@approve')->name('invoice.approve');
+
+
+
 
 // Purchase Request
 Route::get('/ap/purchase-request', 'PurchaseRequestController@index')->name('pr.index');
@@ -81,6 +95,13 @@ Route::post('/master/customer', 'CustomerController@store')->name('customer.stor
 Route::patch('/master/customer', 'CustomerController@update')->name('customer.update');
 Route::delete('/master/customer', 'CustomerController@destroy')->name('customer.destroy');
 
+// Supplier
+Route::get('/master/supplier', 'SupplierController@index')->name('supplier.index');
+Route::post('/master/supplier', 'SupplierController@store')->name('supplier.store');
+Route::patch('/master/supplier', 'SupplierController@update')->name('supplier.update');
+Route::delete('/master/supplier', 'SupplierController@destroy')->name('supplier.destroy');
+
+
 // Product
 Route::get('/master/product', 'ProductController@index')->name('product.index');
 Route::post('/master/product', 'ProductController@store')->name('product.store');
@@ -88,7 +109,6 @@ Route::patch('/master/product', 'ProductController@update')->name('product.updat
 Route::delete('/master/product', 'ProductController@destroy')->name('product.destroy');
 
 // Bank
-
 Route::get('/master/bank', 'BankController@index')->name('bank.index');
 Route::post('/master/bank', 'BankController@store')->name('bank.store');
 Route::patch('/master/bank', 'BankController@update')->name('bank.update');
