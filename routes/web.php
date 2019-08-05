@@ -65,7 +65,7 @@ Route::post('/ar/delivery-order/approve', 'DeliveryOrderController@approve')->mi
 // Invoice
 Route::get('/ar/invoice', 'InvoiceController@index')->middleware('auth')->name('invoice.index');
 Route::patch('/ar/invoice', 'InvoiceController@update')->middleware('auth')->name('invoice.update');
-Route::post('/ar/invoice/approve', 'invoiceController@approve')->middleware('auth')->name('invoice.approve');
+Route::post('/ar/invoice/approve', 'InvoiceController@approve')->middleware('auth')->name('invoice.approve');
 
 // Income
 Route::get('/ar/income', 'IncomeController@index')->middleware('auth')->name('income.index');
