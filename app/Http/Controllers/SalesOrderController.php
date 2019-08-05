@@ -84,18 +84,12 @@ class SalesOrderController extends Controller
             'attachment_url' => '',
             'status' => 1,
         ]);
-
-
-
+        
         $file = $request->file('attachment')->store('uploads', 'public');
 
         $so->attachment_url  = $file;
         $so->save();
 
-        AccountReceiveable::create([
-            'sales_order_id' => $so->id,
-            'status' => 1,
-        ]);
 
         return redirect(route('so.index'))->with('success', 'Sales Order Successfully created');
     }
