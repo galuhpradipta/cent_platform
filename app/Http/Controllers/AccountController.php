@@ -98,7 +98,7 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $data = request()->validate([
             'id' => 'required',
@@ -121,7 +121,7 @@ class AccountController extends Controller
         $user->setUpdatedAt(Carbon::now());
         $user->save();
        
-       return redirect(route('ent-spv.master-account'));
+       return redirect(route('account.index'))->with('success', 'Akun Berhasil di Update');
     }
 
     /**
