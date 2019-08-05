@@ -15,6 +15,14 @@ class CreateIncomesTable extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('sales_order_id');
+            $table->unsignedInteger('delivery_order_id');
+            $table->unsignedInteger('invoice_id');
+            $table->unsignedInteger('company_id');
+            $table->date('income_date');
+            $table->decimal('amount', 16, 2);
+            $table->boolean('is_approved')->default(0);
+            $table->unsignedInteger('approved_by')->nullable();
             $table->timestamps();
         });
     }

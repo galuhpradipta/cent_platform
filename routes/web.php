@@ -67,7 +67,13 @@ Route::get('/ar/invoice', 'InvoiceController@index')->middleware('auth')->name('
 Route::patch('/ar/invoice', 'InvoiceController@update')->middleware('auth')->name('invoice.update');
 Route::post('/ar/invoice/approve', 'invoiceController@approve')->middleware('auth')->name('invoice.approve');
 
+// Income
+Route::get('/ar/income', 'IncomeController@index')->middleware('auth')->name('income.index');
+Route::patch('/ar/income', 'IncomeController@update')->middleware('auth')->name('income.update');
+Route::post('/ar/income/approve', 'IncomeController@approve')->middleware('auth')->name('income.approve');
 
+// History Uang Masuk
+Route::get('/ar/history', 'ArHistory@index')->middleware('auth')->name('ar-history.index');
 
 
 // Purchase Request

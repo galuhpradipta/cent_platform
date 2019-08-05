@@ -32,6 +32,13 @@
         </div>
         @endif
 
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>	
+                <strong>{{ $message }}</strong>
+        </div>
+        @endif
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card shadow mb-4">
@@ -40,62 +47,64 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th class="small text-center">Pelanggan</th>
-                                        <th class="small text-center">No. Pesanan</th>
-                                        <th class="small text-center">Tgl. Order</th>
-                                        <th class="small text-center">Produk</th> 
-                                        <th class="small text-center">Kuantitas</th>
-                                        <th class="small text-center">Tanggal DO</th>
-                                        <th class="small text-center">Tgl. Invoice</th>
-                                        <th class="small text-center">Tgl. Jatuh Tempo</th>
-                                        <th class="small text-center">Draft</th>                              
+                                        <th class="small text-center font-weight-bold">Pelanggan</th>
+                                        <th class="small text-center font-weight-bold">No. Pesanan</th>
+                                        <th class="small text-center font-weight-bold">Tgl. Order</th>
+                                        <th class="small text-center font-weight-bold">Produk</th> 
+                                        <th class="small text-center font-weight-bold">Kuantitas</th>
+                                        <th class="small text-center font-weight-bold">Tanggal DO</th>
+                                        <th class="small text-center font-weight-bold">Tgl. Invoice</th>
+                                        <th class="small text-center font-weight-bold">Tgl. Jatuh Tempo</th>
+                                        <th class="small text-center font-weight-bold">Draft</th>                              
                                         @if (Auth::user()->role == 'Supervisor')
-                                            <th class="small text-center">Approve</th>
+                                            <th class="small text-center font-weight-bold">Approve</th>
                                         @endif
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (count($invoices) > 0 )
                                         @foreach ($invoices as $inv)
-                                            <td class="small text-center">{{ $inv->salesOrder->customer->email }}</td>
-                                            <td class="small text-center">{{ $inv->salesOrder->id }}</td>
-                                            <td class="small text-center">{{ $inv->salesOrder->order_date }}</td>
-                                            <td class="small text-center">{{ $inv->salesOrder->product->name }}</td>
-                                            <td class="small text-center">{{ $inv->salesOrder->quantity }}</td>
-                                            <td class="small text-center">{{ $inv->deliveryOrder->delivery_date }}</td>
-                                            @if (empty($inv->invoice_date))
-                                                <td class="small text-center" data-toggle="modal" data-target="#edit" data-inv-id="{{  $inv->id  }}">
-                                                    <a href="#" >
-                                                        <i class="fas fa-plus"></i>
-                                                    </a>
-                                                </td>
-                                            @else
-                                                <td class="small text-center">{{ $inv->invoice_date }}</td>
-                                            @endif
+                                            <tr>
+                                                <td class="small text-center">{{ $inv->salesOrder->customer->email }}</td>
+                                                <td class="small text-center">{{ $inv->salesOrder->id }}</td>
+                                                <td class="small text-center">{{ $inv->salesOrder->order_date }}</td>
+                                                <td class="small text-center">{{ $inv->salesOrder->product->name }}</td>
+                                                <td class="small text-center">{{ $inv->salesOrder->quantity }}</td>
+                                                <td class="small text-center">{{ $inv->deliveryOrder->delivery_date }}</td>
+                                                @if (empty($inv->invoice_date))
+                                                    <td class="small text-center" data-toggle="modal" data-target="#edit" data-inv-id="{{  $inv->id  }}">
+                                                        <a href="#" >
+                                                            <i class="fas fa-plus"></i>
+                                                        </a>
+                                                    </td>
+                                                @else
+                                                    <td class="small text-center">{{ $inv->invoice_date }}</td>
+                                                @endif
 
-                                            @if (empty($inv->due_date))
-                                                <td class="small text-center" data-toggle="modal" data-target="#edit" data-inv-id="{{  $inv->id  }}">
-                                                    <a href="#" >
-                                                        <i class="fas fa-plus"></i>
-                                                    </a>
-                                                </td>
-                                            @else
-                                                <td class="small text-center">{{ $inv->due_date }}</td>
-                                            @endif
+                                                @if (empty($inv->due_date))
+                                                    <td class="small text-center" data-toggle="modal" data-target="#edit" data-inv-id="{{  $inv->id  }}">
+                                                        <a href="#" >
+                                                            <i class="fas fa-plus"></i>
+                                                        </a>
+                                                    </td>
+                                                @else
+                                                    <td class="small text-center">{{ $inv->due_date }}</td>
+                                                @endif
 
-                                            <th class="small text-center">
-                                                <a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </a>
-                                            </th>
-
-                                            @if (Auth::user()->role == 'Supervisor')
-                                                <td class="small text-center">
-                                                    <a href="#" data-toggle="modal" data-target="#approve" data-inv-id="{{ $inv->id }}">
-                                                        <i class="fas fa-check"></i>
+                                                <th class="small text-center">
+                                                    <a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">
+                                                        <i class="fas fa-file-pdf"></i>
                                                     </a>
-                                                </td>
-                                            @endif
+                                                </th>
+
+                                                @if (Auth::user()->role == 'Supervisor')
+                                                    <td class="small text-center">
+                                                        <a href="#" data-toggle="modal" data-target="#approve" data-inv-id="{{ $inv->id }}">
+                                                            <i class="fas fa-check"></i>
+                                                        </a>
+                                                    </td>
+                                                @endif
+                                            </tr>
                                         @endforeach
                                     @endif
                                 </tbody>

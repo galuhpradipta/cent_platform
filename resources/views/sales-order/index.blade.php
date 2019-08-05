@@ -143,13 +143,12 @@
     $('#quantity').on('input', function() {     
       var price = $('#product_price').val();
       var quantity = $('#quantity').val();
-      // var discount = $('#discount').val();
       var subtotalPrice = price * quantity;
+      var ppn = subtotalPrice * 0.1;
       // var totalPrice = (price * quantity - discount);
 
       $('#subtotal_price').val(subtotalPrice);
-      // $('#total').val(totalPrice);
-
+      $('#ppn').val(ppn);
     });
 
     $('#discount').on('input', function() {
@@ -165,27 +164,13 @@
 
     $('#down_payment').on('input', function() {
       var subtotalPrice = $('#subtotal_price').val();
+      var ppn = $('#ppn').val();
       var discount = $('#discount').val();
       var downPayment = $('#down_payment').val();
-      var totalPrice = subtotalPrice - discount - downPayment;
-      console.log(subtotalPrice, discount, downPayment);
+      var totalPrice = (parseFloat(subtotalPrice) + parseFloat(ppn)) - parseFloat(discount) - parseFloat(downPayment);
 
       $('#total').val(totalPrice);
-
     });
-
-    // $('#discount').on('input', function() {
-    //   var price = $('#product_price').val();
-    //   var quantity = $('#quantity').val();
-    //   var subtotalPrice = $('#subtotal_price').val();
-    //   var discount = $('#discount').val();
-    //   var totalPrice = (price * quantity);
-
-    //   totalPrice = totalPrice - (totalPrice * discount/100);
-
-    //   $('total').val(totalPrice);
-    // })
-
 
 
     $('#detailSO').on('show.bs.modal', function(e) {
@@ -221,6 +206,19 @@
 
       console.log(salesOrderID);
       $('#approve_sales_order_id').val(salesOrderID); 
+    });
+
+    $('input.number').keyup(function(event) {
+    // skip for arrow keys
+      if(event.which >= 37 && event.which <= 40) return;
+
+      // format number
+      $(this).val(function(index, value) {
+        return value
+        .replace(/\D/g, "")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        ;
+      });
     });
   });
 </script>    

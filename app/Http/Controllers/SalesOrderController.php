@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Carbon;
 use App\User;
 use App\Bank;
 use App\Product;
@@ -10,7 +12,7 @@ use App\Customer;
 use App\SalesOrder;
 use App\AccountReceiveable;
 use App\DeliveryOrder;
-use Auth;
+
 
 class SalesOrderController extends Controller
 {
@@ -165,6 +167,7 @@ class SalesOrderController extends Controller
         $so = SalesOrder::find(request('sales_order_id'));
         $so->approved_by = $user->id;
         $so->is_approved = true;
+        $so->updated_at = Carbon::now();
         $so->save();
 
         $do = DeliveryOrder::create([

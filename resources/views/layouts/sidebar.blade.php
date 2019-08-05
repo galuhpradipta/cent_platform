@@ -31,8 +31,8 @@
         <a class="collapse-item" href="{{ route('so.index') }}"><b>Pesanan Penjualan</b></a>
         <a class="collapse-item" href="{{ route('do.index') }}"><b>Delivery Order</b></a>
         <a class="collapse-item" href="{{ route('invoice.index') }}"><b>Invoice</b></a>
-        <a class="collapse-item" href="#"><b>Uang Masuk</b></a>
-        <a class="collapse-item" href="#"><b>History</b></a>
+        <a class="collapse-item" href="{{ route('income.index') }}"><b>Uang Masuk</b></a>
+        <a class="collapse-item" href="{{ route('ar-history.index') }}"><b>History</b></a>
       </div>
     </div>
   </li>
@@ -59,13 +59,13 @@
     </div>
   </li>
   
-  <!-- Divider -->
+  {{-- <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
   <li class="nav-item">
     <a class="nav-link" href="tables.html">
       <i class="fas fa-fw fa-table"></i>
       <span><b>Report</b></span></a>
-  </li>
+  </li> --}}
 
   <li class="nav-item">
     <a class="nav-link" href="{{ route('customer.index') }}">
@@ -95,8 +95,6 @@
     </a>
   </li>
 
-  <!-- Divider -->
-  <hr class="sidebar-divider my-0">
   <!-- Nav Item - Dashboard -->
   <li class="nav-item">
     <a class="nav-link" href="{{ route('account.index') }}">

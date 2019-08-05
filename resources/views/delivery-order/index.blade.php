@@ -37,6 +37,13 @@
         </div>
         @endif
 
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>	
+                <strong>{{ $message }}</strong>
+        </div>
+        @endif
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card shadow mb-4">
@@ -45,17 +52,17 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th class="small text-center">Email</th>
-                                        <th class="small text-center">No. Delivery</th>
-                                        <th class="small text-center">No. Pesanan</th>
-                                        <th class="small text-center">Tanggal Pesanan</th>
-                                        <th class="small text-center">Tanggal Delivery</th>
-                                        <th class="small text-center">Kuantitas</th>
-                                        <th class="small text-center">Nama Barang</th>
-                                        <th class="small text-center">Disetujui Oleh</th>
-                                        <th class="small text-center">Draft</th>
+                                        <th class="small text-center font-weight-bold">Email</th>
+                                        <th class="small text-center font-weight-bold">No. Delivery</th>
+                                        <th class="small text-center font-weight-bold">No. Pesanan</th>
+                                        <th class="small text-center font-weight-bold">Tanggal Pesanan</th>
+                                        <th class="small text-center font-weight-bold">Tanggal Delivery</th>
+                                        <th class="small text-center font-weight-bold">Kuantitas</th>
+                                        <th class="small text-center font-weight-bold">Nama Barang</th>
+                                        <th class="small text-center font-weight-bold">Disetujui Oleh</th>
+                                        <th class="small text-center font-weight-bold">Draft</th>
                                         @if (Auth::user()->role == 'Supervisor')
-                                            <th class="small text-center">Approve</th>
+                                            <th class="small text-center font-weight-bold">Approve</th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -75,7 +82,6 @@
                                                     </td>
                                                 @else
                                                     <td class="small text-center">{{ $do->delivery_date }}</td>
-
                                                 @endif
                                                 <td class="small text-center">{{ $do->salesOrder->quantity }}</td>
                                                 <td class="small text-center">{{ $do->salesOrder->product->name }}</td>

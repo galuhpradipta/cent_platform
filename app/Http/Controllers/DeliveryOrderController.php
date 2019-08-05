@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\DeliveryOrder;
 use App\Invoice;
 use Auth;
+use Carbon;
 
 
 class DeliveryOrderController extends Controller
@@ -109,8 +110,14 @@ class DeliveryOrderController extends Controller
         $user = Auth::user();
 
         $do = DeliveryOrder::find(request('delivery_order_id'));
+
+        if  ($do->delivery_date ==  null) {
+            return redirect(route('do.index'))->with('error', 'Tolong input tanggal delivery terlebih dahulu');
+        }
+
         $do->approved_by = $user->id;
         $do->is_approved = true;
+        $do->updated_at = Carbon::now();
         $do->save();
 
         $inv = Invoice::create([
@@ -119,6 +126,6 @@ class DeliveryOrderController extends Controller
             'company_id' => $do->company_id,
         ]);
 
-        return redirect(route('so.index'))->with('success', 'Pesanan Penjualan berhasil di setujui');
+        return redirect(route('do.index'))->with('success', 'Pesanan Delivery berhasil di setujui');
     }
 }

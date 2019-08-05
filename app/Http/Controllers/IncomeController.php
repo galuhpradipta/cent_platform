@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Invoice;
-use App\Income;
 use Auth;
+use App\Income;
 use Carbon;
 
-class InvoiceController extends Controller
+class IncomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +15,16 @@ class InvoiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {       
         $user = Auth::user();
-        $invoices = Invoice::where([
+        $incomes = Income::where([
             'company_id' => $user->business->id,
             'is_approved' => false,
         ])->get();
 
-        return view('invoice.index', compact('invoices'));
+        // dd($incomes);
+
+        return view('income.index', compact('incomes'));
     }
 
     /**
@@ -79,16 +80,17 @@ class InvoiceController extends Controller
     public function update(Request $request)
     {   
         $data = request()->validate([
-            'invoice_date' => 'required',
-            'due_date' => 'required',    
+            'income_id' => 'required',
+            'income_date' => 'required',
+            'amount' => 'required',    
         ]);
 
-        $inv = Invoice::find(request('invoice_id'));
-        $inv->invoice_date = request('invoice_date');
-        $inv->due_date = request('due_date');
-        $inv->save();
+        $income = Income::find(request('income_id'));
+        $income->income_date = request('income_date');
+        $income->amount = request('amount');
+        $income->save();
 
-        return redirect(route('invoice.index'))->with('success', 'Tanggal Invoice berhasil di update');
+        return redirect(route('income.index'))->with('success', 'Data uang masuk berhasil di update');
     }
 
     /**
@@ -104,29 +106,22 @@ class InvoiceController extends Controller
 
     public function approve() {
         request()->validate([
-            'invoice_id' => 'required'
+            'income_id' => 'required'
         ]);
 
         $user = Auth::user();
 
-        $inv = Invoice::find(request('invoice_id'));
-        
-        if ($inv->invoice_date ==  null || $inv->due_date == null) {
-            return redirect(route('invoice.index'))->with('error', 'Tolong lengkapi data tanggal invoice dan jatuh tempo terlebih dahulu');
+        $income = Income::find(request('income_id'));
+
+        if ($income->amount == null || $income->income_date == null) {
+            return redirect(route('income.index'))->with('error', 'Tolong lengkapi Jumlah uang masuk dan Tanggal uang masuk terlebih dahulu');
         }
 
-        $inv->approved_by = $user->id;
-        $inv->is_approved = true;
-        $inv->updated_at = Carbon::now();
-        $inv->save();
+        $income->approved_by = $user->id;
+        $income->is_approved = true;
+        $income->updated_at = Carbon::now();
+        $income->save();
 
-        $income = Income::create([
-            'sales_order_id' =>  $inv->sales_order_id,
-            'delivery_order_id' => $inv->delivery_order_id,
-            'invoice_id' =>  $inv->id,
-            'company_id' => $user->business->id,
-        ]);
-    
-        return redirect(route('invoice.index'))->with('success', 'Invoice Penjualan berhasil di setujui');
+        return redirect(route('income.index'))->with('success', 'Invoice Penjualan berhasil di setujui');
     }
 }
