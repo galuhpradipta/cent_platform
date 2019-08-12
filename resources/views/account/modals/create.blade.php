@@ -1,44 +1,37 @@
 <div class="modal fade" id="create-account-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
+        <form action="{{ route('account.store') }}" method="POST">
         <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h4 class="modal-title" id="exampleModalLabel"><strong>Create Account</strong></h4>        
-                    </div>
-               
-                    <div class="col-md-6">
-                        
-                    </div>
-    
-                </div>
-    
-    
-                <div class="div">
-                    <hr class="sidebar-divider">
-                </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4 class="modal-title" id="exampleModalLabel"><strong>Buat User</strong></h4>        
+                </div>            
+                <div class="col-md-6"></div>
+            </div>
+            <hr class="sidebar-divider">
                 
 
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="{{ route('account.store') }}" method="POST">
+                        
                             @csrf
 
                             <input type="hidden" name="registered_by" value="{{ Auth::user()->id }}">
                             <div class="form-row">                                                   
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name"><strong>Name</strong></label>
+                                        <label for="name">Nama</label>
                                         <input type="text" name="name" class="form-control" id="name" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="address"><strong>Address</strong></label>
+                                        <label for="address">Alamat</label>
                                         <input type="text" name="address" class="form-control" id="address" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="phone_number"><strong>Phone Number</strong></label>
+                                        <label for="phone_number">Nomor Telepon</label>
                                         <input type="text" name="phone_number" class="form-control" id="phone_number" required>
                                     </div>
 
@@ -47,18 +40,18 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="password"><strong>Password</strong></label>
+                                        <label for="password">Password</label>
                                         <input type="password" name="password" class="form-control" id="password" required>
                                     </div> 
 
                                     <div class="form-group">
-                                        <label for="email"><strong>Email</strong></label>
+                                        <label for="email">Email</label>
                                         <input type="email" name="email" class="form-control" id="email" required>
                                         
                                     </div>   
                                     
                                     <div class="form-group">
-                                        <label for="role"><strong>Role</strong></label>
+                                        <label for="role">Role</label>
                                         <select name="role" id="role" class="form-control">
                                             <option value="" disabled>Select Role</option>
                                             <option value="0">Supervisor</option>
@@ -72,21 +65,17 @@
                                     </div>  
                                 </div>
                                                                                                                              
-                                <div class="col-md-3 offset-md-9">                                                                
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
-                        </form>
                     </div>
                 </div>
-        </div>    
+        </div> 
+
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-fill btn-danger">Cancel</button>            
+            <button type="submit" class="btn btn-fill btn-primary">Submit</button>
+        </div>
+        </form>
     </div>
     </div>
 </div>

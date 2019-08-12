@@ -10,8 +10,6 @@ use Auth;
 
 class CustomerController extends Controller
 {
-
-
     /**
      * Display a listing of the resource.
      *
@@ -45,14 +43,12 @@ class CustomerController extends Controller
     {   
     
         $data = request()->validate([
-            'id' => 'required',
             'name' => 'required|min:3',
             'email' => 'required|email',
             'phone_number' => 'required',
             'address' => 'required',
         ]);
-
-        $user = User::find(request('id'));
+        $user = Auth::user();
 
         $customer = new Customer();
         $customer->name = request('name');

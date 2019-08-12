@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
-                <a href="#" class="btn btn-primary btn-icon-split mt-1 mb-2">
+                <a href="#" class="btn btn-primary btn-fill btn-icon-split mt-1 mb-2">
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
@@ -17,11 +17,11 @@
             </div>
 
             <div class="col-md-4">
-                <a href="#" class="btn btn-success btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#createBank">
+                <a href="#" class="btn btn-success btn-fill btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#createBank">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Create</span>
+                    <span class="text">Buat</span>
                 </a>
             </div>
         </div>
@@ -44,14 +44,14 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
-                                    <tr>
-                                        <th class="text-center">Name</th>
-                                        <th class="text-center">Code</th>
-                                        <th class="text0-center">Category</th>
-                                        <th class="text-center">Balance</th>
-                                        <th class="text-center">Action</th>
+                                    <tr>   
+                                        <th width="40%">Nama</th>
+                                        <th width="15%">Kode</th>
+                                        <th width="10%">Kategori</th>
+                                        <th width="25%">Balance</th>
+                                        <th width="10%">Action</th>
                                     </tr>
                                 </thead>
 
@@ -59,18 +59,19 @@
                                    @if (count($banks) > 0)
                                         @foreach ($banks as $bank)
                                             <tr>
-                                                <td class="text-center">{{ $bank->name }}</td>
-                                                <td class="text-center">{{ $bank->code }}</td>
-                                                <td class="text-center">{{ $bank->category }}</td>
-                                                <td class="text-center">Rp. {{ $bank->balance }}</td>
+                                                <td class="text-left">{{ $bank->name }}</td>
+                                                <td class="text-left">{{ $bank->code }}</td>
+                                                <td class="text-left">{{ $bank->category }}</td>
+                                                <td class="text-right">Rp. {{ $bank->balance }}</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-primary btn-block"
+                                                    <button class="btn btn-primary btn-fill btn-sm btn-block"
                                                         data-toggle="modal" data-target="#editBank"
                                                         data-bank-id="{{ $bank->id }}"
                                                         data-bank-name="{{ $bank->name }}"
                                                         data-bank-code="{{ $bank->code }}"
                                                         data-bank-balance="{{ $bank->balance }}">
-                                                        Edit
+                                                        Ubah
+                                                        <i class="fas fa-edit"></i>
                                                     </button>
                                                 </td>
                                             </tr>

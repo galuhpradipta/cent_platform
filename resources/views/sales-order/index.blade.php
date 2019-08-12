@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
      <!-- Begin Page Content -->
@@ -19,7 +19,7 @@
             </div>
 
             <div class="col-md-4">
-                <a href="#" class="btn btn-success btn-icon-split mb-2 float-right" data-toggle="modal" data-target="#createSO">
+                <a href="{{ route('so.create') }}" class="btn btn-success btn-icon-split mb-2 float-right">
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>

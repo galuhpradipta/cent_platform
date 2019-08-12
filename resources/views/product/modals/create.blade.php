@@ -4,7 +4,7 @@
             <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="modal-title" id="exampleModalLabel"><strong>Create Product</strong></h4>        
+                            <h4 class="modal-title" id="exampleModalLabel">Buat Product</h4>        
                         </div>
                     </div>
         
@@ -56,16 +56,13 @@
                         <hr class="sidebar-divider">
                     </div>
                     
-                    <div class="row">
-                        <div class="col-md-6 offset-md-6">
-                            <button data-dismiss="modal" class="btn btn-danger">
-                                Cancel
-                            </button>
-
-                            <button type="submit" class="btn btn-primary">
-                                Submit
-                            </button>
-                        </div>
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-fill btn-danger">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-fill btn-primary">
+                            Submit
+                        </button>
                     </div>
 
                     </form>

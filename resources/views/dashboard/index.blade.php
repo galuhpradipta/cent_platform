@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
+    <div class="container-fluid">
         {{-- Account Receiveable --}}
         <div class="d-sm-flex align-item-center justify-content-between mb-4 mt-4">
             <h1 class="h3 mb-0 text-gray-800">Account Receiveable</h1>

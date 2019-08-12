@@ -4,7 +4,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="text-center modal-title"><strong>Are you sure ?</strong></p>
+                        <p class="text-center modal-title">Apakah anda yakin ?</p>
                     </div>
                 </div>
 
@@ -12,7 +12,7 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" data-dismiss="modal" class="btn btn-primary btn-block">Cancel</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-fill btn-primary btn-block">Cancel</button>
                     </div>
 
                     @if (count($accounts) > 0 )
@@ -23,7 +23,7 @@
 
                                 <input data-account-id={{ $account->id }} type="hidden" name="id" id="fdelete-account-id" value="">
 
-                                <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                                <button type="submit" class="btn btn-fill btn-danger btn-block">Delete</button>
                             </form>
                         </div>
                     @endif

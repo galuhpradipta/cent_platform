@@ -4,7 +4,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="text-center modal-title"><strong>Are you sure ?</strong></p>
+                        <p class="text-center modal-title">Apakah anda yakin ?</p>
                     </div>
                 </div>
 
@@ -12,7 +12,7 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" data-dismiss="modal" class="btn btn-primary btn-block">Cancel</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-primary btn-fill btn-block">Cancel</button>
                     </div>
 
                     <div class="col-md-6">
@@ -20,7 +20,7 @@
                             @method('DELETE')
                             @csrf
                             <input type="hidden" name="product_id" id="fdelete-id">
-                            <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-fill btn-block">Delete</button>
                         </form>
                     </div>
 

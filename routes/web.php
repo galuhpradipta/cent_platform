@@ -54,6 +54,7 @@ Route::get('/', 'DashboardController@index')->middleware('auth')->name('dashboar
 
 // Sales Order
 Route::get('/ar/sales-order', 'SalesOrderController@index')->middleware('auth')->name('so.index');
+Route::get('/ar/sales-order/create', 'SalesOrderController@create')->middleware('auth')->name('so.create');
 Route::post('/ar/sales-order', 'SalesOrderController@store')->middleware('auth')->name('so.store');
 Route::post('/ar/sales-order/approve', 'SalesOrderController@approve')->middleware('auth')->name('so.approve');
 

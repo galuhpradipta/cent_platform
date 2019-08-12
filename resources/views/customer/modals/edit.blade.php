@@ -49,16 +49,14 @@
                     <hr class="sidebar-divider">
                 </div>
                 
-                <div class="row">
-                    <div class="col-md-6 offset-md-6">
-                        <button data-dismiss="modal" class="btn btn-danger">
+                <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-danger btn-fill">
                             Cancel
                         </button>
 
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-fill">
                             Submit
                         </button>
-                    </div>
                 </div>
 
                 </form>

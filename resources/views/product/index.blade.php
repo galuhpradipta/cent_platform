@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
-                <a href="#" class="btn btn-primary btn-icon-split mt-1 mb-2">
+                <a href="#" class="btn btn-primary btn-fill btn-icon-split mt-1 mb-2">
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
@@ -17,11 +17,11 @@
             </div>
 
             <div class="col-md-4">
-                <a href="#" class="btn btn-success btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#createProduct">
+                <a href="#" class="btn btn-success btn-fill btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#createProduct">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Create</span>
+                    <span class="text">Buat</span>
                 </a>
             </div>
         </div>
@@ -44,14 +44,14 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Nama</th>
-                                        <th class="text-center">Kode</th>
-                                        <th class="text-center">Satuan</th>
-                                        <th class="text-center">Harga Satuan (Rp.)</th>
-                                        <th class="text-center" width="20%">Action</th>                                    
+                                        <th width="40%">Nama</th>
+                                        <th width="15%">Kode</th>
+                                        <th width="15%">Satuan</th>
+                                        <th width="20%">Harga Satuan</th>
+                                        <th width="10%" colspan="2">Action</th>                                    
                                   
                                     </tr>
                                 </thead>
@@ -59,28 +59,31 @@
                                     @if (count($products) > 0)
                                         @foreach($products as $product)
                                             <tr>
-                                                <td class="text-center">{{ $product->name}}</td>
-                                                <td class="text-center">{{ $product->code }}</td>
-                                                <td class="text-center"> {{ $product->unit }}</td>
-                                                <td class="text-center">{{ $product->price }}</td>
+                                                <td class="text-left">{{ $product->name}}</td>
+                                                <td class="text-left">{{ $product->code }}</td>
+                                                <td class="text-left"> {{ $product->unit }}</td>
+                                                <td class="text-right">Rp. {{ $product->price }}</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-primary"
-                                                    data-toggle="modal"
-                                                    data-target="#editProduct"
-                                                    data-product-id="{{ $product->id }}"
-                                                    data-product-name="{{ $product->name }}"
-                                                    data-product-code="{{ $product->code }}"
-                                                    data-product-price="{{ $product->price }}"
-                                                    >
-                                                    Edit
-                                                    </button>
-    
-                                                    <button class="btn btn-danger"
-                                                    data-toggle="modal"
-                                                    data-target="#deleteProduct"
-                                                    data-product-id={{ $product->id }}
-                                                    >
-                                                    Delete
+                                                    <button class="btn btn-primary btn-sm btn-fill"
+                                                        data-toggle="modal"
+                                                        data-target="#editProduct"
+                                                        data-product-id="{{ $product->id }}"
+                                                        data-product-name="{{ $product->name }}"
+                                                        data-product-code="{{ $product->code }}"
+                                                        data-product-price="{{ $product->price }}"
+                                                        >
+                                                        Ubah
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>                                                   
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-danger btn-sm btn-fill"
+                                                        data-toggle="modal"
+                                                        data-target="#deleteProduct"
+                                                        data-product-id={{ $product->id }}
+                                                        >
+                                                        Hapus
+                                                        <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
                                             </tr>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
 
@@ -6,11 +6,11 @@
         <!-- Page Heading -->
           <div class="row">
               <div class="col-md-4">
-                  <a href="#" class="btn btn-primary btn-icon-split mt-1 mb-2">
+                  <a href="#" class="btn btn-primary btn-fill btn-icon-split mt-1 mb-2">
                       <span class="icon text-white-50">
                           <i class="fas fa-flag"></i>
                       </span>
-                      <span class="text">Master - Account</span>
+                      <span class="text">User</span>
                   </a>
               </div>            
   
@@ -19,11 +19,11 @@
               </div>
   
               <div class="col-md-4">
-                  <a href="#" class="btn btn-success btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#create-account-modal">
+                  <a href="#" class="btn btn-fill btn-success btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#create-account-modal">
                       <span class="icon text-white-50">
                           <i class="fas fa-plus"></i>
                       </span>
-                      <span class="text">Create</span>
+                      <span class="text">Buat</span>
                   </a>
               </div>
           </div>
@@ -46,15 +46,15 @@
         <div class="card shadow mb-4">
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                      <th class="text-center">Name</th>
-                      <th class="text-center">Address</th>
-                      <th class="text-center">Phone</th>
-                      <th class="text-center">Email</th>
-                      <th class="text-center">Role</th>
-                      <th class="text-center">Action</th>
+                      <th width="30%">Name</th>
+                      <th width="30%">Address</th>
+                      <th width="10%">Phone</th>
+                      <th width="15%">Email</th>
+                      <th width="10%">Role</th>
+                      <th width="10%" colspan="2">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -62,11 +62,11 @@
                   
                   <tr>
                       
-                      <td class="text-center">{{ $account->name }}</td>
-                      <td class="text-center">{{ $account->address }}</td>
-                      <td class="text-center">{{ $account->phone_number }}</td>
-                      <td class="text-center">{{ $account->email }}</td>                      
-                      <td class="text-center">{{ $account->role }}</td>
+                      <td class="text-left">{{ $account->name }}</td>
+                      <td class="text-left small">{{ $account->address }}</td>
+                      <td class="text-left">{{ $account->phone_number }}</td>
+                      <td class="text-left">{{ $account->email }}</td>                      
+                      <td class="text-left">{{ $account->role }}</td>
                       <td class="text-center">                          
                           <button 
                             data-toggle="modal"
@@ -78,17 +78,21 @@
                             data-account-email="{{ $account->email }}"
                             data-account-role="{{ $account->role }}"
                             data-account-unencrypted-password="{{ $account->unencrypted_password }}"
-                            class="btn btn-primary">Edit
-
-                          </button>
-
+                            class="btn btn-sm btn-fill btn-primary">
+                              Ubah
+                            <i class="fas fa-edit"></i>
+                          </button>                          
+                      </td>            
+                      <td class="text-center">
                           <button 
                             data-toggle="modal" 
                             data-target="#deleteModal" 
                             data-account-id="{{ $account->id }}"
-                            class="btn btn-danger">Delete
+                            class="btn btn-sm btn-fill btn-danger">
+                              Hapus
+                            <i class="fas fa-trash"></i>
                           </button>
-                      </td>                     
+                      </td>         
                   </tr>
                   @endforeach                                  
 

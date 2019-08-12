@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
-                <a href="#" class="btn btn-primary btn-icon-split mt-1 mb-2">
+                <a href="#" class="btn btn-primary btn-fill btn-icon-split mt-1 mb-2">
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
-                    <span class="text">Customer</span>
+                    <span class="text">Pelanggan</span>
                 </a>
             </div>
 
@@ -17,11 +17,11 @@
             </div>
 
             <div class="col-md-4">
-                <a href="#" class="btn btn-success btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#createCustomer">
+                <a href="#" class="btn btn-success btn-fill btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#myModal1">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Create</span>
+                    <span class="text">Buat</span>
                 </a>
             </div>
         </div>
@@ -44,26 +44,26 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Name</th>
-                                        <th class="text-center">Email</th>
-                                        <th class="text-center">Phone Number</th>
-                                        <th class="text-center">Address</th>
-                                        <th class="text-center">Action</th>
+                                        <th width="20%" class="text-center">Name</th>
+                                        <th width="20%" class="text-center">Email</th>
+                                        <th width="10%" class="text-center">Phone Number</th>
+                                        <th width="35%" class="text-center">Address</th>
+                                        <th width="15%" class="text-center" colspan="2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (count($customers) > 0)
                                         @foreach($customers as $customer)
                                             <tr>
-                                                <td class="text-center">{{ $customer->name}}</td>
-                                                <td class="text-center">{{ $customer->email }}</td>
-                                                <td class="text-center">{{ $customer->phone_number }}</td>
-                                                <td class="text-center">{{ $customer->address }}</td>
+                                                <td class="text-left">{{ $customer->name}}</td>
+                                                <td class="text-left">{{ $customer->email }}</td>
+                                                <td class="text-left">{{ $customer->phone_number }}</td>
+                                                <td class="text-left small">{{ $customer->address }}</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-primary"
+                                                    <button class="btn btn-sm btn-primary btn-fill"
                                                     data-toggle="modal"
                                                     data-target="#editCustomer"
                                                     data-customer-id="{{ $customer->id }}"
@@ -72,15 +72,18 @@
                                                     data-customer-phone-number="{{ $customer->phone_number }}"
                                                     data-customer-address="{{ $customer->address }}"
                                                     >
-                                                        Edit
-                                                    </button>
-    
-                                                    <button class="btn btn-danger"
+                                                        Ubah
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>                                                   
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger btn-fill"
                                                     data-toggle="modal"
                                                     data-target="#deleteCustomer"
                                                     data-customer-id={{ $customer->id }}
                                                     >
-                                                        Delete
+                                                        Hapus
+                                                        <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -100,7 +103,6 @@
         @if (count($customers) > 0)
             @include('customer.modals.edit')
             @include('customer.modals.delete')
-
         @endif
         
     </div>
@@ -126,11 +128,10 @@
             $('#fedit-address').val(address);
         });
 
-        $('#deleteCustomer').on('show.bs.modal', function(e) {
+        $('#deleteCustomer').on('shown.bs.modal', function(e) {
             var button = $(e.relatedTarget);
-
             var customerID = button.data('customer-id');
-
+            console.log(customerID);
             $('#fdelete-id').val(customerID);
         });
     });

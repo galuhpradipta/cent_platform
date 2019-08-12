@@ -3,10 +3,14 @@
 
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><strong>Edit</strong></h4>
+                <h3 class="modal-title"><strong>Ubah informasi user</strong></h3>
             </div>
-            <form action="{{ route('account.update') }}" method="POST">
 
+            <div class="div">
+                <hr class="sidebar-divider">
+            </div>
+
+            <form action="{{ route('account.update') }}" method="POST">
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -59,15 +63,12 @@
                     </div>
                 </div>
             </div>
+            <div class="div">
+                <hr class="sidebar-divider">
+            </div>
             <div class="modal-footer">
-                <div class="row">                    
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>                    
+                <button type="button" class="btn btn-fill btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-fill btn-primary">Submit</button>                
             </div>
             </form>  
         </div>
