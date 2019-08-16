@@ -11,58 +11,6 @@ Tip 2: you can also add an image using data-image tag
             </a>
         </div>  
 
-        
-
-        <ul class="nav">
-            <li class="nav-item">
-                <hr class="sidebar-divider">
-                <a href="#uangMasuk" class="nav-link" data-toggle="collapse">
-                    <i class="nc-icon nc-money-coins"></i>
-                    <p>Uang Masuk<b class="caret"></b></p>
-                </a>
-            </li>
-
-            <div class="collapse" id="uangMasuk">
-                <ul class="nav">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('so.index') }}">
-                            <span class="sidebar-mini">PJ</span>
-                            <span class="sidebar-normal">Pesanan Penjualan</span>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('do.index') }}">
-                            <span class="sidebar-mini">SJ</span>
-                            <span class="sidebar-normal">Surat Jalan</span>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('invoice.index') }}">
-                            <span class="sidebar-mini">INV</span>
-                            <span class="sidebar-normal">Faktur Penjualan</span>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('income.index') }}">
-                            <span class="sidebar-mini">UM</span>
-                            <span class="sidebar-normal">Uang Masuk</span>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('ar-history.index') }}">
-                            <span class="sidebar-mini">RW</span>
-                            <span class="sidebar-normal">Riwayat</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            {{-- <li class="nav-item">
-                <div class="collapse" id="uangMasuk" style>
-                    
-                </div>
-            </li> --}}
-        </ul>
 
         <ul class="nav">
             <li class="nav-item">
@@ -71,6 +19,49 @@ Tip 2: you can also add an image using data-image tag
                     <p>Dashboard</p>
                 </a>
             </li>
+
+            <li class="nav-item">
+                    <hr class="sidebar-divider">
+                    <a href="#uangMasuk" class="nav-link" data-toggle="collapse">
+                        <i class="nc-icon nc-money-coins"></i>
+                        <p>Uang Masuk<b class="caret"></b></p>
+                    </a>
+                </li>
+    
+                <div class="collapse" id="uangMasuk">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('so.index') }}">
+                                <span class="sidebar-mini">PJ</span>
+                                <span class="sidebar-normal">Pesanan Penjualan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('do.index') }}">
+                                <span class="sidebar-mini">SJ</span>
+                                <span class="sidebar-normal">Surat Jalan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('invoice.index') }}">
+                                <span class="sidebar-mini">INV</span>
+                                <span class="sidebar-normal">Faktur Penjualan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('income.index') }}">
+                                <span class="sidebar-mini">UM</span>
+                                <span class="sidebar-normal">Uang Masuk</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('ar-history.index') }}">
+                                <span class="sidebar-mini">RW</span>
+                                <span class="sidebar-normal">Riwayat</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                         
             <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
