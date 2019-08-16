@@ -41,8 +41,15 @@ class SalesOrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('sales-order.create');
+    {   
+        $user = Auth::user();
+        
+        $customers = Customer::where(['company_id' => $user->business->id ])->get();
+        $accounts = Bank::where(['company_id' => $user->business->id ])->get();
+        $products = Product::where(['company_id' => $user->business->id ])->get();
+        
+
+        return view('sales-order.create', compact('customers', 'accounts', 'products'));
     }
 
     /**
@@ -53,6 +60,8 @@ class SalesOrderController extends Controller
      */
     public function store(Request $request)
     {       
+        dd($request);      
+
         $data = request()->validate([
             'customer_id' => 'required',
             'product_id' => 'required',

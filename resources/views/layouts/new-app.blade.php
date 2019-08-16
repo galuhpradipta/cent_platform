@@ -17,7 +17,7 @@
     <link href="{{ asset('light-bs/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('sb-admin2/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
-    <link href="{{ asset('light-bs/css/light-bootstrap-dashboard.css?v=2.0.0') }}" rel="stylesheet" />
+    <link href="{{ asset('light-bs/css/light-bootstrap-dashboard.css?v=2.0.1') }}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     {{-- <link href="{{ asset('light-bs/css/demo.css') }}" rel="stylesheet" /> --}}
 </head>

@@ -9,7 +9,61 @@ Tip 2: you can also add an image using data-image tag
             <a href="javascript:;" class="simple-text">
               CENTBOOK
             </a>
-        </div>
+        </div>  
+
+        
+
+        <ul class="nav">
+            <li class="nav-item">
+                <hr class="sidebar-divider">
+                <a href="#uangMasuk" class="nav-link" data-toggle="collapse">
+                    <i class="nc-icon nc-money-coins"></i>
+                    <p>Uang Masuk<b class="caret"></b></p>
+                </a>
+            </li>
+
+            <div class="collapse" id="uangMasuk">
+                <ul class="nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('so.index') }}">
+                            <span class="sidebar-mini">PJ</span>
+                            <span class="sidebar-normal">Pesanan Penjualan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('do.index') }}">
+                            <span class="sidebar-mini">SJ</span>
+                            <span class="sidebar-normal">Surat Jalan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('invoice.index') }}">
+                            <span class="sidebar-mini">INV</span>
+                            <span class="sidebar-normal">Faktur Penjualan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('income.index') }}">
+                            <span class="sidebar-mini">UM</span>
+                            <span class="sidebar-normal">Uang Masuk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('ar-history.index') }}">
+                            <span class="sidebar-mini">RW</span>
+                            <span class="sidebar-normal">Riwayat</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            {{-- <li class="nav-item">
+                <div class="collapse" id="uangMasuk" style>
+                    
+                </div>
+            </li> --}}
+        </ul>
+
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/') }}">
@@ -17,28 +71,7 @@ Tip 2: you can also add an image using data-image tag
                     <p>Dashboard</p>
                 </a>
             </li>
-            {{-- <li>
-                <a class="nav-link" href="./user.html">
-                    <i class="nc-icon nc-bell-55"></i>
-                    <p>Second example</p>
-                </a>
-            </li> --}}
-
-            <li class="dropdown nav-item">
-                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                    <i class="nc-icon nc-planet"></i>
-                    <span class="notification">Uang Masuk</span>
-                    {{-- <span class="d-lg-none">Notification</span> --}}
-                </a>
-                <ul class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ route('so.index') }}">Pesanan Penjualan</a>
-                    <a class="dropdown-item" href="{{ route('do.index') }}">Pengiriman Penjualan</a>
-                    <a class="dropdown-item" href="{{ route('invoice.index') }}">Invoice</a>
-                    <a class="dropdown-item" href="{{ route('income.index') }}">Uang Masuk</a>
-                    <a class="dropdown-item" href="{{ route('ar-history.index') }}">History</a>
-                </ul>
-            </li>
-
+                        
             <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                     <i class="nc-icon nc-planet"></i>
