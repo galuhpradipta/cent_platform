@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\DeliveryOrder;
 use App\Invoice;
 use Auth;
+use DB;
 use Carbon;
 
 
@@ -19,10 +20,34 @@ class DeliveryOrderController extends Controller
     public function index()
     {       
         $user = Auth::user();
-        $deliveryOrders = DeliveryOrder::where([
-            'company_id' => $user->business->id,
-            'is_approved' => false,
-        ])->get();
+       
+        $deliveryOrders = DB::table('delivery_orders as do')
+                            ->join('sales_orders as so', 'do.sales_order_id', '=', 'so.id')
+                            ->join('customers as cust', 'so.customer_id', '=', 'cust.id')
+                            ->join('users as u', 'so.approved_by', '=', 'u.id')
+                            ->join('roles as r', 'u.role', '=', 'r.role_id')
+                            ->select('do.id as id',
+                                    'so.id as sales_order_id',
+                                    'so.customer_id as customer_id',
+                                    'so.order_date as so_date',
+                                    'so.discount as discount',
+                                    'so.down_payment as down_payment',
+                                    'so.ppn as ppn',
+                                    'so.total as total',
+                                    'so.attachment_url as attachment_url',
+                                    'so.account_id as account_id',
+                                    'so.is_approved as is_so_approved',
+                                    'so.approved_by as so_approved_by',
+                                    'do.delivery_date as do_date',
+                                    'do.is_approved as is_do_approved',
+                                    'do.approved_by as do_approved_by',
+                                    'cust.email as customer_email',
+                                    'u.name as approved_by',
+                                    'r.name as role'
+                                )
+                            ->where('do.company_id', '=', $user->business->id)
+                            ->get();
+
 
         return view('delivery-order.index', compact('deliveryOrders'));
     }

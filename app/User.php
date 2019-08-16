@@ -51,9 +51,9 @@ class User extends Authenticatable
         return $this->belongsTo(Business::class);
     }
 
-    public function getRoleAttribute($attribute) {
-        return $this->roleOptions()[$attribute];
-    }
+    // public function getRoleAttribute($attribute) {
+    //     return $this->roleOptions()[$attribute];
+    // }
 
     public function roleOptions() {
         return [           

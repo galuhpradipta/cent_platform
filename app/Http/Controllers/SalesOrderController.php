@@ -49,7 +49,6 @@ class SalesOrderController extends Controller
         $accounts = Bank::where(['company_id' => $user->business->id ])->get();
         $products = Product::where(['company_id' => $user->business->id ])->get();
         
-
         return view('sales-order.create', compact('customers', 'accounts', 'products'));
     }
 

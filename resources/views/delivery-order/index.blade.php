@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
     <div class="container-fluid">
@@ -37,32 +37,23 @@
         </div>
         @endif
 
-        @if ($message = Session::get('error'))
-        <div class="alert alert-danger alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>	
-                <strong>{{ $message }}</strong>
-        </div>
-        @endif
-
         <div class="row">
             <div class="col-md-12">
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th class="small text-center font-weight-bold">Email</th>
-                                        <th class="small text-center font-weight-bold">No. Delivery</th>
-                                        <th class="small text-center font-weight-bold">No. Pesanan</th>
-                                        <th class="small text-center font-weight-bold">Tanggal Pesanan</th>
-                                        <th class="small text-center font-weight-bold">Tanggal Delivery</th>
-                                        <th class="small text-center font-weight-bold">Kuantitas</th>
-                                        <th class="small text-center font-weight-bold">Nama Barang</th>
-                                        <th class="small text-center font-weight-bold">Disetujui Oleh</th>
-                                        <th class="small text-center font-weight-bold">Draft</th>
-                                        @if (Auth::user()->role == 'Supervisor')
-                                            <th class="small text-center font-weight-bold">Approve</th>
+                                        <th class="text-left">Email</th>
+                                        <th class="text-center">No. Delivery</th>
+                                        <th class="text-center">No. Pesanan</th>
+                                        <th class="text-center">Tanggal Pesanan</th>
+                                        <th class="text-center">Tanggal Delivery</th>
+                                        <th class="text-center">Disetujui Oleh</th>
+                                        <th class="text-center">Draft</th>
+                                        @if (Auth::user()->role == 2  || Auth::user()->role == 3 || Auth::user()->role == 4)
+                                            <th class="text-center">Approve</th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -70,28 +61,26 @@
                                     @if (count($deliveryOrders) > 0 )
                                         @foreach ($deliveryOrders as $do)
                                             <tr>
-                                                <td class="small text-center">{{ $do->salesOrder->customer->email }}</td>
-                                                <td class="small text-center">{{ $do->id }}</td>
-                                                <td class="small text-center">{{ $do->salesOrder->id }}</td>
-                                                <td class="small text-center">{{ $do->salesOrder->order_date }}</td>
+                                                <td class="text-left">{{ $do->customer_email }}</td>
+                                                <td class="text-center">{{ $do->id }}</td>
+                                                <td class="text-center">{{ $do->sales_order_id }}</td>
+                                                <td class="text-center">{{ $do->so_date }}</td>
                                                 @if (empty($do->delivery_date))
-                                                    <td class="small text-center" data-toggle="modal" data-target="#edit" data-do-id="{{  $do->id  }}">
+                                                    <td class="text-center" data-toggle="modal" data-target="#edit" data-do-id="{{  $do->id  }}">
                                                         <a href="#" >
                                                             <i class="fas fa-plus"></i>
                                                         </a>
                                                     </td>
                                                 @else
-                                                    <td class="small text-center">{{ $do->delivery_date }}</td>
+                                                    <td class="text-center">{{ $do->do_date }}</td>
                                                 @endif
-                                                <td class="small text-center">{{ $do->salesOrder->quantity }}</td>
-                                                <td class="small text-center">{{ $do->salesOrder->product->name }}</td>
-                                                <td class="small text-center">User ID - {{ $do->salesOrder->approved_by }}</td>
+                                                <td class="text-center">{{ $do->approved_by }} <small class="italic">({{ $do->role }})</small></td>
                                                 <td class="text-center">
                                                     <a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">
                                                         <i class="fas fa-file-pdf"></i>
                                                     </a>
                                                 </td>
-                                                @if (Auth::user()->role == 'Supervisor')
+                                                @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)
                                                     <td class="text-center">
                                                         <a href="#" class="" data-toggle="modal" data-target="#approve" data-do-id="{{ $do->id }}">
                                                             <i class="fas fa-check"></i>

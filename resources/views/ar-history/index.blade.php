@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
     <div class="container-fluid">
@@ -37,33 +37,33 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table table-hover table-striped">
                                         <thead>
                                             <tr>
-                                                <th class="text-center small font-weight-bold" width="10%">No. Pesanan</th>
-                                                <th class="text-center small font-weight-bold" width="10%">No. Delivery</th>                                                                        
-                                                <th class="text-center small font-weight-bold" width="10%">No. Invoice</th>
-                                                <th class="text-center small font-weight-bold">Jumlah Uang Masuk</th>
-                                                <th class="text-center small font-weight-bold">Approved By</th>
-                                                <th class="text-center small font-weight-bold">Draft</th>
-                                                <th class="text-center small font-weight-bold">Detail</th>
+                                                <th class="text-center" width="10%">No. Pesanan</th>
+                                                <th class="text-center" width="10%">No. Delivery</th>                                                                        
+                                                <th class="text-center" width="10%">No. Invoice</th>
+                                                <th class="text-right">Jumlah Uang Masuk</th>
+                                                <th class="text-center">Approved By</th>
+                                                <th class="text-center">Draft</th>
+                                                <th class="text-center">Detail</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @if (count($incomes) > 0)
                                                 @foreach ($incomes as $income)
                                                     <tr>
-                                                        <td class="text-center small">{{ $income->sales_order_id }}</td>
-                                                        <td class="text-center small">{{ $income->delivery_order_id }}</td>
-                                                        <td class="text-center small">{{ $income->invoice_id }}</td>
-                                                        <td class="text-center small">{{ $income->amount }}</td>
-                                                        <td class="text-center small">{{ $income->approved_by }}</td>
-                                                        <td class="text-center small">
+                                                        <td class="text-center">{{ $income->sales_order_id }}</td>
+                                                        <td class="text-center">{{ $income->delivery_order_id }}</td>
+                                                        <td class="text-center">{{ $income->invoice_id }}</td>
+                                                        <td class="text-right">Rp. {{ $income->amount }}</td>
+                                                        <td class="text-center">{{ $income->approved_by }}  <small>({{ $income->role }})</small></td>
+                                                        <td class="text-center">
                                                             <a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">
                                                                 <i class="fas fa-file-pdf"></i>
                                                             </a>
                                                         </td>
-                                                        <td class="text-center small">
+                                                        <td class="text-center">
                                                             <a href="#" data-toggle="modal" data-target="#detail">
                                                                 <i class="fas fa-search"></i>
                                                             </a>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
     <div class="container-fluid">
@@ -43,19 +43,19 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th class="small text-center font-weight-bold" width="8%">No. SO</th>
-                                        <th class="small text-center font-weight-bold" width="8%">No. DO</th>
-                                        <th class="small text-center font-weight-bold" width="8%">No. Inv</th>
-                                        <th class="small text-center font-weight-bold" width="15%">Jml. Uang Masuk</th>
-                                        <th class="small text-center font-weight-bold" width="15%">Kas</th>
-                                        <th class="small text-center font-weight-bold" width="15%">Tanggal Uang Masuk</th>
-                                        <th class="small text-center font-weight-bold" width="10%">Draft</th>
-                                        <th class="small text-center font-weight-bold" width="10%">Detail</th>                                    
-                                        @if (Auth::user()->role == 'Supervisor')
-                                            <th class="small text-center" width="10%">Approve</th>
+                                        <th class="text-center" width="10%">No. SO</th>
+                                        <th class="text-center" width="10%">No. DO</th>
+                                        <th class="text-center" width="10%">No. Inv</th>
+                                        <th class="text-center" width="20%">Jml. Uang Masuk</th>
+                                        <th class="text-center" width="10%">Kas</th>
+                                        <th class="text-center" width="15%">Tanggal Uang Masuk</th>
+                                        <th class="text-center" width="10%">Draft</th>
+                                        <th class="text-center" width="10%">Detail</th>                                    
+                                        @if (Auth::user()->role == 2 || Auth::user()->role == 3 ||  Auth::user()->role == 4)
+                                            <th class="text-center" width="15%" style="padding-right:0px; display:flex;">Approve</th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -75,7 +75,7 @@
                                                 @else
                                                     <td class="small text-center">{{ $income->amount }}</td>
                                                 @endif
-                                                <td class="small text-center">{{ $income->salesOrder->bank->name }}</td>
+                                                <td class="small text-center">{{ $income->account_name }}</td>
                                                 @if (empty($income->income_date))
                                                     <td class="small text-center" data-toggle="modal" data-target="#edit" data-income-id="{{  $income->id  }}">
                                                         <a href="#" >
@@ -95,12 +95,12 @@
                                                         <i class="fas fa-search"></i>
                                                     </a>
                                                 </td>
-                                                @if (Auth::user()->role == 'Supervisor')
-                                                <td class="text-center">
-                                                    <a href="#" class="" data-toggle="modal" data-target="#approve" data-income-id="{{ $income->id }}">
-                                                        <i class="fas fa-check"></i>
-                                                    </a>
-                                                </td>
+                                                @if (Auth::user()->role == 2  || Auth::user()->role == 3 || Auth::user()->role == 4)
+                                                    <td class="text-center">
+                                                        <a href="#" class="" data-toggle="modal" data-target="#approve" data-income-id="{{ $income->id }}">
+                                                            <i class="fas fa-check"></i>
+                                                        </a>
+                                                    </td>
                                                 @endif
                                             </tr>
                                         @endforeach

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
     <div class="container-fluid">
@@ -44,20 +44,18 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th class="small text-center font-weight-bold">Pelanggan</th>
-                                        <th class="small text-center font-weight-bold">No. Pesanan</th>
-                                        <th class="small text-center font-weight-bold">Tgl. Order</th>
-                                        <th class="small text-center font-weight-bold">Produk</th> 
-                                        <th class="small text-center font-weight-bold">Kuantitas</th>
-                                        <th class="small text-center font-weight-bold">Tanggal DO</th>
-                                        <th class="small text-center font-weight-bold">Tgl. Invoice</th>
-                                        <th class="small text-center font-weight-bold">Tgl. Jatuh Tempo</th>
-                                        <th class="small text-center font-weight-bold">Draft</th>                              
+                                        <th class="text-center">Pelanggan</th>
+                                        <th class="text-center">No. Pesanan</th>
+                                        <th class="text-center">Tgl. Order</th>
+                                        <th class="text-center">Tanggal DO</th>
+                                        <th class="text-center">Tgl. Invoice</th>
+                                        <th class="text-center">Tgl. Jatuh Tempo</th>
+                                        <th class="text-center">Draft</th>                              
                                         @if (Auth::user()->role == 'Supervisor')
-                                            <th class="small text-center font-weight-bold">Approve</th>
+                                            <th class="text-center">Approve</th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -65,40 +63,38 @@
                                     @if (count($invoices) > 0 )
                                         @foreach ($invoices as $inv)
                                             <tr>
-                                                <td class="small text-center">{{ $inv->salesOrder->customer->email }}</td>
-                                                <td class="small text-center">{{ $inv->salesOrder->id }}</td>
-                                                <td class="small text-center">{{ $inv->salesOrder->order_date }}</td>
-                                                <td class="small text-center">{{ $inv->salesOrder->product->name }}</td>
-                                                <td class="small text-center">{{ $inv->salesOrder->quantity }}</td>
-                                                <td class="small text-center">{{ $inv->deliveryOrder->delivery_date }}</td>
-                                                @if (empty($inv->invoice_date))
-                                                    <td class="small text-center" data-toggle="modal" data-target="#edit" data-inv-id="{{  $inv->id  }}">
+                                                <td class="text-center">{{ $inv->customer_email }}</td>
+                                                <td class="text-center">{{ $inv->sales_order_id }}</td>
+                                                <td class="text-center">{{ $inv->so_date }}</td>
+                                                <td class="text-center">{{ $inv->do_date }}</td>
+                                                @if (empty($inv->inv_date))
+                                                    <td class="text-center" data-toggle="modal" data-target="#edit" data-inv-id="{{  $inv->id  }}">
                                                         <a href="#" >
                                                             <i class="fas fa-plus"></i>
                                                         </a>
                                                     </td>
                                                 @else
-                                                    <td class="small text-center">{{ $inv->invoice_date }}</td>
+                                                    <td class="text-center">{{ $inv->inv_date }}</td>
                                                 @endif
 
                                                 @if (empty($inv->due_date))
-                                                    <td class="small text-center" data-toggle="modal" data-target="#edit" data-inv-id="{{  $inv->id  }}">
+                                                    <td class="text-center" data-toggle="modal" data-target="#edit" data-inv-id="{{  $inv->id  }}">
                                                         <a href="#" >
                                                             <i class="fas fa-plus"></i>
                                                         </a>
                                                     </td>
                                                 @else
-                                                    <td class="small text-center">{{ $inv->due_date }}</td>
+                                                    <td class="text-center">{{ $inv->due_date }}</td>
                                                 @endif
 
-                                                <th class="small text-center">
+                                                <th class="text-center">
                                                     <a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">
                                                         <i class="fas fa-file-pdf"></i>
                                                     </a>
                                                 </th>
 
-                                                @if (Auth::user()->role == 'Supervisor')
-                                                    <td class="small text-center">
+                                                @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)
+                                                    <td class="text-center">
                                                         <a href="#" data-toggle="modal" data-target="#approve" data-inv-id="{{ $inv->id }}">
                                                             <i class="fas fa-check"></i>
                                                         </a>
