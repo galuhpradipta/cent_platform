@@ -32,9 +32,9 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="small text-center" id="detail-customer-name"></td>
-                                <td class="small text-center" id="detail-customer-email"></td>
-                                <td class="small text-center" id="detail-customer-address"></td>
+                                <td class="text-center" id="detail-customer-name"></td>
+                                <td class="text-center" id="detail-customer-email"></td>
+                                <td class="text-center" id="detail-customer-address"></td>
                                 <td class="text-center">
                                     <a href="" target="_blank" id="detail-so-file">
                                         <i class="fas fa-file"></i>
@@ -56,9 +56,9 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="small text-center" id="detail-product-name"></td>
-                                <td class="small text-center" id="detail-product-unit"></td>
-                                <td class="small text-center" id="detail-product-price"></td>
+                                <td class="text-center" id="detail-product-name"></td>
+                                <td class="text-center" id="detail-product-unit"></td>
+                                <td class="text-center" id="detail-product-price"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -77,11 +77,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="small text-center" id="detail-so-id"></td>
-                                <td class="small text-center" id="detail-so-order-date"></td>
-                                <td class="small text-center" id="detail-so-quantity"></td>
-                                <td class="small text-center" id="detail-so-subtotal-price"></td>
-                                <td class="small text-center" id="detail-so-total"></td>
+                                <td class="text-center" id="detail-so-id"></td>
+                                <td class="text-center" id="detail-so-order-date"></td>
+                                <td class="text-center" id="detail-so-quantity"></td>
+                                <td class="text-center" id="detail-so-subtotal-price"></td>
+                                <td class="text-center" id="detail-so-total"></td>
 
                             </tr>
                         </tbody>

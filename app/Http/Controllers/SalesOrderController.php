@@ -12,6 +12,7 @@ use App\Customer;
 use App\SalesOrder;
 use App\AccountReceiveable;
 use App\DeliveryOrder;
+use App\ProductOrderDetail;
 
 
 class SalesOrderController extends Controller
@@ -60,48 +61,49 @@ class SalesOrderController extends Controller
      */
     public function store(Request $request)
     {       
-        dd($request);      
-
         $data = request()->validate([
             'customer_id' => 'required',
-            'product_id' => 'required',
+            'account_id' => 'required',
             'order_date' => 'required',
-            'quantity' => 'required',
-            'subtotal_price' =>  'required',
+            'product_ids' => 'required',
+            'quantities' => 'required',
             'discount' => 'required',
             'down_payment' => 'required',
-            'bank_id' => 'required',
-            'ppn' => 'required',
-            'total' => 'required',
-            'attachment' =>  'required|file|max:5000',
+            'subtotal_price' =>  'required',
+            'total_price' => 'required',
+            'attachment' =>  'sometimes|file|max:5000',
         ]);
-
+            
         $user = Auth::user();
         $customer = Customer::find(request('customer_id'));
-        $product = Product::find(request('product_id'));
 
         $so = SalesOrder::create([
             'company_id' => $user->business->id,
-            'customer_id' => request('customer_id'),
-            'product_id' => request('product_id'),
-            'order_date' => request('order_date'),
-            'quantity' => request('quantity'),
-            'subtotal_price' =>  request('subtotal_price'),
-            'discount' => request('discount'),
-            'down_payment' => request('down_payment'),
-            'bank_id' => request('bank_id'),
-            'ppn' => request('ppn'),
-            'total' => request('total'),
+            'customer_id' => $data['customer_id'],
+            'order_date' => $data['order_date'],
+            'discount' => $data['discount'],
+            'down_payment' => $data['down_payment'],
+            'account_id' => $data['account_id'],
+            'total' => $data['total_price'],
             'attachment_url' => '',
-            'status' => 1,
+            'ppn' => 0,
         ]);
+
+        $products = array_combine($data['product_ids'], $data['quantities']);
+        foreach ($products as $key => $value) {
+            ProductOrderDetail::create([
+                'sales_order_id'  => $so->id,
+                'product_id' => $key,
+                'quantity' => $value,
+            ]);
+        }
+
+        if (!empty($file)) {
+            $file = $request->file('attachment')->store('uploads', 'public');
+            $so->attachment_url  = $file;
+            $so->save();
+        } 
         
-        $file = $request->file('attachment')->store('uploads', 'public');
-
-        $so->attachment_url  = $file;
-        $so->save();
-
-
         return redirect(route('so.index'))->with('success', 'Sales Order Successfully created');
     }
 

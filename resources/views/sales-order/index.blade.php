@@ -45,19 +45,19 @@
       <div class="card shadow mb-4">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                    <th class="text-center small font-weight-bold">Nomor SO</th>
-                    <th class="text-center small font-weight-bold">Nama Pelanggan</th>
-                    <th class="text-center small font-weight-bold">ID Pelanggan</th>
-                    <th class="text-center small font-weight-bold">Email Pelanggan</th>
-                    <th class="text-center small font-weight-bold">Tanggal Order</th>
-                    <th class="text-center small font-weight-bold">Alamat Penagihan</th>
-                    <th class="text-center small font-weight-bold">Draft</th>
-                    <th class="text-center small font-weight-bold">Detail</th>
+                    <th width="10%" class="text-center">Nomor SO</th>
+                    <th width="" class="text-left">Nama Pelanggan</th>
+                    <th width="" class="text-left">ID Pelanggan</th>
+                    <th width="" class="text-left">Email Pelanggan</th>
+                    <th width="" class="text-center">Tanggal Order</th>
+                    <th width="" class="text-left">Alamat Penagihan</th>
+                    <th width="" class="text-center">Draft</th>
+                    <th width="" class="text-center">Detail</th>
                     @if (Auth::user()->role == 'Supervisor')
-                      <th class="text-center small font-weight-bold">Approve</th>
+                      <th class="text-center">Approve</th>
                     @endif
                 </tr>
               </thead>
@@ -66,11 +66,11 @@
                     @foreach ($salesOrders as $salesOrder)
                         <tr>
                             <td class="text-center small">{{ $salesOrder->id}}</td>
-                            <td class="text-center small">{{ $salesOrder->customer->name }}</td>
+                            <td class="text-left small">{{ $salesOrder->customer->name }}</td>
                             <td class="text-center small">{{ $salesOrder->customer->id }}</td>
-                            <td class="text-center small">{{ $salesOrder->customer->email }}</td>
+                            <td class="text-left small">{{ $salesOrder->customer->email }}</td>
                             <td class="text-center small">{{ $salesOrder->order_date }}</td>
-                            <td class="text-center small">{{ $salesOrder->customer->address }}</td>
+                            <td class="text-left small">{{ $salesOrder->customer->address }}</td>
                             <td class="text-center small"><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank"><i class="fas fa-file-pdf"></i></a></td>
                             <td class="text-center small">
                                 <a href="#" data-toggle="modal" data-target="#detailSO" data-so-id={{ $salesOrder->id }}>
