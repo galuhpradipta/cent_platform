@@ -81,7 +81,7 @@ Route::get('/ar/history', 'ArHistory@index')->middleware('auth')->name('ar-histo
 // Purchase Request
 Route::get('/ap/purchase-request', 'PurchaseRequestController@index')->middleware('auth')->name('pr.index');
 Route::get('/ar/purchase-request/create', 'PurchaseRequestController@create')->middleware('auth')->name('pr.create');
-
+Route::get('/ar/purchase-request/export/excel', 'PurchaseRequestController@exportExcel')->middleware('auth')->name('pr.export-excel');
 Route::post('/ap/purchase-request', 'PurchaseRequestController@store')->middleware('auth')->name('pr.store');
 
 // Purchase Order

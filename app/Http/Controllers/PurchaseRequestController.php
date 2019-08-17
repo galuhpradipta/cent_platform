@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Excel;
 use Auth;
+use DB;
 use App\Supplier;
 use App\Product;
 use App\Bank;
 use App\PurchaseRequest;
 use App\ProductOrderDetail;
+use App\Exports\PurchaseRequestExport;
 
 class PurchaseRequestController extends Controller
 {
@@ -22,9 +25,20 @@ class PurchaseRequestController extends Controller
         $user = Auth::user();
 
         $products = Product::where(['company_id' => 1,])->get();
-        // $purchaseRequests = PurchaseRequest::where(['company_id' => 1,])->get();
-
-        return  view('purchase-request.index', compact( 'products'));
+        
+        $purchaseRequests = DB::table('purchase_requests as pr')
+                        ->join('customers as cust', 'pr.supplier_id', '=', 'cust.id')                      
+                        ->where('pr.company_id', $user->business->id )
+                        ->where('pr.is_approved', false)
+                        ->select('pr.*',
+                            'cust.id as customer_id', 
+                            'cust.name as customer_name',
+                            'cust.email as customer_email',
+                            'cust.address as customer_address',
+                            'cust.phone_number as customer_phone_number')                    
+                        ->get();
+        
+        return  view('purchase-request.index', compact( 'products', 'purchaseRequests'));
     }
 
     /**
@@ -39,8 +53,12 @@ class PurchaseRequestController extends Controller
         $suppliers = Supplier::where(['company_id' => $user->business->id ])->get();
         $accounts = Bank::where(['company_id' => $user->business->id ])->get();
         $products = Product::where(['company_id' => $user->business->id ])->get();
+        $purchaseRequests = PurchaseRequest::where([
+            'company_id' => $user->business->id,
+            'is_approved' => false,
+        ])->get();
         
-        return view('purchase-request.create', compact('suppliers', 'accounts', 'products'));
+        return view('purchase-request.create', compact('suppliers', 'accounts', 'products', 'purchaseRequests'));
     }
 
     /**
@@ -140,5 +158,9 @@ class PurchaseRequestController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function exportExcel() {
+        return Excel::download(new PurchaseRequestExport, 'pr.xlsx');
     }
 }

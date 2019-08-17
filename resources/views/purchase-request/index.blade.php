@@ -12,8 +12,17 @@
                 </a>
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-4">
             
+            </div>
+
+            <div class="col-md-2">
+                <a href="{{ route('pr.export-excel')}}" class="btn btn-primary btn-icon-split mb-2 btn-block float-right">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-file"></i>
+                    </span>
+                    <span class="text">Export</span>
+                </a>                  
             </div>
 
             <div class="col-md-2">
@@ -45,43 +54,47 @@
                         <div class="table-responsive">
                             <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
-                                    <tr>
-                                        <th class="text-center">No</th>
-                                        <th class="text-center">Nomor PR</th>
-                                        <th class="text-center">Tanggal PR</th>
-                                        <th class="text-center">Nama Barang</th>
-                                        <th class="text-center">Kategori</th>
-                                        <th class="text-center">Subtotal</th>
-                                        <th class="text-center">Draft</th> 
-                                        <th class="text-center">Detail</th>                                       
-                                    </tr>
+                                  <tr>
+                                      <th width="10%" class="text-center">Nomor PR</th>
+                                      <th width="" class="text-left">Nama Supplier</th>
+                                      <th width="" class="text-left">ID Supplier</th>
+                                      <th width="" class="text-left">Email Supplier</th>
+                                      <th width="" class="text-center">Tanggal Order</th>
+                                      <th width="" class="text-left">Alamat Penagihan</th>
+                                      <th width="" class="text-center">Draft</th>
+                                      <th width="" class="text-center">Detail</th>
+                                      @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)
+                                        <th class="text-center">Approve</th>
+                                      @endif
+                                  </tr>
                                 </thead>
                                 <tbody>
-                                {{-- @if (count($purchaseRequests) > 0) --}}
-                                        {{-- @foreach ($banks as $bank) --}}
-                                            <tr>
-                                                <td class=" text-center small">1</td>
-                                                <td class=" text-center small">120</td>
-                                                <td class=" text-center small">2019-04-12</td>
-                                                <td class=" text-center small">Web Develop</td>
-                                                <td class=" text-center small">Jasa</td>
-                                                <td class=" text-center small">Rp. 10000000</td>
-                                                <td class=" text-center small">
-                                                    <a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">
-                                                        <i class="fas fa-file-pdf"></i>
-                                                    </a>
-                                                </td>
-                                                <td class="text-center small"> 
-                                                    <a href="#" data-toggle="modal" data-target="#detail">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-
-
-                                            </tr>
-                                        {{-- @endforeach --}}
-                                {{-- @endif  --}}
-                                
+                                  @if (count($purchaseRequests) > 0)
+                                      @foreach ($purchaseRequests as $pr)
+                                          <tr>
+                                              <td class="text-center">{{ $pr->id}}</td>
+                                              <td class="text-left">{{ $pr->customer_name }}</td>
+                                              <td class="text-center">{{ $pr->customer_id }}</td>
+                                              <td class="text-left">{{ $pr->customer_email }}</td>
+                                              <td class="text-center">{{ $pr->order_date }}</td>
+                                              <td class="text-left">{{ $pr->customer_address }}</td>
+                                              <td class="text-center"><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank"><i class="fas fa-file-pdf"></i></a></td>
+                                              <td class="text-center">
+                                                  <a href="#" data-toggle="modal" data-target="#detailSO" data-so-id={{ $pr->id }}>
+                                                      <i class="fas fa-search"></i>
+                                                  </a>
+                                              </td>
+                                              @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)
+                                             
+                                              <td class="text-center small">
+                                                  <a href="#" data-toggle="modal" data-target="#approve" data-so-id={{ $pr->id }}>
+                                                      <i class="fas fa-check"></i>
+                                                  </a>
+                                              </td>
+                                              @endif
+                                          </tr>
+                                      @endforeach
+                                  @endif             
                                 </tbody>
                             </table>
                         </div>

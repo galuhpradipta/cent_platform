@@ -227,16 +227,6 @@ class SalesOrderController extends Controller
             );
         }
 
-        // Excel::download/Excel::store('Sales Order Data', function($excel) use ($soArray) {
-        //     $excel->setTitle('Sales Order Data');
-        //     $excel->sheet('Sales Order Data', function($sheet) use ($soArray) {
-        //         $sheet->fromArray($soArray, null, 'A1', false, false);
-        //     })->download('xlsx');
-        // });
-
         return Excel::download(new SalesOrderExport, 'so.xlsx');
-
-
-        // dd($salesOrders);
     }
 }
