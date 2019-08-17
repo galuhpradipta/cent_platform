@@ -166,7 +166,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="attachment">Attachment</label>
-                                        <input type="file" class="form-control" id="attachment">
+                                        <input type="file" name="attachment" class="form-control" id="attachment" required>
                                     </div>                                    
                                 </div>
 

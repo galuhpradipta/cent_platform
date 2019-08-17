@@ -62,7 +62,7 @@ class SalesOrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {       
+    {  
         $data = request()->validate([
             'customer_id' => 'required',
             'account_id' => 'required',
@@ -73,7 +73,7 @@ class SalesOrderController extends Controller
             'down_payment' => 'required',
             'subtotal_price' =>  'required',
             'total_price' => 'required',
-            'attachment' =>  'sometimes|file|max:5000',
+            'attachment' =>  'required|file|max:5000',
         ]);
             
         $user = Auth::user();
@@ -91,6 +91,8 @@ class SalesOrderController extends Controller
             'ppn' => 0,
         ]);
 
+
+
         $products = array_combine($data['product_ids'], $data['quantities']);
         foreach ($products as $key => $value) {
             ProductOrderDetail::create([
@@ -99,12 +101,12 @@ class SalesOrderController extends Controller
                 'quantity' => $value,
             ]);
         }
-
-        if (!empty($file)) {
+                 
+        if (request()->hasFile('attachment')) {
             $file = $request->file('attachment')->store('uploads', 'public');
             $so->attachment_url  = $file;
             $so->save();
-        } 
+        }
         
         return redirect(route('so.index'))->with('success', 'Sales Order Successfully created');
     }
@@ -195,6 +197,6 @@ class SalesOrderController extends Controller
     public function exportExcel() {
         $user = Auth::user();
 
-        return Excel::download(new SalesOrderExport, 'so.xlsx');
+        return Excel::download(new SalesOrderExport, 'so.csv');
     }
 }

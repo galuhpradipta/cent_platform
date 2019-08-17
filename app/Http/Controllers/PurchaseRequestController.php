@@ -68,7 +68,7 @@ class PurchaseRequestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {      
         $data = request()->validate([
             'supplier_id' => 'required',
             'account_id' => 'required',
@@ -106,10 +106,10 @@ class PurchaseRequestController extends Controller
             ]);
         }
 
-        if (!empty($file)) {
+        if (request()->hasFile('attachment')) {
             $file = $request->file('attachment')->store('uploads', 'public');
-            $so->attachment_url  = $file;
-            $so->save();
+            $pr->attachment_url  = $file;
+            $pr->save();
         } 
         
         return redirect(route('pr.index'))->with('success', 'Purchase Request successfully created');
@@ -161,6 +161,6 @@ class PurchaseRequestController extends Controller
     }
 
     public function exportExcel() {
-        return Excel::download(new PurchaseRequestExport, 'pr.xlsx');
+        return Excel::download(new PurchaseRequestExport, 'pr.csv');
     }
 }
