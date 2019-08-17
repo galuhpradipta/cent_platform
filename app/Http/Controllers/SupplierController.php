@@ -128,4 +128,10 @@ class SupplierController extends Controller
 
         return redirect(route('supplier.index'))->with('success', 'Supplier successfully deleted');
     }
+
+    public function getSupplier($id) {
+        $supplier = Supplier::find($id);
+
+        return response()->json($supplier);
+    }
 }

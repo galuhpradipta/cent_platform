@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Excel;
 use Auth;
 use Carbon;
 use App\User;
@@ -13,6 +15,7 @@ use App\SalesOrder;
 use App\AccountReceiveable;
 use App\DeliveryOrder;
 use App\ProductOrderDetail;
+use App\Exports\SalesOrderExport;
 
 
 class SalesOrderController extends Controller
@@ -187,5 +190,53 @@ class SalesOrderController extends Controller
 
         return redirect(route('so.index'))->with('success', 'Pesanan Penjualan berhasil di setujui');
 
+    }
+
+    public function exportExcel() {
+        $user = Auth::user();
+
+        $salesOrders = DB::table('sales_orders as so')
+                    // ->join('companies as comp', 'so.company_id', '=', 'comp.id')
+                    ->join('customers as cust', 'so.customer_id', '=', 'cust.id')
+                    ->join('banks as acc', 'so.account_id', '=', 'acc.id')
+                    ->join('users as u', 'so.approved_by', '=', 'u.id')
+                    ->join('roles as r', 'u.role', '=', 'r.id')
+
+                    ->where('so.company_id', $user->business->id )
+                    ->where('so.is_approved', true)
+                    ->select('so.*', 
+                        'cust.email as customer_email',
+                        'cust.address as customer_address',
+                        'cust.phone_number as customer_phone_number',
+                        'acc.name as account_name',
+                        'acc.code as account_code',
+                        'acc.category as account_category',
+                        'u.name as approval_name',
+                        'r.name as approval_by_role')
+                    ->get();
+
+        $soArray[] = array('Sales Order ID', 'Order Date', 'Discount', 'Down Payment',
+                    'PPN', 'Total', 'Attachment URL', 'Created At', 'Customer Email',  'Customer Address', 'Customer Phone Number',
+                    'Account Name', 'Account Code', 'Account Category', 'Approved By', 'Approved By Role');
+                    
+        foreach ($salesOrders as $so) {
+            $soArray[] = array(
+                'Sales Order ID' => $so->id,
+                'Order Date' => $so->order_date,
+                'Discount' => $so->discount,
+            );
+        }
+
+        // Excel::download/Excel::store('Sales Order Data', function($excel) use ($soArray) {
+        //     $excel->setTitle('Sales Order Data');
+        //     $excel->sheet('Sales Order Data', function($sheet) use ($soArray) {
+        //         $sheet->fromArray($soArray, null, 'A1', false, false);
+        //     })->download('xlsx');
+        // });
+
+        return Excel::download(new SalesOrderExport, 'so.xlsx');
+
+
+        // dd($salesOrders);
     }
 }

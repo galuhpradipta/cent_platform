@@ -15,13 +15,22 @@
             </div>
 
             <div class="col-md-4" >
-
+                
             </div>
 
-            <div class="col-md-4">
-                <a href="{{ route('so.create') }}" class="btn btn-success btn-icon-split mb-2 float-right">
+            <div class="col-md-2">
+                <a href="{{ route('so.export-excel')}}" class="btn btn-primary btn-icon-split mb-2 btn-block float-right">
                     <span class="icon text-white-50">
-                        <i class="fas fa-flag"></i>
+                        <i class="fas fa-file"></i>
+                    </span>
+                    <span class="text">Export</span>
+                </a>                  
+            </div>
+
+            <div class="col-md-2">
+                <a href="{{ route('so.create') }}" class="btn btn-success btn-icon-split mb-2 btn-block float-right">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i>
                     </span>
                     <span class="text">Buat</span>
                 </a>

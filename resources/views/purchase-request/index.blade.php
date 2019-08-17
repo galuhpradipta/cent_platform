@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
     <div class="container-fluid">
@@ -8,21 +8,21 @@
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
-                    <span class="text">Purchase Request</span>
+                    <span class="text">Pesanan Pembelian</span>
                 </a>
             </div>
             
-            <div class="col-md-4">
+            <div class="col-md-6">
             
             </div>
 
-            <div class="col-md-4">
-                <a href="#" class="btn btn-success btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#create">
+            <div class="col-md-2">
+                <a href="{{ route('pr.create') }}" class="btn btn-success btn-icon-split mb-2 btn-block float-right">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Create</span>
-                </a>                
+                    <span class="text">Buat</span>
+                </a>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>

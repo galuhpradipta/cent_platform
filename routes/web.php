@@ -55,6 +55,7 @@ Route::get('/', 'DashboardController@index')->middleware('auth')->name('dashboar
 // Sales Order
 Route::get('/ar/sales-order', 'SalesOrderController@index')->middleware('auth')->name('so.index');
 Route::get('/ar/sales-order/create', 'SalesOrderController@create')->middleware('auth')->name('so.create');
+Route::get('/ar/sales-order/export/excel', 'SalesOrderController@exportExcel')->middleware('auth')->name('so.export-excel');
 Route::post('/ar/sales-order', 'SalesOrderController@store')->middleware('auth')->name('so.store');
 Route::post('/ar/sales-order/approve', 'SalesOrderController@approve')->middleware('auth')->name('so.approve');
 
@@ -79,6 +80,8 @@ Route::get('/ar/history', 'ArHistory@index')->middleware('auth')->name('ar-histo
 
 // Purchase Request
 Route::get('/ap/purchase-request', 'PurchaseRequestController@index')->middleware('auth')->name('pr.index');
+Route::get('/ar/purchase-request/create', 'PurchaseRequestController@create')->middleware('auth')->name('pr.create');
+
 Route::post('/ap/purchase-request', 'PurchaseRequestController@store')->middleware('auth')->name('pr.store');
 
 // Purchase Order

@@ -25,6 +25,9 @@ Route::get('/products/{companyId}', 'ProductController@getCompanyProducts');
 // customer
 Route::get('/customer/{id}', 'CustomerController@getCustomer');
 
+// supplier
+Route::get('/supplier/{id}', 'SupplierController@getSupplier');
+
 // sales order
 Route::get('/sales-order/{id}', 'SalesOrderController@getSalesOrder');
 
