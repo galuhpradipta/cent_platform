@@ -22,9 +22,6 @@ class SalesOrderExport implements FromQuery, WithMapping, WithHeadings
         return  DB::table('sales_orders as so')
         ->join('customers as cust', 'so.customer_id', '=', 'cust.id')
         ->join('banks as acc', 'so.account_id', '=', 'acc.id')
-        ->join('users as u', 'so.approved_by', '=', 'u.id')
-        ->join('roles as r', 'u.role', '=', 'r.id')
-
         ->where('so.company_id', $user->business->id )
         ->where('so.is_approved', false)
         ->select('so.*', 
@@ -33,9 +30,7 @@ class SalesOrderExport implements FromQuery, WithMapping, WithHeadings
             'cust.phone_number as customer_phone_number',
             'acc.name as account_name',
             'acc.code as account_code',
-            'acc.category as account_category',
-            'u.name as approval_name',
-            'r.name as approval_by_role')
+            'acc.category as account_category')
         ->orderBy('created_at');
     }
 
@@ -58,8 +53,6 @@ class SalesOrderExport implements FromQuery, WithMapping, WithHeadings
             $so->account_name,
             $so->account_code,
             $so->account_category,
-            $so->approval_name,
-            $so->approval_by_role,
         ];
     }
 
@@ -78,8 +71,6 @@ class SalesOrderExport implements FromQuery, WithMapping, WithHeadings
             'account_name',
             'account_code',
             'account_category',
-            'approval_name',
-            'approval_by_role',
         ];
     }
 }
