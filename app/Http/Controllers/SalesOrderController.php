@@ -195,38 +195,6 @@ class SalesOrderController extends Controller
     public function exportExcel() {
         $user = Auth::user();
 
-        $salesOrders = DB::table('sales_orders as so')
-                    // ->join('companies as comp', 'so.company_id', '=', 'comp.id')
-                    ->join('customers as cust', 'so.customer_id', '=', 'cust.id')
-                    ->join('banks as acc', 'so.account_id', '=', 'acc.id')
-                    ->join('users as u', 'so.approved_by', '=', 'u.id')
-                    ->join('roles as r', 'u.role', '=', 'r.id')
-
-                    ->where('so.company_id', $user->business->id )
-                    ->where('so.is_approved', true)
-                    ->select('so.*', 
-                        'cust.email as customer_email',
-                        'cust.address as customer_address',
-                        'cust.phone_number as customer_phone_number',
-                        'acc.name as account_name',
-                        'acc.code as account_code',
-                        'acc.category as account_category',
-                        'u.name as approval_name',
-                        'r.name as approval_by_role')
-                    ->get();
-
-        $soArray[] = array('Sales Order ID', 'Order Date', 'Discount', 'Down Payment',
-                    'PPN', 'Total', 'Attachment URL', 'Created At', 'Customer Email',  'Customer Address', 'Customer Phone Number',
-                    'Account Name', 'Account Code', 'Account Category', 'Approved By', 'Approved By Role');
-                    
-        foreach ($salesOrders as $so) {
-            $soArray[] = array(
-                'Sales Order ID' => $so->id,
-                'Order Date' => $so->order_date,
-                'Discount' => $so->discount,
-            );
-        }
-
         return Excel::download(new SalesOrderExport, 'so.xlsx');
     }
 }

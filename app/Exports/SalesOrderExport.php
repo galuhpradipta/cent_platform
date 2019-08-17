@@ -26,7 +26,7 @@ class SalesOrderExport implements FromQuery, WithMapping, WithHeadings
         ->join('roles as r', 'u.role', '=', 'r.id')
 
         ->where('so.company_id', $user->business->id )
-        ->where('so.is_approved', true)
+        ->where('so.is_approved', false)
         ->select('so.*', 
             'cust.email as customer_email',
             'cust.address as customer_address',
