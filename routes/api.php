@@ -30,6 +30,8 @@ Route::get('/supplier/{id}', 'SupplierController@getSupplier');
 
 // sales order
 Route::get('/sales-order/{id}', 'SalesOrderController@getSalesOrder');
+Route::get('/sales-order/{salesOrderID}/products', 'SalesOrderController@getProducts');
+
 
 // bank
 Route::get('/bank/{id}', 'BankController@getBank');

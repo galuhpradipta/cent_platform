@@ -109,6 +109,8 @@
 @section('scripts')
 <script>
     $(document).ready(function(){
+        $('#dataTable').DataTable();
+
         $('#edit').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
 

@@ -139,9 +139,10 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    public  function getCompanyProducts($companyId) {
+    public function getCompanyProducts($companyId) {
         $products = Product::where(['company_id' => $companyId])->get();
 
         return response()->json($products);
     }
+
 }

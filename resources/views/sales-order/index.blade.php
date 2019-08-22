@@ -82,7 +82,7 @@
                             <td class="text-left small">{{ $salesOrder->customer->address }}</td>
                             <td class="text-center small"><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank"><i class="fas fa-file-pdf"></i></a></td>
                             <td class="text-center small">
-                                <a href="#" data-toggle="modal" data-target="#detailSO" data-so-id={{ $salesOrder->id }}>
+                                <a href="#" data-toggle="modal" data-target="#detail" data-so-id={{ $salesOrder->id }}>
                                     <i class="fas fa-search"></i>
                                 </a>
                             </td>
@@ -107,7 +107,7 @@
       @include('sales-order.modals.createSO')
 
       @if (count($salesOrders) > 0)
-        @include('sales-order.modals.detailSO')
+        @include('sales-order.modals.detail')
         @include('sales-order.modals.approve')
       @endif
 
@@ -119,6 +119,9 @@
 <script>
   $(document).ready(function(){
     var baseURL = window.location.origin;
+
+    $('#dataTable').DataTable();
+
 
     $('#product_id').on('change', function() {
       var productID = $(this).children('option:selected').val();
@@ -182,28 +185,37 @@
     });
 
 
-    $('#detailSO').on('show.bs.modal', function(e) {
+    $('#detail').on('show.bs.modal', function(e) {
+
         var button = $(e.relatedTarget);
         var salesOrderID = button.data('so-id');
+
         $.get(baseURL+'/api/sales-order/'+salesOrderID, function(data, status) {
-          $('#detail-so-id').html(data.id);
-          $('#detail-so-order-date').html(data.order_date);
-          $('#detail-so-quantity').html(data.quantity);
-          $('#detail-so-subtotal-price').html(data.subtotal_price);
-          $('#detail-so-total').html(data.total);
-          $('#detail-so-file').attr('href', baseURL + '/storage/' + data.attachment_url);
-          $.get(baseURL+'/api/product/'+data.product_id, function(data, status){
-            console.log(data);
-            $('#detail-product-name').html(data.name);
-            $('#detail-product-unit').html(data.unit);
-            $('#detail-product-price').html(data.price);
-            
+
+          $('#detail-customer-id').html(data[0].customer_id);
+          $('#detail-customer-name').html(data[0].customer_name);
+          $('#detail-customer-email').html(data[0].customer_email);
+          $('#detail-customer-address').html(data[0].customer_address);
+          $('#detail-so-id').html(data[0].id);
+          $('#detail-so-order-date').html(data[0].order_date);
+          $('#detail-so-quantity').html(data[0].quantity);
+          $('#detail-so-subtotal-price').html(data[0].subtotal_price);
+          $('#detail-so-total').html(data[0].total);
+          $('#detail-so-file').attr('href', baseURL + '/storage/' + data[0].attachment_url);
+          
+          $.get(baseURL+'/api/sales-order/'+salesOrderID+'/products', function(data,status) {
+
+            var detailProducts = $('#tableProducts > tbody');
+            $.each(data, function(i, product) {
+              detailProducts.append(
+                  '<tr><td class="text-center">'+product.name+'</td><td class="text-center">'+product.unit+'</td><td class="text-center">'+product.quantity+'</td><td class="text-center">Rp. '+product.price+'</td></tr>'
+              );
+
+            })
           });
+
           $.get(baseURL+'/api/customer/'+data.customer_id, function(data, status){
-            $('#detail-customer-id').html(data.id);
-            $('#detail-customer-name').html(data.name);
-            $('#detail-customer-email').html(data.email);
-            $('#detail-customer-address').html(data.address);
+            
           });
           
         })

@@ -54,7 +54,7 @@
                                         <th class="text-center">Tgl. Invoice</th>
                                         <th class="text-center">Tgl. Jatuh Tempo</th>
                                         <th class="text-center">Draft</th>                              
-                                        @if (Auth::user()->role == 'Supervisor')
+                                        @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)
                                             <th class="text-center">Approve</th>
                                         @endif
                                     </tr>
@@ -122,6 +122,8 @@
 @section('scripts')
 <script>
     $(document).ready(function(){
+        $('#dataTable').DataTable();
+        
         $('#edit').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
 

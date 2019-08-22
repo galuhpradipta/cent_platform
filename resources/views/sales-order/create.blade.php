@@ -225,6 +225,9 @@ $(document).ready(function() {
     var baseURL = window.location.origin;
     var companyID = '{{ Auth::user()->business_id }}';
 
+    $('#customer_id').select2();
+    $('#account_id').select2();
+
     $('#customer_id').on('change', function() {
       var customerID = $(this).children('option:selected').val();
       $.get(baseURL+'/api/customer/'+customerID, function(data,status) {
@@ -262,7 +265,8 @@ $(document).ready(function() {
         } else {
             html += '</tr>';
             $('tbody').html(html);
-        }       
+        }
+        
     }
 
     $('#addProduct').click(function() {
@@ -309,29 +313,7 @@ $(document).ready(function() {
         var totalPrice = subtotal_price - down_payment - discount;
         console.log(totalPrice);
         $('#total_price').val(totalPrice);
-
-
     });
-
-    // $(document).on('input', '[id^=unit]', function() {
-    //     var id = event.target.id.slice(4);
-    //     console.log(id);
-    //     console.log("test");
-
-    // });
-
-    // $('#soForm').on('submit', function(e) {
-    //     e.preventDefault();
-    //     $.ajax({
-    //         url: '{{ route('so.index') }}',
-    //         method: 'post',
-    //         data: $(this).serialize(),
-    //         dataType: 'json',
-    //         success: function(data) {
-                
-    //         }
-    //     });
-    // });
 });
 
 </script>

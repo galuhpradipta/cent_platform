@@ -1,4 +1,4 @@
-<div class="modal fade" id="detailSO" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-body">
@@ -12,7 +12,7 @@
 
                 <div class="col-md-2">
                     <button class="close pull-right" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">X</span>
+                        <span aria-hidden="true">x</span>
                     </button>
                 </div>       
             </div>
@@ -46,19 +46,18 @@
                 </div>
 
                 <div class="col-md-12">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="tableProducts">
                         <thead>
                             <tr>
                                 <th class="text-center">Nama Produk</th>
                                 <th class="text-center">Satuan</th>
+                                <th class="text-center">Kuantitas</th>
                                 <th class="text-center">Harga Satuan</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center" id="detail-product-name"></td>
-                                <td class="text-center" id="detail-product-unit"></td>
-                                <td class="text-center" id="detail-product-price"></td>
+                            <tr id="detailProducts">
+                                
                             </tr>
                         </tbody>
                     </table>
@@ -70,8 +69,6 @@
                             <tr>
                                 <th class="text-center">No. Pesanan</th>
                                 <th class="text-center">Tanggal Order</th>
-                                <th class="text-center">Kuantitas</th>
-                                <th class="text-center">Subtotal</th>
                                 <th class="text-center">Total</th>
                             </tr>
                         </thead>
@@ -79,8 +76,6 @@
                             <tr>
                                 <td class="text-center" id="detail-so-id"></td>
                                 <td class="text-center" id="detail-so-order-date"></td>
-                                <td class="text-center" id="detail-so-quantity"></td>
-                                <td class="text-center" id="detail-so-subtotal-price"></td>
                                 <td class="text-center" id="detail-so-total"></td>
 
                             </tr>

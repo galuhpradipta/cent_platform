@@ -82,7 +82,7 @@
       <!-- Logout Modal-->
       @include('ar.modals.createSO')
 
-      @include('ar.modals.detailSO')
+      @include('ar.modals.detail')
 
     </div>
     <!-- /.container-fluid -->

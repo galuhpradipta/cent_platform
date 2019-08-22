@@ -170,7 +170,17 @@ class SalesOrderController extends Controller
     }
 
     public function getSalesOrder($id) {
-        $so = SalesOrder::find($id);
+        // $so = SalesOrder::find($id);
+
+        $so = DB::table('sales_orders as so')
+            ->join('customers as cust', 'so.customer_id', '=', 'cust.id')
+            ->where('so.id', '=', $id)
+            ->select('so.*',
+                'cust.id as customer_id',
+                'cust.email as customer_email',
+                'cust.name as customer_name',
+                'cust.address as customer_address')
+            ->get();
 
         return response()->json($so);
     }
@@ -198,5 +208,16 @@ class SalesOrderController extends Controller
         $user = Auth::user();
 
         return Excel::download(new SalesOrderExport, 'so.csv');
+    }
+
+    public function getProducts($salesOrderID) {
+
+        $products = DB::table('product_order_details as pod')
+                ->join('products as p', 'pod.product_id', '=', 'p.id')
+                ->where('pod.sales_order_id', '=', $salesOrderID)
+                ->get()->toArray();
+
+        
+        return response()->json($products);
     }
 }

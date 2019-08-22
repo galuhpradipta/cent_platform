@@ -58,7 +58,7 @@
                                 <td class="text-center">Supervisor</td>
                                 <td class="text-center"><a href="#"><i class="fas fa-file-pdf"></i></a></td>
                                 <td class="text-center">
-                                  <a href="#" data-toggle="modal" data-target="#detailSO">
+                                  <a href="#" data-toggle="modal" data-target="#detail">
                                     <i class="fas fa-search"></i>
                                   </a></td>
                             </tr>

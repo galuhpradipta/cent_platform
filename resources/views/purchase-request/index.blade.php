@@ -117,6 +117,8 @@
     $(document).ready(function() {
         var baseURL = window.location.origin;
 
+        $('#dataTable').DataTable();
+
         $('#product_id').on('change', function() {
             var productID = $(this).children('option:selected').val();
             
