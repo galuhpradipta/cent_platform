@@ -186,7 +186,6 @@
 
 
     $('#detail').on('show.bs.modal', function(e) {
-
         var button = $(e.relatedTarget);
         var salesOrderID = button.data('so-id');
 
@@ -204,13 +203,14 @@
           $('#detail-so-file').attr('href', baseURL + '/storage/' + data[0].attachment_url);
           
           $.get(baseURL+'/api/sales-order/'+salesOrderID+'/products', function(data,status) {
-
+            
             var detailProducts = $('#tableProducts > tbody');
+
+            detailProducts.empty();
             $.each(data, function(i, product) {
               detailProducts.append(
                   '<tr><td class="text-center">'+product.name+'</td><td class="text-center">'+product.unit+'</td><td class="text-center">'+product.quantity+'</td><td class="text-center">Rp. '+product.price+'</td></tr>'
               );
-
             })
           });
 
