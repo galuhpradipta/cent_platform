@@ -72,7 +72,7 @@
                                                         </a>
                                                     </td>
                                                 @else
-                                                    <td class="text-center">{{ $do->do_date }}</td>
+                                                    <td class="text-center">{{ $do->delivery_date }}</td>
                                                 @endif
                                                 <td class="text-center">{{ $do->approved_by }} <small class="italic">({{ $do->role }})</small></td>
                                                 <td class="text-center">

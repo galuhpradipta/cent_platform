@@ -71,7 +71,17 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3"></div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="invoice_number">Nomor Invoice</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend" style="padding-top:5px;">
+                                                <span class="input-group-text">INV-</span>
+                                            </div>
+                                            <input type="text" id="invoice_number" name="invoice_number" class="text-left form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">

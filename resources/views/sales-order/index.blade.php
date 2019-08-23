@@ -65,7 +65,7 @@
                     <th width="" class="text-left">Alamat Penagihan</th>
                     <th width="" class="text-center">Draft</th>
                     <th width="" class="text-center">Detail</th>
-                    @if (Auth::user()->role == 'Supervisor')
+                    @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)
                       <th class="text-center">Approve</th>
                     @endif
                 </tr>
@@ -86,13 +86,12 @@
                                     <i class="fas fa-search"></i>
                                 </a>
                             </td>
-                            @if (Auth::user()->role == 'Supervisor')
-                           
-                            <td class="text-center small">
-                                <a href="#" data-toggle="modal" data-target="#approve" data-so-id={{ $salesOrder->id }}>
-                                    <i class="fas fa-check"></i>
-                                </a>
-                            </td>
+                            @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)                           
+                              <td class="text-center small">
+                                  <a href="#" data-toggle="modal" data-target="#approve" data-so-id={{ $salesOrder->id }}>
+                                      <i class="fas fa-check"></i>
+                                  </a>
+                              </td>
                             @endif
                         </tr>
                     @endforeach

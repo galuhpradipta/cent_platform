@@ -48,7 +48,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">Pelanggan</th>
-                                        <th class="text-center">No. Pesanan</th>
+                                        <th class="text-center">No. Invoice</th>
                                         <th class="text-center">Tgl. Order</th>
                                         <th class="text-center">Tanggal DO</th>
                                         <th class="text-center">Tgl. Invoice</th>
@@ -64,7 +64,7 @@
                                         @foreach ($invoices as $inv)
                                             <tr>
                                                 <td class="text-center">{{ $inv->customer_email }}</td>
-                                                <td class="text-center">{{ $inv->sales_order_id }}</td>
+                                                <td class="text-center">INV-{{ $inv->invoice_number }}</td>
                                                 <td class="text-center">{{ $inv->so_date }}</td>
                                                 <td class="text-center">{{ $inv->do_date }}</td>
                                                 @if (empty($inv->inv_date))

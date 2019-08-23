@@ -38,7 +38,7 @@ class DeliveryOrderController extends Controller
                                     'so.account_id as account_id',
                                     'so.is_approved as is_so_approved',
                                     'so.approved_by as so_approved_by',
-                                    'do.delivery_date as do_date',
+                                    'do.delivery_date as delivery_date',
                                     'do.is_approved as is_do_approved',
                                     'do.approved_by as do_approved_by',
                                     'cust.email as customer_email',

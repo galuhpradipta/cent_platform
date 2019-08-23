@@ -31,6 +31,7 @@ class InvoiceController extends Controller
                                     'do.id as delivery_order_id',
                                     'so.id as sales_order_id',
                                     'so.customer_id as customer_id',
+                                    'so.invoice_number as invoice_number',
                                     'so.order_date as so_date',
                                     'so.discount as discount',
                                     'so.down_payment as down_payment',
