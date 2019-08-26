@@ -46,6 +46,7 @@ class DeliveryOrderController extends Controller
                                     'r.name as role'
                                 )
                             ->where('do.company_id', '=', $user->business->id)
+                            ->where('do.is_approved', '=', false)
                             ->get();
 
 
