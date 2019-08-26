@@ -80,14 +80,14 @@
                                               <td class="text-left">{{ $pr->customer_address }}</td>
                                               <td class="text-center"><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank"><i class="fas fa-file-pdf"></i></a></td>
                                               <td class="text-center">
-                                                  <a href="#" data-toggle="modal" data-target="#detailSO" data-so-id={{ $pr->id }}>
+                                                  <a href="#" data-toggle="modal" data-target="#detailSO" data-pr-id={{ $pr->id }}>
                                                       <i class="fas fa-search"></i>
                                                   </a>
                                               </td>
                                               @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)
                                              
                                               <td class="text-center small">
-                                                  <a href="#" data-toggle="modal" data-target="#approve" data-so-id={{ $pr->id }}>
+                                                  <a href="#" data-toggle="modal" data-target="#approve" data-pr-id={{ $pr->id }}>
                                                       <i class="fas fa-check"></i>
                                                   </a>
                                               </td>
@@ -105,8 +105,13 @@
             @include('purchase-request.modals.create')
             {{-- @if (count($banks) > 0 )
                 
+            
             @endif --}}
-            @include('purchase-request.modals.detail')
+
+            @if (count($purchaseRequests) > 0)
+                @include('purchase-request.modals.approve')
+                @include('purchase-request.modals.detail')
+            @endif
         </div>
     </div>
 
@@ -125,6 +130,14 @@
             $.get(baseURL+'/api/product/'+productID, function(data, status){
                 $('#product_price').val(data.price);
             });  
+        });
+
+        $('#approve').on('show.bs.modal', function(e) {
+            var button =  $(e.relatedTarget);
+            var purchaseRequestID = button.data('pr-id');
+
+            console.log(purchaseRequestID);
+            $('#approve_purchase_request_id').val(purchaseRequestID); 
         });
     });
 </script>

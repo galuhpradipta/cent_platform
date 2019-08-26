@@ -80,13 +80,16 @@ Route::get('/ar/history', 'ArHistory@index')->middleware('auth')->name('ar-histo
 
 // Purchase Request
 Route::get('/ap/purchase-request', 'PurchaseRequestController@index')->middleware('auth')->name('pr.index');
-Route::get('/ar/purchase-request/create', 'PurchaseRequestController@create')->middleware('auth')->name('pr.create');
-Route::get('/ar/purchase-request/export/excel', 'PurchaseRequestController@exportExcel')->middleware('auth')->name('pr.export-excel');
+Route::get('/ap/purchase-request/create', 'PurchaseRequestController@create')->middleware('auth')->name('pr.create');
+Route::get('/ap/purchase-request/export/excel', 'PurchaseRequestController@exportExcel')->middleware('auth')->name('pr.export-excel');
 Route::post('/ap/purchase-request', 'PurchaseRequestController@store')->middleware('auth')->name('pr.store');
+Route::post('/ap/purchase-request/approve', 'PurchaseRequestController@approve')->middleware('auth')->name('pr.approve');
+
 
 // Purchase Order
 Route::get('/ap/purchase-order', 'PurchaseOrderController@index')->middleware('auth')->name('po.index');
-Route::post('/ap/purchase-order', 'PurchaseOrderController@store')->middleware('auth')->name('po.store');
+Route::patch('/ap/purchase-order', 'PurchaseOrderController@update')->middleware('auth')->name('po.update');
+Route::post('/ap/purchase-order/approve', 'PurchaseOrderController@approve')->middleware('auth')->name('po.approve');
 
 //  Receipt
 Route::get('/ap/receipt', 'ReceiptController@index')->middleware('auth')->name('receipt.index');

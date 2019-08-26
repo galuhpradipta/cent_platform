@@ -16,9 +16,9 @@
                     </div>
 
                     <div class="col-md-6">
-                        <form action="{{ route('do.approve') }}" method="POST">
+                        <form action="{{ route('po.approve') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="delivery_order_id" id="approve_delivery_order_id">
+                            <input type="hidden" name="purchase_order_id" id="approve_purchase_order_id">
 
                             <button type="submit" class="btn btn-primary btn-block">Approve</button>
                         </form>

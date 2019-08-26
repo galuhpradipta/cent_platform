@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Excel;
 use Auth;
 use DB;
+use Carbon;
 use App\Supplier;
 use App\Product;
 use App\Bank;
 use App\PurchaseRequest;
+use App\PurchaseOrder;
 use App\ProductOrderDetail;
 use App\Exports\PurchaseRequestExport;
 
@@ -158,6 +160,25 @@ class PurchaseRequestController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function approve() {
+
+        $user = Auth::user();
+
+        $pr = PurchaseRequest::find(request('purchase_request_id'));
+        $pr->approved_by = $user->id;
+        $pr->is_approved = true;
+        $pr->updated_at = Carbon::now();
+        $pr->save();
+
+        $do = PurchaseOrder::create([
+            'purchase_request_id' => $pr->id,
+            'company_id' => $pr->company_id,
+        ]);
+
+        return redirect(route('pr.index'))->with('success', 'Pengiriman Penjualan berhasil di setujui');
+
     }
 
     public function exportExcel() {

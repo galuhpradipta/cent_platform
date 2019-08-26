@@ -38,53 +38,54 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th class="text-center small">No</th>
-                                            <th class="text-center small">Nomor PO</th>
-                                            <th class="text-center small">Tanggal PO</th>
-                                            <th class="text-center small">Supplier</th>
-                                            <th class="text-center small">ID Supplier</th>
-                                            <th class="text-center small">Nama Barang</th>
-                                            <th class="text-center small">Kuantitas</th> 
-                                            <th class="text-center small">Harga Satuan</th>  
-                                            <th class="text-center small">Subtotal</th>  
-                                            <th class="text-center small">Approved By</th>  
-                                            <th class="text-center small">Draft</th>  
-                                            <th class="text-center small">Detail</th>  
+                                            <th class="text-left">Email</th>
+                                            <th class="text-center">No. Delivery</th>
+                                            <th class="text-center">No. Pesanan</th>
+                                            <th class="text-center">Tanggal Pesanan</th>
+                                            <th class="text-center">Tanggal Delivery</th>
+                                            <th class="text-center">Disetujui Oleh</th>
+                                            <th class="text-center">Draft</th>
+                                            @if (Auth::user()->role == 2  || Auth::user()->role == 3 || Auth::user()->role == 4)
+                                                <th class="text-center">Approve</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {{-- @if (count($purchaseRequests) > 0) --}}
-                                            {{-- @foreach ($banks as $bank) --}}
+                                        @if (count($purchaseOrders) > 0 )
+                                            @foreach ($purchaseOrders as $po)
                                                 <tr>
-                                                    <td class=" text-center small">1</td>
-                                                    <td class=" text-center small">120</td>
-                                                    <td class=" text-center small">2019-04-12</td>
-                                                    <td class=" text-center small">Esrap Digital</td>
-                                                    <td class=" text-center small">12</td>
-                                                    <td class=" text-center small">Web Develop</td>
-                                                    <td class=" text-center small">1</td>
-                                                    <td class=" text-center small">Web Develop</td>
-                                                    <td class=" text-center small">Rp. 1000000</td>
-                                                    <td class=" text-center small">Supervisor</td>
-                                                    <td class=" text-center small">
+                                                    <td class="text-left">{{ $po->supplier_email }}</td>
+                                                    <td class="text-center">{{ $po->id }}</td>
+                                                    <td class="text-center">{{ $po->purchase_request_id }}</td>
+                                                    <td class="text-center">{{ $po->pr_date }}</td>
+                                                    @if (empty($po->delivery_date))
+                                                        <td class="text-center" data-toggle="modal" data-target="#edit" data-po-id="{{  $po->id  }}">
+                                                            <a href="#" >
+                                                                <i class="fas fa-plus"></i>
+                                                            </a>
+                                                        </td>
+                                                    @else
+                                                        <td class="text-center">{{ $po->delivery_date }}</td>
+                                                    @endif
+                                                    <td class="text-center">{{ $po->approved_by }} <small class="italic">({{ $po->role }})</small></td>
+                                                    <td class="text-center">
                                                         <a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">
                                                             <i class="fas fa-file-pdf"></i>
                                                         </a>
                                                     </td>
-                                                    <td class="text-center small"> 
-                                                        <a href="#" data-toggle="modal" data-target="#detail">
-                                                            <i class="fas fa-search"></i>
-                                                        </a>
-                                                    </td>
-    
-    
+                                                    @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)
+                                                        <td class="text-center">
+                                                            <a href="#" class="" data-toggle="modal" data-target="#approve" data-po-id="{{ $po->id }}">
+                                                                <i class="fas fa-check"></i>
+                                                            </a>
+                                                        </td>
+                                                    @endif
                                                 </tr>
-                                            {{-- @endforeach --}}
-                                    {{-- @endif  --}}
-                                    
+                                            @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
@@ -92,11 +93,13 @@
                     </div>
                 </div>
                 {{-- modal  --}}
-                {{-- @include('purchase-request.modals.create') --}}
-                {{-- @if (count($banks) > 0 )
-                    
-                @endif --}}
+                @if (count($purchaseOrders) > 0)
+                    @include('purchase-order.modals.edit')
+                    @include('purchase-order.modals.approve')
+
+                @endif
                 {{-- @include('purchase-request.modals.detail') --}}
+               
             </div>
 
 
@@ -104,5 +107,26 @@
 @endsection
 
 @section('scripts')
-    
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+
+        $('#edit').on('show.bs.modal', function(e) {
+            var button = $(e.relatedTarget);
+
+            var deliveryID = button.data('po-id');
+           
+            $('#po_id').val(deliveryID);
+        });
+
+
+        $('#approve').on('show.bs.modal', function(e) {
+            var button = $(e.relatedTarget);
+
+            var deliveryID = button.data('po-id');
+           
+            $('#approve_purchase_order_id').val(deliveryID);
+        });
+    });
+</script>
 @endsection

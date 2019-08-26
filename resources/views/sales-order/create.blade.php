@@ -188,9 +188,7 @@
                                         </textarea>
                                     </div>
                                 </div>
-
-                            
-
+                    
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="total_price">Total</label>
@@ -237,6 +235,7 @@ $(document).ready(function() {
 
     $('#customer_id').select2();
     $('#account_id').select2();
+
 
     $('#customer_id').on('change', function() {
       var customerID = $(this).children('option:selected').val();
@@ -324,6 +323,7 @@ $(document).ready(function() {
         console.log(totalPrice);
         $('#total_price').val(totalPrice);
     });
+    
 });
 
 </script>

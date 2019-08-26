@@ -113,9 +113,7 @@
 
         $('#edit').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
-
             var deliveryID = button.data('do-id');
-           
             $('#do_id').val(deliveryID);
         });
 
