@@ -48,7 +48,6 @@ class PurchaseOrderController extends Controller
                             ->where('po.is_approved', '=', false)
                             ->get();
 
-
         return view('purchase-order.index', compact('purchaseOrders'));
     }
 

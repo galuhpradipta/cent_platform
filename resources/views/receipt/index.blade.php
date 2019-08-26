@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.new-app')
 
 @section('content')
     <div class="container-fluid">
@@ -37,72 +37,107 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th class="text-center small">No</th>
-                                        <th class="text-center small">Nomor Penerimaan</th>
-                                        <th class="text-center small">Tanggal Penerimaan</th>
-                                        <th class="text-center small">Nama Barang</th>
-                                        <th class="text-center small">Jumlah Barang</th>
-                                        <th class="text-center small">Invoice Supplier</th>
-                                        <th class="text-center small">Discount</th> 
-                                        <th class="text-center small">Uang Muka</th>
-                                        <th class="text-center small">PPN</th>
-                                        <th class="text-center small">Jatuh Tempo</th>
-                                        <th class="text-center small">Approved By</th>
-                                        <th class="text-center small">Draft</th>
-                                        <th class="text-center small">Detail</th>                                       
-                                    
-                                       
-                                     
-                                       
-                                      
+                                        <th class="text-center">Supplier</th>
+                                        <th class="text-center">No. Invoice</th>
+                                        <th class="text-center">Tgl. Order</th>
+                                        <th class="text-center">Tanggal DO</th>
+                                        <th class="text-center">Tgl. Invoice</th>
+                                        <th class="text-center">Tgl. Jatuh Tempo</th>
+                                        <th class="text-center">Draft</th>                              
+                                        @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)
+                                            <th class="text-center">Approve</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {{-- @if (count($purchaseRequests) > 0) --}}
-                                        {{-- @foreach ($banks as $bank) --}}
+                                    @if (count($receipts) > 0 )
+                                        @foreach ($receipts as $rcp)
                                             <tr>
-                                                <td class=" text-center small">1</td>
-                                                <td class=" text-center small">120</td>
-                                                <td class=" text-center small">2019-04-12</td>
-                                                <td class=" text-center small">Web Develop</td>
-                                                <td class=" text-center small">1</td>
-                                                <td class=" text-center small">Esrap Digital</td>
-                                                <td class=" text-center small">10 %</td>
-                                                <td class=" text-center small">Rp. 1000000</td>
-                                                <td class=" text-center small">10 %</td>
-                                                <td class=" text-center small">2019-04-12</td>
-                                                <td class=" text-center small">Jasa</td>
-                                                <td class=" text-center small">
+                                                <td class="text-center">{{ $rcp->supplier_email }}</td>
+                                                <td class="text-center">INV-{{ $rcp->invoice_number }}</td>
+                                                <td class="text-center">{{ $rcp->pr_date }}</td>
+                                                <td class="text-center">{{ $rcp->po_date }}</td>
+                                                @if (empty($rcp->invoice_date))
+                                                    <td class="text-center" data-toggle="modal" data-target="#edit" data-rcp-id="{{  $rcp->id  }}">
+                                                        <a href="#" >
+                                                            <i class="fas fa-plus"></i>
+                                                        </a>
+                                                    </td>
+                                                @else
+                                                    <td class="text-center">{{ $rcp->invoice_date }}</td>
+                                            @endif
+
+                                                @if (empty($rcp->due_date))
+                                                    <td class="text-center" data-toggle="modal" data-target="#edit" data-rcp-id="{{  $rcp->id  }}">
+                                                        <a href="#" >
+                                                            <i class="fas fa-plus"></i>
+                                                        </a>
+                                                    </td>
+                                                @else
+                                                    <td class="text-center">{{ $rcp->due_date }}</td>
+                                            @endif
+
+                                                <th class="text-center">
                                                     <a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">
                                                         <i class="fas fa-file-pdf"></i>
                                                     </a>
-                                                </td>
-                                                <td class="text-center small"> 
-                                                    <a href="#" data-toggle="modal" data-target="#detail">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
+                                            </th>
 
-
+                                                @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)
+                                                    <td class="text-center">
+                                                        <a href="#" data-toggle="modal" data-target="#approve" data-rcp-id="{{ $rcp->id }}">
+                                                            <i class="fas fa-check"></i>
+                                                        </a>
+                                                    </td>
+                                                @endif
                                             </tr>
-                                        {{-- @endforeach --}}
-                                {{-- @endif  --}}
-                                
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
+
+        {{-- modals --}}    
+        @if (count($receipts) > 0)
+            @include('receipt.modals.approve')
+            @include('receipt.modals.edit')
+        @endif
 
 
     </div>
 @endsection
 
 @section('scripts')
+
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+
+        $('#edit').on('show.bs.modal', function(e) {
+            var button = $(e.relatedTarget);
+
+            var receiptID = button.data('rcp-id');
+            
+            $('#receipt_id').val(receiptID);
+        });
+
+        $('#approve').on('show.bs.modal', function(e) {
+            var button = $(e.relatedTarget);
+
+            var receiptID = button.data('rcp-id');
+
+            console.log(receiptID);
+           
+            $('#approve_receipt_id').val(receiptID);
+        });
+    });
+</script>
     
 @endsection

@@ -31,31 +31,31 @@ Tip 2: you can also add an image using data-image tag
                 <ul class="nav">
                     <li class="nav-item ">
                         <a class="nav-link" href="{{ route('so.index') }}">
-                            <span class="sidebar-mini">PJ</span>
+                            {{-- <span class="sidebar-mini">PJ</span> --}}
                             <span class="sidebar-normal">Pesanan Penjualan</span>
                         </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="{{ route('do.index') }}">
-                            <span class="sidebar-mini">SJ</span>
+                            {{-- <span class="sidebar-mini">SJ</span> --}}
                             <span class="sidebar-normal">Surat Jalan</span>
                         </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="{{ route('invoice.index') }}">
-                            <span class="sidebar-mini">INV</span>
+                            {{-- <span class="sidebar-mini">INV</span> --}}
                             <span class="sidebar-normal">Faktur Penjualan</span>
                         </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="{{ route('income.index') }}">
-                            <span class="sidebar-mini">UM</span>
+                            {{-- <span class="sidebar-mini">UM</span> --}}
                             <span class="sidebar-normal">Uang Masuk</span>
                         </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="{{ route('ar-history.index') }}">
-                            <span class="sidebar-mini">RW</span>
+                            {{-- <span class="sidebar-mini">RW</span> --}}
                             <span class="sidebar-normal">Riwayat</span>
                         </a>
                     </li>
@@ -85,22 +85,22 @@ Tip 2: you can also add an image using data-image tag
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="{{ route('receipt.index') }}">
-                            <span class="sidebar-mini">INV</span>
-                            <span class="sidebar-normal">Faktur Penjualan</span>
+                            {{-- <span class="sidebar-mini">INV</span> --}}
+                            <span class="sidebar-normal">Faktur Pembelian</span>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('receipt.index') }}">
+                        <a class="nav-link" href="{{ route('spending.index') }}">
                             {{-- <span class="sidebar-mini">UM</span> --}}
-                            <span class="sidebar-normal">Invoice</span>
+                            <span class="sidebar-normal">Uang Keluar</span>
                         </a>
                     </li>
-                    {{-- <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('ar-history.index') }}">
-                            <span class="sidebar-mini">RW</span>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('ap-history.index') }}">
+                            {{-- <span class="sidebar-mini">RW</span> --}}
                             <span class="sidebar-normal">Riwayat</span>
                         </a>
-                    </li> --}}
+                    </li>
                 </ul>
             </div>
                         

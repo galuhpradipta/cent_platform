@@ -93,7 +93,18 @@ Route::post('/ap/purchase-order/approve', 'PurchaseOrderController@approve')->mi
 
 //  Receipt
 Route::get('/ap/receipt', 'ReceiptController@index')->middleware('auth')->name('receipt.index');
-Route::post('/ap/receipt', 'ReceiptController@store')->middleware('auth')->name('receipt.store');
+Route::patch('/ap/receipt', 'ReceiptController@update')->middleware('auth')->name('receipt.update');
+Route::post('/ap/receipt/approve', 'ReceiptController@approve')->middleware('auth')->name('receipt.approve');
+
+
+// Uang Keluar (spending)
+Route::get('/ap/spending', 'SpendingController@index')->middleware('auth')->name('spending.index');
+Route::patch('/ap/spending', 'SpendingController@update')->middleware('auth')->name('spending.update');
+Route::post('/ap/spending/approve', 'SpendingController@approve')->middleware('auth')->name('spending.approve');
+
+
+// History Uang Keluar
+Route::get('/ap/history', 'ApHistory@index')->middleware('auth')->name('ap-history.index');
 
 
 // Account

@@ -43,21 +43,21 @@
                                                 <th class="text-center" width="10%">No. Pesanan</th>
                                                 <th class="text-center" width="10%">No. Delivery</th>                                                                        
                                                 <th class="text-center" width="10%">No. Invoice</th>
-                                                <th class="text-right">Jumlah Uang Masuk</th>
+                                                <th class="text-right">Jumlah Uang Keluar</th>
                                                 <th class="text-center">Approved By</th>
                                                 <th class="text-center">Draft</th>
                                                 <th class="text-center">Detail</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if (count($incomes) > 0)
-                                                @foreach ($incomes as $income)
+                                            @if (count($spendings) > 0)
+                                                @foreach ($spendings as $spending)
                                                     <tr>
-                                                        <td class="text-center">{{ $income->sales_order_id }}</td>
-                                                        <td class="text-center">{{ $income->delivery_order_id }}</td>
-                                                        <td class="text-center">{{ $income->invoice_id }}</td>
-                                                        <td class="text-right">Rp. {{ $income->amount }}</td>
-                                                        <td class="text-center">{{ $income->approved_by }}  <small>({{ $income->role }})</small></td>
+                                                        <td class="text-center">{{ $spending->purchase_request_id }}</td>
+                                                        <td class="text-center">{{ $spending->purchase_order_id }}</td>
+                                                        <td class="text-center">{{ $spending->receipt_id }}</td>
+                                                        <td class="text-right">Rp. {{ $spending->amount }}</td>
+                                                        <td class="text-center">{{ $spending->approved_by }}  <small>({{ $spending->role }})</small></td>
                                                         <td class="text-center">
                                                             <a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">
                                                                 <i class="fas fa-file-pdf"></i>

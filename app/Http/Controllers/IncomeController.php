@@ -32,6 +32,7 @@ class IncomeController extends Controller
                             ->join('users as u', 'so.approved_by', '=', 'u.id')
                             ->join('roles as r', 'u.role', '=', 'r.role_id')
                             ->select('inc.id as id',
+                                    'inc.amount as amount',
                                     'inc.income_date as income_date',
                                     'inv.id as invoice_id',
                                     'inv.invoice_date as inv_date',
@@ -57,6 +58,8 @@ class IncomeController extends Controller
                                     'r.name as role'
                                 )
                             ->where('do.company_id', '=', $user->business->id)
+                            ->where('inc.is_approved', '=', false)
+
                             ->get();
 
         // dd($incomes);
