@@ -47,11 +47,12 @@
                             <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>   
-                                        <th width="30%">Nama</th>
+                                        <th width="25%">Nama</th>
                                         <th width="15%">Kode</th>
                                         <th width="10%">Kategori</th>
-                                        <th width="25%" class="text-right">Balance</th>
-                                        <th width="10%" class="text-right" style="display: table-cell;">Action</th>
+                                        <th width="15%" class="text-right">Saldo Awal</th>
+                                        <th width="15%" class="text-right">Saldo</th>
+                                        <th width="10%" class="text-right" style="display: table-cell;">Edit</th>
                                     </tr>
                                 </thead>
 
@@ -62,6 +63,7 @@
                                                 <td class="text-left">{{ $bank->name }}</td>
                                                 <td class="text-left">{{ $bank->code }}</td>
                                                 <td class="text-left">{{ $bank->category }}</td>
+                                                <td class="text-right">Rp. {{ $bank->initial_balance }}</td>
                                                 <td class="text-right">Rp. {{ $bank->balance }}</td>
                                                 <td class="text-center">
                                                     <button class="btn btn-primary btn-fill btn-sm"
