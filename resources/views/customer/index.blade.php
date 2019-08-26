@@ -48,10 +48,12 @@
                                 <thead>
                                     <tr>
                                         <th width="20%" class="text-center">Name</th>
-                                        <th width="20%" class="text-center">Email</th>
+                                        <th width="15%" class="text-center">Email</th>
                                         <th width="10%" class="text-center">Phone Number</th>
                                         <th width="35%" class="text-center">Address</th>
-                                        <th width="15%" class="text-center" colspan="2">Action</th>
+                                        <th width="10%" class="text-center">Edit</th>
+                                        <th width="10%" class="text-center" style="display:table-cell;">Delete</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -112,6 +114,8 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+        $('#dataTable').DataTable();
+
         $('#editCustomer').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
 

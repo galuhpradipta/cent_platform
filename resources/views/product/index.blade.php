@@ -47,11 +47,13 @@
                             <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th width="40%">Nama</th>
+                                        <th width="30%">Nama</th>
                                         <th width="15%">Kode</th>
                                         <th width="15%">Satuan</th>
                                         <th width="20%">Harga Satuan</th>
-                                        <th width="10%" colspan="2">Action</th>                                    
+                                        <th width="10%">Edit</th>
+                                        <th width="10%" style="display:table-cell;">Delete</th>                                    
+                                   
                                   
                                     </tr>
                                 </thead>
@@ -113,6 +115,8 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+        $('#dataTable').DataTable();
+
         $('#editProduct').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
 

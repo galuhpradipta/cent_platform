@@ -74,20 +74,20 @@
                 @if (count($salesOrders) > 0)
                     @foreach ($salesOrders as $salesOrder)
                         <tr>
-                            <td class="text-center small">{{ $salesOrder->id}}</td>
-                            <td class="text-left small">{{ $salesOrder->customer->name }}</td>
-                            <td class="text-center small">{{ $salesOrder->customer->id }}</td>
-                            <td class="text-left small">{{ $salesOrder->customer->email }}</td>
-                            <td class="text-center small">{{ $salesOrder->order_date }}</td>
-                            <td class="text-left small">{{ $salesOrder->customer->address }}</td>
-                            <td class="text-center small"><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank"><i class="fas fa-file-pdf"></i></a></td>
-                            <td class="text-center small">
+                            <td class="text-center">{{ $salesOrder->id}}</td>
+                            <td class="text-left">{{ $salesOrder->customer->name }}</td>
+                            <td class="text-center">{{ $salesOrder->customer->id }}</td>
+                            <td class="text-left">{{ $salesOrder->customer->email }}</td>
+                            <td class="text-center">{{ $salesOrder->order_date }}</td>
+                            <td class="text-left">{{ $salesOrder->customer->address }}</td>
+                            <td class="text-center"><a href="http://www.africau.edu/images/default/sample.pdf" target="_blank"><i class="fas fa-file-pdf"></i></a></td>
+                            <td class="text-center">
                                 <a href="#" data-toggle="modal" data-target="#detail" data-so-id={{ $salesOrder->id }}>
                                     <i class="fas fa-search"></i>
                                 </a>
                             </td>
                             @if (Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4)                           
-                              <td class="text-center small">
+                              <td class="text-center">
                                   <a href="#" data-toggle="modal" data-target="#approve" data-so-id={{ $salesOrder->id }}>
                                       <i class="fas fa-check"></i>
                                   </a>

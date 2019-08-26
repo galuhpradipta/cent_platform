@@ -49,12 +49,14 @@
               <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                      <th width="30%">Name</th>
+                      <th width="20%">Name</th>
                       <th width="30%">Address</th>
                       <th width="10%">Phone</th>
                       <th width="15%">Email</th>
                       <th width="10%">Role</th>
-                      <th width="10%" colspan="2">Action</th>
+                      <th width="10%">Edit</th>
+                      <th width="10%" style="display: table-cell;">Delete</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -116,6 +118,8 @@
 <script>
     $(document).ready(function() {
         // edit modal
+        $('#dataTable').DataTable();
+
         $('#editModal').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
 

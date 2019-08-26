@@ -47,11 +47,11 @@
                             <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>   
-                                        <th width="40%">Nama</th>
+                                        <th width="30%">Nama</th>
                                         <th width="15%">Kode</th>
                                         <th width="10%">Kategori</th>
-                                        <th width="25%">Balance</th>
-                                        <th width="10%">Action</th>
+                                        <th width="25%" class="text-right">Balance</th>
+                                        <th width="10%" class="text-right" style="display: table-cell;">Action</th>
                                     </tr>
                                 </thead>
 
@@ -64,7 +64,7 @@
                                                 <td class="text-left">{{ $bank->category }}</td>
                                                 <td class="text-right">Rp. {{ $bank->balance }}</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-primary btn-fill btn-sm btn-block"
+                                                    <button class="btn btn-primary btn-fill btn-sm"
                                                         data-toggle="modal" data-target="#editBank"
                                                         data-bank-id="{{ $bank->id }}"
                                                         data-bank-name="{{ $bank->name }}"
@@ -96,6 +96,8 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+        $('#dataTable').DataTable();
+
         $('#editBank').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
 
