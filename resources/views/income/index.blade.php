@@ -51,7 +51,7 @@
                                         <th class="text-center" width="10%">No. Inv</th>
                                         <th class="text-center" width="20%">Jml. Uang Masuk</th>
                                         <th class="text-center" width="10%">Kas</th>
-                                        <th class="text-center" width="15%">Tanggal Uang Masuk</th>
+                                        <th class="text-center" width="15%">Tgl Uang Masuk</th>
                                         <th class="text-center" width="10%">Draft</th>
                                         <th class="text-center" width="10%">Detail</th>                                    
                                         @if (Auth::user()->role == 2 || Auth::user()->role == 3 ||  Auth::user()->role == 4)
@@ -63,34 +63,34 @@
                                     @if (count($incomes) > 0)
                                         @foreach ($incomes as $income)
                                             <tr>
-                                                <td class="small text-center">{{ $income->sales_order_id }}</td>
-                                                <td class="small text-center">{{ $income->delivery_order_id }}</td>
-                                                <td class="small text-center">{{ $income->invoice_id }}</td>
+                                                <td class="text-center">{{ $income->sales_order_id }}</td>
+                                                <td class="text-center">{{ $income->delivery_order_id }}</td>
+                                                <td class="text-center">{{ $income->invoice_id }}</td>
                                                 @if (empty($income->amount))
-                                                    <td class="small text-center" data-toggle="modal" data-target="#edit" data-income-id="{{  $income->id  }}">
+                                                    <td class="text-center" data-toggle="modal" data-target="#edit" data-income-id="{{  $income->id  }}">
                                                         <a href="#" >
                                                             <i class="fas fa-plus"></i>
                                                         </a>
                                                     </td>
                                                 @else
-                                                    <td class="small text-center">{{ $income->amount }}</td>
+                                                    <td class="text-center">{{ $income->amount }}</td>
                                                 @endif
-                                                <td class="small text-center">{{ $income->account_name }}</td>
+                                                <td class="text-center">{{ $income->account_name }}</td>
                                                 @if (empty($income->income_date))
-                                                    <td class="small text-center" data-toggle="modal" data-target="#edit" data-income-id="{{  $income->id  }}">
+                                                    <td class="text-center" data-toggle="modal" data-target="#edit" data-income-id="{{  $income->id  }}">
                                                         <a href="#" >
                                                             <i class="fas fa-plus"></i>
                                                         </a>
                                                     </td>
                                                 @else
-                                                    <td class="small text-center">{{ $income->income_date }}</td>
+                                                    <td class="text-center">{{ $income->income_date }}</td>
                                                 @endif
-                                                <td class="small text-center">
+                                                <td class="text-center">
                                                     <a href="http://www.africau.edu/images/default/sample.pdf" target="_blank">
                                                         <i class="fas fa-file-pdf"></i>
                                                     </a>
                                                 </td>
-                                                <td class="small text-center">
+                                                <td class="text-center">
                                                     <a href="#" data-toggle="modal" data-target="#detail" data-income-id="{{ $income->id }}">
                                                         <i class="fas fa-search"></i>
                                                     </a>

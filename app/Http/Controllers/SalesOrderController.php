@@ -94,15 +94,22 @@ class SalesOrderController extends Controller
         ]);
 
 
+        $products = [];
+        foreach( $data['product_ids'] as $index => $product_id ) {
+            $product = [
+                'id' => $product_id,
+                'quantity' => $data['quantities'][$index] 
+            ];
+            array_push($products, $product);    
+        }
 
-        $products = array_combine($data['product_ids'], $data['quantities']);
-        foreach ($products as $key => $value) {
+        foreach ($products as $product) {
             ProductOrderDetail::create([
                 'sales_order_id'  => $so->id,
-                'product_id' => $key,
-                'quantity' => $value,
+                'product_id' => $product['id'],
+                'quantity' => $product['quantity'],
             ]);
-        }
+        }   
                  
         if (request()->hasFile('attachment')) {
             $file = $request->file('attachment')->store('uploads', 'public');
@@ -221,5 +228,19 @@ class SalesOrderController extends Controller
 
         
         return response()->json($products);
+    }
+
+    private function array_combine_($keys, $values){
+        $result = array();
+    
+        foreach ($keys as $i => $k) {
+         $result[$k][] = $values[$i];
+         }
+    
+        array_walk($result, function(&$v){
+         $v = (count($v) == 1) ? array_pop($v): $v;
+         });
+    
+        return $result;
     }
 }

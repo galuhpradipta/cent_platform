@@ -48,10 +48,13 @@ class InvoiceController extends Controller
                                     'u.name as approved_by',
                                     'r.name as role'
                                 )
-                            ->where('do.company_id', '=', $user->business->id)
-                            ->where('do.is_approved', '=', false)
+                            ->where('inv.company_id', '=', $user->business->id)
+                            ->where('inv.is_approved', '=', false)
 
                             ->get();
+
+        // dd(Auth::user());
+        // dd($invoices);
 
         return view('invoice.index', compact('invoices'));
     }
