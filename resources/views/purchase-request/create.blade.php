@@ -225,6 +225,8 @@ $(document).ready(function() {
     var baseURL = window.location.origin;
     var companyID = '{{ Auth::user()->business_id }}';
 
+    $('#account_id, #supplier_id').select2();
+
     $('#supplier_id').on('change', function() {
       var supplierID = $(this).children('option:selected').val();
       $.get(baseURL+'/api/supplier/'+supplierID, function(data,status) {
