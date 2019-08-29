@@ -77,12 +77,23 @@ class PurchaseRequestController extends Controller
             'order_date' => 'required',
             'product_ids' => 'required',
             'quantities' => 'required',
-            'discount' => 'required',
-            'down_payment' => 'required',
+            'invoice_number' => 'required',
+            'discount' => 'sometimes',
+            'down_payment' => 'sometimes',
             'subtotal_price' =>  'required',
             'total_price' => 'required',
             'attachment' =>  'sometimes|file|max:5000',
         ]);
+
+        
+
+        if (request('discount') == null) {
+            $data['discount'] = 0;
+        }
+
+        if (request('down_payment') == null) {
+            $data['down_payment'] = 0;
+        }
             
         $user = Auth::user();
         $supplier = Supplier::find(request('supplier_id'));
@@ -92,6 +103,7 @@ class PurchaseRequestController extends Controller
             'supplier_id' => $data['supplier_id'],
             'order_date' => $data['order_date'],
             'discount' => $data['discount'],
+            'invoice_number' => $data['invoice_number'],
             'down_payment' => $data['down_payment'],
             'account_id' => $data['account_id'],
             'total' => $data['total_price'],

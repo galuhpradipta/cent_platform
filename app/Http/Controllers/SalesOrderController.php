@@ -70,12 +70,20 @@ class SalesOrderController extends Controller
             'order_date' => 'required',
             'product_ids' => 'required',
             'quantities' => 'required',
-            'discount' => 'required',
-            'down_payment' => 'required',
+            'discount' => 'sometimes',
+            'down_payment' => 'sometimes',
             'subtotal_price' =>  'required',
             'total_price' => 'required',
-            'attachment' =>  'required|file|max:5000',
+            'attachment' =>  'sometimes|file|max:5000',
         ]);
+
+        if (request('discount') == null) {
+            $data['discount'] = 0;
+        }
+
+        if (request('down_payment') == null) {
+            $data['down_payment'] = 0;
+        }
             
         $user = Auth::user();
         $customer = Customer::find(request('customer_id'));

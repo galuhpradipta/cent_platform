@@ -8,7 +8,7 @@
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
-                    <span class="text">Customer</span>
+                    <span class="text">Account</span>
                 </a>
             </div>
 

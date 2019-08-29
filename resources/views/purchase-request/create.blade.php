@@ -71,7 +71,17 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3"></div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="invoice_number">Nomor Invoice</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend" style="padding-top:5px;">
+                                                <span class="input-group-text">INV-</span>
+                                            </div>
+                                            <input type="text" id="invoice_number" name="invoice_number" class="text-left form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -140,7 +150,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp.</span>
                                             </div>
-                                            <input type="number" id="discount" name="discount" step="any" class="text-right form-control" placeholder="0" required>
+                                            <input type="number" id="discount" name="discount" step="any" class="text-right form-control" placeholder="0">
                                         </div>
                                     </div>
                                 </div>
@@ -152,7 +162,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp.</span>
                                             </div>
-                                            <input type="number" id="down_payment" name="down_payment" step="any" class="text-right form-control" placeholder="0" required>
+                                            <input type="number" id="down_payment" name="down_payment" step="any" class="text-right form-control" placeholder="0">
                                         </div>
                                     </div>
                                 </div>

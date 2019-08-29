@@ -150,7 +150,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp.</span>
                                             </div>
-                                            <input type="number" id="discount" name="discount" step="any" class="text-right form-control" placeholder="0" required>
+                                            <input type="number" id="discount" name="discount" step="any" class="text-right form-control" placeholder="0">
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp.</span>
                                             </div>
-                                            <input type="number" id="down_payment" name="down_payment" step="any" class="text-right form-control" placeholder="0" required>
+                                            <input type="number" id="down_payment" name="down_payment" step="any" class="text-right form-control" placeholder="0">
                                         </div>
                                     </div>
                                 </div>
@@ -176,7 +176,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="attachment">Attachment</label>
-                                        <input type="file" name="attachment" class="form-control" id="attachment" required>
+                                        <input type="file" name="attachment" class="form-control" id="attachment">
                                     </div>                                    
                                 </div>
 

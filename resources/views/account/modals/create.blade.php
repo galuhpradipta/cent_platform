@@ -54,13 +54,10 @@
                                         <label for="role">Role</label>
                                         <select name="role" id="role" class="form-control">
                                             <option value="" disabled>Select Role</option>
-                                            <option value="0">Supervisor</option>
                                             <option value="1">Admin</option>
-
-                                            
-                                            {{-- @foreach ($account->roleOptions() as $roleOptionKey => $roleOptionValue)
-                                                <option value="{{ $roleOptionKey }}" {{ $account->role == $roleOptionValue ? 'selected' : ''}}>{{ $roleOptionValue }}</option>
-                                            @endforeach                                            --}}
+                                            <option value="2">Supervisor</option>
+                                            <option value="3">Manager</option>
+                                            <option value="4">Direktur</option>                                      
                                         </select>
                                     </div>  
                                 </div>
