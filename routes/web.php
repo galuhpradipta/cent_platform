@@ -106,6 +106,11 @@ Route::post('/ap/spending/approve', 'SpendingController@approve')->middleware('a
 // History Uang Keluar
 Route::get('/ap/history', 'ApHistory@index')->middleware('auth')->name('ap-history.index');
 
+// Jurnal
+Route::get('/journal', 'JournalController@index')->middleware('auth')->name('journal.index');
+
+
+
 
 // Account
 Route::get("/master/account", 'AccountController@index')->middleware('auth')->name('account.index');

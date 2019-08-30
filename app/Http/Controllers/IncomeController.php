@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
-use App\Income;
 use Carbon;
+use App\SalesOrder;
+use App\Journal;
+use App\Bank;
+use App\Income;
 
 class IncomeController extends Controller
 {
@@ -162,6 +165,21 @@ class IncomeController extends Controller
         $income->updated_at = Carbon::now();
         $income->save();
 
-        return redirect(route('income.index'))->with('success', 'Invoice Penjualan berhasil di setujui');
+        $so = SalesOrder::find($income->sales_order_id);
+        
+        $bank = Bank::find($so->account_id);
+        $bank->balance = $bank->balance + $income->amount;
+        $bank->save();
+
+        Journal::create([
+            'amount' => $income->amount,
+            'date' => $income->income_date,
+            'type' => 1,
+            'sales_order_id' => $so->id,
+            'bank_id' => $bank->id,
+            'company_id' => $user->business_id,
+        ]);
+
+        return redirect(route('income.index'))->with('success', 'Uang Masuk berhasil di setujui');
     }
 }

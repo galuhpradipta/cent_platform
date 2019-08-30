@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use Carbon;
+use App\PurchaseRequest;
+use App\Bank;
+use App\Journal;
 use App\Spending;
 
 class SpendingController extends Controller
@@ -155,6 +158,21 @@ class SpendingController extends Controller
         $spending->is_approved = true;
         $spending->updated_at = Carbon::now();
         $spending->save();
+
+        $pr = PurchaseRequest::find($spending->purchase_request_id);
+
+        $bank = Bank::find($pr->account_id);
+        $bank->balance = $bank->balance - $spending->amount;
+        $bank->save();
+
+        Journal::create([
+            'amount' => $spending->amount,
+            'date' => $spending->spending_date,
+            'type' => 2,
+            'sales_order_id' => $pr->id,
+            'bank_id' => $bank->id,
+            'company_id' => $user->business_id,
+        ]);
 
         return redirect(route('spending.index'))->with('success', 'Uang Keluar berhasil di setujui');
     }

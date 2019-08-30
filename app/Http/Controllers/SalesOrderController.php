@@ -15,6 +15,7 @@ use App\SalesOrder;
 use App\AccountReceiveable;
 use App\DeliveryOrder;
 use App\ProductOrderDetail;
+use App\Journal;
 use App\Exports\SalesOrderExport;
 
 
@@ -63,6 +64,8 @@ class SalesOrderController extends Controller
      */
     public function store(Request $request)
     {  
+        
+
         $data = request()->validate([
             'customer_id' => 'required',
             'account_id' => 'required',
@@ -72,7 +75,7 @@ class SalesOrderController extends Controller
             'quantities' => 'required',
             'discount' => 'sometimes',
             'down_payment' => 'sometimes',
-            'subtotal_price' =>  'required',
+            'subtotal_price' => 'required',
             'total_price' => 'required',
             'attachment' =>  'sometimes|file|max:5000',
         ]);
@@ -101,7 +104,6 @@ class SalesOrderController extends Controller
             'ppn' => 0,
         ]);
 
-
         $products = [];
         foreach( $data['product_ids'] as $index => $product_id ) {
             $product = [
@@ -125,6 +127,21 @@ class SalesOrderController extends Controller
             $so->save();
         }
         
+        if (request('down_payment') != null ) {
+            $bank = Bank::find(request('account_id'));
+            $bank->balance = $bank->balance + request('down_payment');
+            $bank->save();
+
+            Journal::create([
+                'amount' => $data['down_payment'],
+                'date' => $data['order_date'],
+                'type' => 1,
+                'sales_order_id' => $so->id,
+                'bank_id' => $data['account_id'],
+                'company_id' => $user->business_id,
+            ]);
+        }
+
         return redirect(route('so.index'))->with('success', 'Sales Order Successfully created');
     }
 

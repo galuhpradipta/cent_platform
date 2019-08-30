@@ -103,21 +103,14 @@ Tip 2: you can also add an image using data-image tag
                     </li>
                 </ul>
             </div>
-                        
-            {{-- <li class="dropdown nav-item">
-                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                    <i class="nc-icon nc-planet"></i>
-                    <span class="notification">Uang Keluar</span>
+                            
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('journal.index')}}">
+                    <i class="nc-icon nc-icon nc-paper-2"></i>
+                    <p>Jurnal</p>
                 </a>
-                <ul class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ route('pr.index') }}">Pesanan Pembelian</a>
-                    <a class="dropdown-item" href="{{ route('po.index') }}">Pengiriman Pembelian</a>
-                    <a class="dropdown-item" href="{{ route('receipt.index') }}">Invoice</a>
-                    <a class="dropdown-item" href="#">Uang Keluar</a>
-                    <a class="dropdown-item" href="#">History</a>
-                </ul>              
-            </li> --}}
-            
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('customer.index') }}">
                     <i class="nc-icon nc-icon nc-paper-2"></i>

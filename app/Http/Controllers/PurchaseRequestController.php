@@ -13,6 +13,7 @@ use App\Bank;
 use App\PurchaseRequest;
 use App\PurchaseOrder;
 use App\ProductOrderDetail;
+use App\Journal;
 use App\Exports\PurchaseRequestExport;
 
 class PurchaseRequestController extends Controller
@@ -124,7 +125,22 @@ class PurchaseRequestController extends Controller
             $file = $request->file('attachment')->store('uploads', 'public');
             $pr->attachment_url  = $file;
             $pr->save();
-        } 
+        }
+
+        if (request('down_payment') != null ) {
+            $bank = Bank::find(request('account_id'));
+            $bank->balance = $bank->balance - request('down_payment');
+            $bank->save();
+
+            Journal::create([
+                'amount' => $data['down_payment'],
+                'date' => $data['order_date'],
+                'type' => 2,
+                'purchase_request_id' => $pr->id,
+                'bank_id' => $data['account_id'],
+                'company_id' => $user->business_id,
+            ]);
+        }
         
         return redirect(route('pr.index'))->with('success', 'Purchase Request successfully created');
     }
