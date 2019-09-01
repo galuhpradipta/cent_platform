@@ -86,8 +86,6 @@ class PurchaseRequestController extends Controller
             'attachment' =>  'sometimes|file|max:5000',
         ]);
 
-        
-
         if (request('discount') == null) {
             $data['discount'] = 0;
         }
