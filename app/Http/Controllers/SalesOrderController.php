@@ -64,8 +64,6 @@ class SalesOrderController extends Controller
      */
     public function store(Request $request)
     {  
-        
-
         $data = request()->validate([
             'customer_id' => 'required',
             'account_id' => 'required',

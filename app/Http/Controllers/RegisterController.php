@@ -40,6 +40,7 @@ class RegisterController extends Controller
             'name' => $data['company_name'],
             'type' => $data['company_type'],
             'income' => $data['company_income'],
+            'phone_number' => $data['phone_number'],
         ]);
 
         $user = User::create([

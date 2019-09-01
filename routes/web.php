@@ -109,6 +109,10 @@ Route::get('/ap/history', 'ApHistory@index')->middleware('auth')->name('ap-histo
 // Jurnal
 Route::get('/journal', 'JournalController@index')->middleware('auth')->name('journal.index');
 
+// General Ledger
+Route::get('/general-ledger', 'GeneralLedgerController@index')->middleware('auth')->name('gl.index');
+Route::get('/general-ledger/new', 'GeneralLedgerController@create')->middleware('auth')->name('gl.create');
+Route::post('/general-ledger', 'GeneralLedgerController@store')->middleware('auth')->name('gl.store');
 
 
 

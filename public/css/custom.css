@@ -1,0 +1,5 @@
+.table>thead>tr>th {
+    background-color: #fc9e2b;
+    color: white;
+    vertical-align: middle;
+}

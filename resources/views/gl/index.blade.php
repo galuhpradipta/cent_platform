@@ -8,16 +8,21 @@
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
-                    <span class="text">Pengiriman Pembelian</span>
+                    <span class="text">General Ledger</span>
                 </a>
             </div>
             
-            <div class="col-md-4">
+            <div class="col-md-6">
             
              </div>
 
-            <div class="col-md-4">
-                            
+            <div class="col-md-2">
+                <a href="{{ route('gl.create') }}" class="btn btn-success btn-icon-split mb-2 btn-block float-right">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">Buat</span>
+                </a>
             </div>
         </div>
 
@@ -29,14 +34,14 @@
         @if ($message = Session::get('success'))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>	
-                    <strong>{{ $message }}</strong>
+                <strong>{{ $message }}</strong>
             </div>
         @endif
         
         @if ($message = Session::get('error'))
             <div class="alert alert-danger alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>	
-                    <strong>{{ $message }}</strong>
+                <strong>{{ $message }}</strong>
             </div>
         @endif
 
@@ -47,7 +52,7 @@
                             <div class="table-responsive">
                                 <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
+                                        {{-- <tr>
                                             <th class="text-left">Email</th>
                                             <th class="text-center">No. Delivery</th>
                                             <th class="text-center">No. Pesanan</th>
@@ -58,10 +63,39 @@
                                             @if (Auth::user()->role == 2  || Auth::user()->role == 3 || Auth::user()->role == 4)
                                                 <th class="text-center">Approve</th>
                                             @endif
+                                        </tr> --}}
+                                        <tr>
+                                            <th class="text-center" width="20%">Nama Perusahaan</th>
+                                            <th class="text-center" width="20%">Jenis Perusahaan</th>
+                                            <th class="text-center" width="25%">Notes</th>
+                                            <th class="text-center" width="15%">Tanggal Laporan</th>
+                                            <th class="text-center" width="10%">Attachment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (count($purchaseOrders) > 0 )
+                                        @if (count($generalLedgers) > 0)
+                                            @foreach ($generalLedgers as $gl)
+                                               <tr>
+                                                    <td class="text-center">{{ $gl->name }}</td>
+                                                    <td class="text-center">                                                       
+                                                        @if ($gl->type == 1)
+                                                            Jasa
+                                                        @else
+                                                            Dagang 
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">{{ $gl->description }}</td>
+                                                    <td class="text-center">{{ $gl->date }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ URL::to('/storage') }}/{{ $gl->attachment_url }}">
+                                                            <i class="fas fa-file"></i>
+                                                        </a>
+                                                    </td>
+                                               </tr>
+                                            @endforeach
+                                            
+                                        @endif
+                                        {{-- @if (count($purchaseOrders) > 0 )
                                             @foreach ($purchaseOrders as $po)
                                                 <tr>
                                                     <td class="text-left">{{ $po->supplier_email }}</td>
@@ -92,20 +126,13 @@
                                                     @endif
                                                 </tr>
                                             @endforeach
-                                        @endif
+                                        @endif --}}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </div>
-                {{-- modal  --}}
-                @if (count($purchaseOrders) > 0)
-                    @include('purchase-order.modals.edit')
-                    @include('purchase-order.modals.approve')
-
-                @endif
-                {{-- @include('purchase-request.modals.detail') --}}
+                </div>                
                
             </div>
 
@@ -118,22 +145,22 @@
     $(document).ready(function() {
         $('#dataTable').DataTable();
 
-        $('#edit').on('show.bs.modal', function(e) {
-            var button = $(e.relatedTarget);
+        // $('#edit').on('show.bs.modal', function(e) {
+        //     var button = $(e.relatedTarget);
 
-            var deliveryID = button.data('po-id');
+        //     var deliveryID = button.data('po-id');
            
-            $('#po_id').val(deliveryID);
-        });
+        //     $('#po_id').val(deliveryID);
+        // });
 
 
-        $('#approve').on('show.bs.modal', function(e) {
-            var button = $(e.relatedTarget);
+        // $('#approve').on('show.bs.modal', function(e) {
+        //     var button = $(e.relatedTarget);
 
-            var deliveryID = button.data('po-id');
+        //     var deliveryID = button.data('po-id');
            
-            $('#approve_purchase_order_id').val(deliveryID);
-        });
+        //     $('#approve_purchase_order_id').val(deliveryID);
+        // });
     });
 </script>
 @endsection

@@ -105,9 +105,16 @@ Tip 2: you can also add an image using data-image tag
             </div>
                             
             <li class="nav-item">
-                <a class="nav-link" href="{{route('journal.index')}}">
+                <a class="nav-link" href="{{ route('journal.index') }}">
                     <i class="nc-icon nc-icon nc-paper-2"></i>
                     <p>Jurnal</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('gl.index') }} ">
+                    <i class="nc-icon nc-icon nc-paper-2"></i>
+                    <p>General Ledger</p>
                 </a>
             </li>
 
