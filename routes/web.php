@@ -114,6 +114,10 @@ Route::get('/general-ledger', 'GeneralLedgerController@index')->middleware('auth
 Route::get('/general-ledger/new', 'GeneralLedgerController@create')->middleware('auth')->name('gl.create');
 Route::post('/general-ledger', 'GeneralLedgerController@store')->middleware('auth')->name('gl.store');
 
+// Cent General Ledger
+Route::get('/cent/general-ledger', 'CentGeneralLedgerController@index')->middleware('auth')->name('gl-cent.index');
+Route::post('/cent/general-ledger', 'CentGeneralLedgerController@store')->middleware('auth')->name('gl-cent.store');
+
 
 
 // Account

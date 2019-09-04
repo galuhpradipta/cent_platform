@@ -3550,6 +3550,8 @@ fieldset[disabled] .form-control {
 .card .table thead th:last-child {
     /* padding-right: 15px; */
     /* display: block; */
+
+    
 }
 
 .table-bigboy>thead>tr>th {

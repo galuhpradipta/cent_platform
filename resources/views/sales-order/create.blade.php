@@ -320,7 +320,6 @@ $(document).ready(function() {
         $('#subtotal_price').val(subtotal_price);
 
         var totalPrice = subtotal_price - down_payment - discount;
-        console.log(totalPrice);
         $('#total_price').val(totalPrice);
     });
     

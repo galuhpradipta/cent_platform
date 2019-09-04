@@ -119,6 +119,13 @@ Tip 2: you can also add an image using data-image tag
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('gl-cent.index') }} ">
+                    <i class="nc-icon nc-icon nc-paper-2"></i>
+                    <p>Cent GL</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('customer.index') }}">
                     <i class="nc-icon nc-icon nc-paper-2"></i>
                     <p>Customer</p>
