@@ -96,8 +96,8 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="description">Memo</label>
-                                <textarea class="form-control" name="description" id="description">
+                                <label for="memo">Memo</label>
+                                <textarea class="form-control" name="memo" id="memo">
                                     
                                 </textarea>
                             </div>
@@ -106,13 +106,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="total_debit">Total Debit</label>
-                                <input type="number" class="form-control" id="total_debit" name="total_debit" readonly>
+                                <input type="number" class="text-right form-control" id="total_debit" name="total_debit" readonly>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="total_credit">Total Credit</label>
-                                <input type="number" class="form-control" id="total_credit" name="total_credit" readonly>
+                                <input type="number" class="text-right form-control" id="total_credit" name="total_credit" readonly>
                             </div>
                         </div>
                     </div>
@@ -152,9 +152,9 @@
         function dynamic_table(number) {
             var html = '<tr id="ledger_row">';
             html += '<td><select name="account_ids[]" id="account_id'+count+'" class="form-control" required><option id="account_option" selected disabled>Pilih Akun</option>@foreach($accounts as $account) <option value="{{ $account->id}}">{{ $account->name }}</option> @endforeach</select></td>';
-            html += '<td><input type="text" id="description'+count+'" class="form-control" name="description[]" required></td>';
-            html += '<td><input type="number" id="debit_amount'+count+'" class="form-control" name="debit_amount[]" placeholder="0" required></td>';
-            html += '<td><input type="number" id="credit_amount'+count+'" class="form-control" name="credit_amount[]" placeholder="0" required></td>';
+            html += '<td><input type="text" id="description'+count+'" class="form-control" name="descriptions[]" required></td>';
+            html += '<td><input type="number" id="debit_amount'+count+'" class="text-right form-control debit_amount" name="debit_amounts[]" value="0" required></td>';
+            html += '<td><input type="number" id="credit_amount'+count+'" class="text-right form-control credit_amount" name="credit_amounts[]" value="0" required></td>';
 
             if (number > 1) {
                 html += '<td><button type="button" id="removeLedger" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>';
@@ -175,6 +175,41 @@
             count--;
             $(this).closest('#ledger_row').remove();
         });
+
+
+        $(document).on('input', '[id^=credit_amount]', function() {
+            var credit_amount_id =  event.target.id.slice(13);
+
+            var total_credit = 0;
+
+            credit_amount = parseFloat($('#credit_amount'+credit_amount_id).val());
+
+            $('.credit_amount').each(function() {
+                total_credit += parseFloat($(this).val());
+            });
+
+            $('#total_credit').val(total_credit);
+        });
+
+        $(document).on('input', '[id^=debit_amount]', function() {
+            var debit_amount_id =  event.target.id.slice(12);
+
+            console.log(debit_amount_id);
+
+            var total_debit = 0;
+
+            debit_amount = $('#debit_amount'+debit_amount_id).val();
+
+            console.log(debit_amount);
+
+            $('.debit_amount').each(function() {
+                total_debit += parseFloat($(this).val());
+            });
+
+            $('#total_debit').val(total_debit);
+        });
+
+        
 
         
     });

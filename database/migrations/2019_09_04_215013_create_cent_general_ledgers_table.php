@@ -21,7 +21,7 @@ class CreateCentGeneralLedgersTable extends Migration
             $table->decimal('debit_amount', 16, 2);
             $table->decimal('credit_amount', 16, 2);
             $table->string('tag');
-            $table->string('memo');
+            $table->string('memo')->nullable();
             $table->string('attachment_url');
             $table->timestamps();
         });
