@@ -14,7 +14,7 @@ class CreatePurchaseOrdersTable extends Migration
     public function up()
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
-            $table->bigInteger('id', true)->unsigned();
+            $table->bigInteger('purchase_order_d', true)->unsigned();
 			$table->integer('purchase_request_id')->unsigned();
 			$table->integer('company_id')->unsigned();
 			$table->date('delivery_date')->nullable();

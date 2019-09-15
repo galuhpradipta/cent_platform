@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DeliveryOrder;
 use App\Invoice;
+use App\Journal;
+use App\Bank;
+use App\SalesOrder;
 use Auth;
 use DB;
 use Carbon;
@@ -32,10 +35,8 @@ class DeliveryOrderController extends Controller
                                     'so.order_date as so_date',
                                     'so.discount as discount',
                                     'so.down_payment as down_payment',
-                                    'so.ppn as ppn',
                                     'so.total as total',
                                     'so.attachment_url as attachment_url',
-                                    'so.account_id as account_id',
                                     'so.is_approved as is_so_approved',
                                     'so.approved_by as so_approved_by',
                                     'do.delivery_date as delivery_date',
@@ -145,6 +146,21 @@ class DeliveryOrderController extends Controller
         $do->is_approved = true;
         $do->updated_at = Carbon::now();
         $do->save();
+
+        // create jurnal
+        $accountPiutang = Bank::where([
+            'company_id' => $user->business_id,
+            'name' => 'Piutang Usaha',
+            'code' => '1-10100',
+        ])->first();
+
+        $so = SalesOrder::find($do->sales_order_id);
+
+        dd($so);
+
+        Journal::create([
+            ''
+        ]);
 
         $inv = Invoice::create([
             'sales_order_id' => $do->salesOrder->id,

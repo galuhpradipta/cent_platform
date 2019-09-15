@@ -47,6 +47,7 @@ Auth::routes();
 Route::post('/login/custom', 'LoginController@login')->name('login.custom');
 
 // custom register
+Route::get('/register', 'RegisterController@index')->name('register.index');
 Route::post('/register/custom', 'RegisterController@register')->name('register.custom');
 
 Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');

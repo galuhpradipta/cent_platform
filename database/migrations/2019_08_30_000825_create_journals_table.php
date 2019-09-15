@@ -14,7 +14,7 @@ class CreateJournalsTable extends Migration
     public function up()
     {
         Schema::create('journals', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('journal_id');
             $table->decimal('amount', 16);
             $table->date('date');
             $table->unsignedInteger('type');

@@ -14,7 +14,7 @@ class CreateAccountReceiveablesTable extends Migration {
 	{
 		Schema::create('account_receiveables', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true)->unsigned();
+			$table->bigInteger('account_receivable_id', true)->unsigned();
 			$table->integer('sales_order_id')->unsigned()->nullable();
 			$table->integer('delivery_order_id')->unsigned()->nullable();
 			$table->integer('invoice_id')->unsigned()->nullable();

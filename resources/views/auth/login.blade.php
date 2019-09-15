@@ -73,7 +73,7 @@
                   <hr>
                 
                   <div class="text-center">
-                  <a class="small" href="{{ url('/register') }}">Create an Account!</a>
+                  <a class="small" href="{{ route('register.index') }}">Create an Account!</a>
                   </div>
                 </div>
               </div>

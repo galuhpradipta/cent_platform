@@ -14,7 +14,7 @@ class CreateDeliveryOrdersTable extends Migration {
 	{
 		Schema::create('delivery_orders', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true)->unsigned();
+			$table->bigInteger('delivery_order_id', true)->unsigned();
 			$table->integer('sales_order_id')->unsigned();
 			$table->integer('company_id')->unsigned();
 			$table->date('delivery_date')->nullable();

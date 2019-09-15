@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Business;
+use App\Company;
 use App\User;
-use App\Bank;
+use App\Subscribtion;
+use App\Sector;
+use App\AccountCategory;
+use App\Account;
+use App\Role;
 use Auth;
 
 class RegisterController extends Controller
@@ -17,13 +21,13 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $sectors = Sector::all();
+
+        return view('auth.register', compact('sectors'));
     }
 
     public function register() {
-
-
 
         $data = request()->validate([
             'name' => 'required',
@@ -31,17 +35,26 @@ class RegisterController extends Controller
             'password' => 'required|min:5',
             'phone_number' => 'required',
             'company_name' => 'required|min:3',
-            'company_type' => 'required',
+            'company_sector_id' => 'required',
             'company_income' => 'required',
         ]);
 
+        $subscribtion = Subscribtion::where([
+            'name' => 'sme',
+        ])->first();
 
-        $business = Business::create([
+        $company = Company::create([
+            'subscription_id' => $subscribtion->subscribtion_id,
+            'sector_id' => $data['company_sector_id'],
             'name' => $data['company_name'],
-            'type' => $data['company_type'],
             'income' => $data['company_income'],
             'phone_number' => $data['phone_number'],
         ]);
+
+        // get admin constant
+        $roleAdmin = Role::where([
+            'name' => 'admin',
+        ])->first();
 
         $user = User::create([
             'name' => $data['name'],
@@ -49,13 +62,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'unencrypted_password' => $data['password'],
             'phone_number' => $data['phone_number'],
-            'role' => 4,
-            'business_id' => $business->id,
+            'role_id' => $roleAdmin->role_id,
+            'company_id' => $company->id,
         ]);
 
         $this->createCompanyAccount($user);
-
-
 
         return redirect('login')->with('success', 'Account successfully registered !');
     }
@@ -127,118 +138,125 @@ class RegisterController extends Controller
     }
 
     private function createCompanyAccount($user) {
-        
+
+        $accountKasBank = AccountCategory::where([
+            'name' => 'kas_dan_bank'
+        ])->first();
+
+        $accountAkunPiutang = AccountCategory::where([
+            'name' => 'akun_piutang'
+        ])->first();
+
+        $accountPersediaan = AccountCategory::where([
+            'name' => 'persediaan'
+        ])->first();
+
+        $accountAktivaLancarLainnya = AccountCategory::where([
+            'name' => 'aktiva_lancar_lainnya'
+        ])->first();
+
         $accounts = [
-            [
+            [   
+                'account_category_id' => $accountKasBank->account_category_id,
                 'code' => '1-10001',
                 'name' => 'Kas',
-                'category' => 'Kas & Bank',
                 'initial_balance' => 0
             ],
             [
+                'account_category_id' => $accountKasBank->account_category_id,
                 'code' => '1-10002',
                 'name' => 'Rekening Bank',
-                'category' => 'Kas & Bank',
                 'initial_balance' => 0
             ],
-            [
+            [   
+                'account_category_id' => $accountAkunPiutang->account_category_id,
                 'code' => '1-10100',
                 'name' => 'Piutang Usaha',
-                'category' => 'Akun Piutang',
                 'initial_balance' => 0
             ],
-            [
+            [   
+                'account_category_id' => $accountAkunPiutang->account_category_id,
                 'code' => '1-10101',
                 'name' => 'Piutang Belum Ditagih',
-                'category' => 'Akun Piutang',
                 'initial_balance' => 0
             ],
             [
+                'account_category_id' => $accountPersediaan->account_category_id,
                 'code' => '1-10200',
                 'name' => 'Persediaan Barang',
-                'category' => 'Persediaan',
                 'initial_balance' => 0
             ],
-            [
+            [       
+                'account_category_id' => $accountAktivaLancarLainnya->account_category_id,
                 'code' => '1-10300',
                 'name' => 'Piutang Lainnya',
-                'category' => 'Aktiva Lancar Lainnya',
                 'initial_balance' => 0
             ],
-            [
+            [   
+                'account_category_id' => $accountAktivaLancarLainnya->account_category_id,
                 'code' => '1-10301',
                 'name' => 'Piutang Karyawan',
-                'category' => 'Aktiva Lancar Lainnya',
                 'initial_balance' => 0
             ],
-            [
+            [   
+                'account_category_id' => $accountAktivaLancarLainnya->account_category_id,
                 'code' => '1-10400',
                 'name' => 'Dana Belum Disetor',
-                'category' => 'Aktiva Lancar Lainnya',
                 'initial_balance' => 0
             ],
             [
+                'account_category_id' => $accountAktivaLancarLainnya->account_category_id,
                 'code' => '1-10401',
                 'name' => 'Aset Lancar Lainnya',
-                'category' => 'Aktiva Lancar Lainnya',
                 'initial_balance' => 0
             ],
-            [
+            [   
+                'account_category_id' => $accountAktivaLancarLainnya->account_category_id,
                 'code' => '1-10402',
                 'name' => 'Biaya Bayar Dimuka',
-                'category' => 'Aktiva Lancar Lainnya',
                 'initial_balance' => 0
             ],
-            [
+            [   
+                'account_category_id' => $accountAktivaLancarLainnya->account_category_id,
                 'code' => '1-10403',
                 'name' => 'Uang Muka',
-                'category' => 'Aktiva Lancar Lainnya',
                 'initial_balance' => 0
             ],
-            [
+            [   
+                'account_category_id' => $accountAktivaLancarLainnya->account_category_id,
                 'code' => '1-10500',
                 'name' => 'PPN Masukan',
-                'category' => 'Aktiva Lancar Lainnya',
                 'initial_balance' => 0
             ],
-            [
+            [   
+                'account_category_id' => $accountAktivaLancarLainnya->account_category_id,
                 'code' => '1-10501',
                 'name' => 'Pajak Bayar Dimuka - PPh 22',
-                'category' => 'Aktiva Lancar Lainnya',
                 'initial_balance' => 0
             ],
-            [
+            [   
+                'account_category_id' => $accountAktivaLancarLainnya->account_category_id,
                 'code' => '1-10502',
                 'name' => 'Pajak Bayar Dimuka - PPh 23',
-                'category' => 'Aktiva Lancar Lainnya',
                 'initial_balance' => 0
             ],
-            [
+            [   
+                'account_category_id' => $accountAktivaLancarLainnya->account_category_id,
                 'code' => '1-10503',
                 'name' => 'Pajak Bayar Dimuka - PPh 25',
-                'category' => 'Aktiva Lancar Lainnya',
                 'initial_balance' => 0
             ],
         ];
 
         foreach ($accounts as $account) {
-            Bank::create([
+            Account::create([
                 'name' => $account['name'],
                 'code' => $account['code'],
                 'initial_balance' => 0,
-                'category' => $account['category'],
+                'account_category_id' => $account['account_category_id'],
                 'balance' => 0,
-                'company_id' => $user->business_id,
+                'company_id' => $user->company_id,
             ]);
         }
-
-        // Bank::create([
-        //     'name' => request('name'),
-        //     'code' => request('code'),
-        //     'initial_balance' => request('balance'),
-        //     'category' => request('category'),
-        //     'balance' => request('balance'),
-        //     'company_id' => $user->business->id,
-        // ]);
     }
 }

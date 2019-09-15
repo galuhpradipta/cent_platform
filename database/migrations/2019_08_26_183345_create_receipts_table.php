@@ -14,7 +14,7 @@ class CreateReceiptsTable extends Migration
     public function up()
     {
         Schema::create('receipts', function (Blueprint $table) {
-            $table->bigInteger('id', true)->unsigned();
+            $table->bigInteger('receipt_id', true)->unsigned();
 			$table->integer('purchase_request_id')->unsigned();
 			$table->integer('purchase_order_id')->unsigned();
 			$table->integer('company_id')->unsigned();

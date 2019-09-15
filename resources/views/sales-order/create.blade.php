@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="col-md-3">
+                                {{-- <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="account_id">Akun</label>
                                         <select name="account_id" id="account_id" class="form-control" required>
@@ -69,7 +69,7 @@
                                         <label for="account_code">Kode Akun</label>
                                         <input type="text" id="account_code" class="form-control" readonly> 
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-md-3">
                                     <div class="form-group">

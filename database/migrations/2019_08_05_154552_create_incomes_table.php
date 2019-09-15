@@ -14,7 +14,7 @@ class CreateIncomesTable extends Migration {
 	{
 		Schema::create('incomes', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true)->unsigned();
+			$table->bigInteger('income_id', true)->unsigned();
 			$table->integer('sales_order_id')->unsigned();
 			$table->integer('delivery_order_id')->unsigned();
 			$table->integer('invoice_id')->unsigned();

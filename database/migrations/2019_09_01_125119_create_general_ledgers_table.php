@@ -14,7 +14,7 @@ class CreateGeneralLedgersTable extends Migration
     public function up()
     {
         Schema::create('general_ledgers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('general_ledger_id');
             $table->unsignedInteger('company_id');
             $table->string('description')->nullable();
             $table->date('date');

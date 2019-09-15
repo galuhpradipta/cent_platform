@@ -14,7 +14,7 @@ class CreateSpendingsTable extends Migration
     public function up()
     {
         Schema::create('spendings', function (Blueprint $table) {
-            $table->bigInteger('id', true)->unsigned();
+            $table->bigInteger('spending_id', true)->unsigned();
 			$table->integer('purchase_request_id')->unsigned();
 			$table->integer('purchase_order_id')->unsigned();
 			$table->integer('receipt_id')->unsigned();

@@ -194,13 +194,9 @@
         $(document).on('input', '[id^=debit_amount]', function() {
             var debit_amount_id =  event.target.id.slice(12);
 
-            console.log(debit_amount_id);
-
             var total_debit = 0;
 
             debit_amount = $('#debit_amount'+debit_amount_id).val();
-
-            console.log(debit_amount);
 
             $('.debit_amount').each(function() {
                 total_debit += parseFloat($(this).val());
@@ -209,7 +205,9 @@
             $('#total_debit').val(total_debit);
         });
 
-        
+        $('body').on('DOMNodeInserted', 'select', function () {
+            $(this).select2();
+        });
 
         
     });

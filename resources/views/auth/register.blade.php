@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>CentBook - Register</title>
+  <title>Cent - Register</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{ asset('sb-admin2/vendor/fontawesome-free/css/all.min.css') }} rel="stylesheet" type="text/css">
@@ -36,7 +36,7 @@
               <div class="col-lg-6 offset-lg-3">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">CentBook Register</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Daftar Akun</h1>
                   </div>
 
                   @if (count($errors) > 0 )
@@ -48,42 +48,43 @@
                   @csrf
 
                     <div class="form-group">
-                      <label for="email">Email :</label>
+                      <label for="email">Email</label>
                       <input type="email" class="form-control" name="email" id="email" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="password">Password :</label>
+                      <label for="password">Password</label>
                       <input type="password" class="form-control" name="password" id="password" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Name :</label>
+                        <label for="name">Nama</label>
                         <input type="text" class="form-control" name="name" id="name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="phone_number">Phone Number :</label>
+                        <label for="phone_number">Nomor Telepon</label>
                         <input type="text" class="form-control" name="phone_number" id="phone_number" required>
                     </div>
                                
                     <div class="form-group">
-                        <label for="company_name">Company :</label>
+                        <label for="company_name">Nama Perusahaan</label>
                         <input type="text" class="form-control" name="company_name" id="company_name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="company_type">Company Type :</label>
-                        <select name="company_type" id="company_type" class="form-control">
-                            <option selected disabled>Type of Business</option>
-                            <option value="1">Services</option>
-                            <option value="1">Commerce</option>
+                        <label for="company_sector_id">Sektor Perusahaan</label>
+                        <select name="company_sector_id" id="company_sector_id" class="form-control">                          
+                            <option selected disabled>Pilih tipe bisnis</option>
+                            @foreach ($sectors as $sector)
+                                <option value="{{ $sector->sector_id }}">{{ $sector->description }}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="company_income">Company Income (Rp.) :</label>
-                        <input type="text" class="form-control" name="company_income" id="company_income" required placeholder="Rp. ">
+                        <label for="company_income">Pemasukan Perusahaan</label>
+                        <input type="number" class="form-control" name="company_income" id="company_income" required placeholder="Rp. ">
                     </div>
 
                     <div class="row">

@@ -15,7 +15,8 @@ class CreateProductOrderDetailsTable extends Migration
     {
         Schema::create('product_order_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('sales_order_id');
+            $table->unsignedInteger('sales_order_id')->nullable()->change();
+            $table->unsignedInteger('purchase_request_id')->nullable();
             $table->unsignedInteger('product_id');
             $table->decimal('quantity', 16, 2);
         });

@@ -14,12 +14,14 @@ class CreateProductsTable extends Migration {
 	{
 		Schema::create('products', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true)->unsigned();
+			$table->bigInteger('product_id', true)->unsigned();
+			$table->unsignedInteger('account_id');
+			$table->unsignedInteger('company_id');
 			$table->string('name');
 			$table->string('code');
 			$table->decimal('price', 16);
-			$table->integer('company_id')->unsigned();
 			$table->string('unit');
+            $table->decimal('ppn', 16, 2);
 		});
 	}
 

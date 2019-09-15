@@ -66,7 +66,6 @@ class SalesOrderController extends Controller
     {  
         $data = request()->validate([
             'customer_id' => 'required',
-            'account_id' => 'required',
             'invoice_number' => 'required',
             'order_date' => 'required',
             'product_ids' => 'required',
@@ -96,10 +95,8 @@ class SalesOrderController extends Controller
             'discount' => $data['discount'],
             'invoice_number' => $data['invoice_number'],
             'down_payment' => $data['down_payment'],
-            'account_id' => $data['account_id'],
             'total' => $data['total_price'],
             'attachment_url' => '',
-            'ppn' => 0,
         ]);
 
         $products = [];
@@ -125,20 +122,20 @@ class SalesOrderController extends Controller
             $so->save();
         }
         
-        if (request('down_payment') != null ) {
-            $bank = Bank::find(request('account_id'));
-            $bank->balance = $bank->balance + request('down_payment');
-            $bank->save();
+        // if (request('down_payment') != null ) {
+        //     $bank = Bank::find(request('account_id'));
+        //     $bank->balance = $bank->balance + request('down_payment');
+        //     $bank->save();
 
-            Journal::create([
-                'amount' => $data['down_payment'],
-                'date' => $data['order_date'],
-                'type' => 1,
-                'sales_order_id' => $so->id,
-                'bank_id' => $data['account_id'],
-                'company_id' => $user->business_id,
-            ]);
-        }
+        //     Journal::create([
+        //         'amount' => $data['down_payment'],
+        //         'date' => $data['order_date'],
+        //         'type' => 1,
+        //         'sales_order_id' => $so->id,
+        //         'bank_id' => $data['account_id'],
+        //         'company_id' => $user->business_id,
+        //     ]);
+        // }
 
         return redirect(route('so.index'))->with('success', 'Sales Order Successfully created');
     }

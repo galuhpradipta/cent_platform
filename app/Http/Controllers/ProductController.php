@@ -22,8 +22,11 @@ class ProductController extends Controller
     {       
         $user = Auth::user();
         $products = Product::where(['company_id' => $user->business->id])->get();
+        $accounts = \App\Bank::where([
+            'company_id' => $user->business_id
+        ])->get();
 
-        return view('product.index', compact('products'));
+        return view('product.index', compact('products', 'accounts'));
     }
 
     /**
@@ -48,17 +51,20 @@ class ProductController extends Controller
 
         $data = request()->validate([
             'name' => 'required',
+            'account_id' => 'required',
+            'ppn' => 'required',
             'code' => 'required',
             'unit' => 'required',
             'price' => 'required',
         ]);
 
         $product = new Product();
-
-        $product->name = request('name');
-        $product->code = request('code');
-        $product->unit = request('unit');
-        $product->price = request('price');
+        $product->account_id = $data['account_id'];
+        $product->ppn = $data['ppn'];
+        $product->name = $data['name'];
+        $product->code = $data['code'];
+        $product->unit = $data['unit'];
+        $product->price = $data['price'];
         $product->company_id = $user->business->id;
         $product->save();
 

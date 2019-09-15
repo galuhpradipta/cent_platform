@@ -14,7 +14,7 @@ class CreateCentGeneralLedgersTable extends Migration
     public function up()
     {
         Schema::create('cent_general_ledgers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('cent_general_ledger_id');
             $table->unsignedInteger('company_id');
             $table->string('transaction_number');
             $table->date('transaction_date');

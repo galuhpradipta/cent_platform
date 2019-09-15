@@ -47,14 +47,12 @@
                             <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th width="30%">Nama</th>
-                                        <th width="15%">Kode</th>
-                                        <th width="15%">Satuan</th>
-                                        <th width="20%">Harga Satuan</th>
-                                        <th width="10%">Edit</th>
-                                        <th width="10%" style="display:table-cell;">Delete</th>                                    
-                                   
-                                  
+                                        <th width="30%"><strong>Nama</strong></th>
+                                        <th width="15%"><strong>Kode</strong></th>
+                                        <th width="15%"><strong>Satuan</strong></th>
+                                        <th width="20%" class="text-center"><strong>Harga Satuan</strong></th>
+                                        <th width="10%"><strong>Edit</strong></th>
+                                        <th width="10%" style="display:table-cell;"><strong>Delete</strong></th>                                                    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,7 +62,7 @@
                                                 <td class="text-left">{{ $product->name}}</td>
                                                 <td class="text-left">{{ $product->code }}</td>
                                                 <td class="text-left"> {{ $product->unit }}</td>
-                                                <td class="text-right">Rp. {{ $product->price }}</td>
+                                                <td class="text-right" style="margin-right": 10px !important;>Rp. {{ number_format((float)$product->price, 2, ',',  '.' ) }}</td>
                                                 <td class="text-center">
                                                     <button class="btn btn-primary btn-sm btn-fill"
                                                         data-toggle="modal"
@@ -116,6 +114,12 @@
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable();
+
+        // $('#account_id').select2(
+        //     width: 100% !important;
+        // );
+
+        $('#account_id').select2();
 
         $('#editProduct').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget);
