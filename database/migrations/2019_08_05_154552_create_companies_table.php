@@ -15,7 +15,7 @@ class CreateCompaniesTable extends Migration {
 		Schema::create('companies', function(Blueprint $table)
 		{
 			$table->bigInteger('company_id', true)->unsigned();
-			$table->unsignedInteger('subscription_id');
+			$table->unsignedInteger('subscribtion_id');
 			$table->unsignedInteger('sector_id');
 			$table->string('phone_number');
 			$table->string('name');

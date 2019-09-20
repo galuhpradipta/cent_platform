@@ -122,10 +122,10 @@ Route::post('/cent/general-ledger', 'CentGeneralLedgerController@store')->middle
 
 
 // Account
-Route::get("/master/account", 'AccountController@index')->middleware('auth')->name('account.index');
-Route::post('/master/account', 'AccountController@store')->middleware('auth')->name('account.store');
-Route::patch('/master/account', 'AccountController@update')->middleware('auth')->name('account.update');
-Route::delete('/master/account/{id}', 'AccountController@destroy')->middleware('auth')->name('account.destroy');
+Route::get("/accounts", 'AccountController@index')->middleware('auth')->name('account.index');
+Route::post('/accounts', 'AccountController@store')->middleware('auth')->name('account.store');
+Route::patch('/accounts', 'AccountController@update')->middleware('auth')->name('account.update');
+Route::delete('/accounts/{id}', 'AccountController@destroy')->middleware('auth')->name('account.destroy');
 
 // Customer
 Route::get('/master/customer', 'CustomerController@index')->middleware('auth')->name('customer.index');
@@ -139,7 +139,6 @@ Route::post('/master/supplier', 'SupplierController@store')->middleware('auth')-
 Route::patch('/master/supplier', 'SupplierController@update')->middleware('auth')->name('supplier.update');
 Route::delete('/master/supplier', 'SupplierController@destroy')->middleware('auth')->name('supplier.destroy');
 
-
 // Product
 Route::get('/master/product', 'ProductController@index')->middleware('auth')->name('product.index');
 Route::post('/master/product', 'ProductController@store')->middleware('auth')->name('product.store');
@@ -152,22 +151,11 @@ Route::post('/master/bank', 'BankController@store')->middleware('auth')->name('b
 Route::patch('/master/bank', 'BankController@update')->middleware('auth')->name('bank.update');
 Route::delete('/master/bank', 'BankController@destroy')->middleware('auth')->name('bank.destroy');
 
+//  ---------------------
 
+// SME
+Route::get('/sme', 'SMEController@index')->middleware('auth')->name('sme.index');
 
-// Enterprise Admin
-// Route::get('/ent/admin', 'EntAdminController@index')->name('ent-admin.index');
-
-// Enterprise Supervisor Dashboard / Approval
-// Route::get('/ent/spv', 'EntSpvController@index')->name('ent-spv.index');
-
-// Enterprise Supervisor Report
-// Route::get('/ent/spv/report', 'EntReportController@index')->name('ent-spv.report');
-
-
-
-// Enterprise Admin Account Receiveable
-// Route::get('/ent/admin/ar/sales-order', 'EntSalesOrderController@index')->name('ent-admin.sales-order');
-// Route::get('/ent/admin/ar/delivery-order', 'EntDeliveryOrderController@index')->name('ent-admin.delivery-order');
-// Route::get('/ent/admin/ar/invoice', 'EntInvoiceController@index')->name('ent-admin.invoice');
-// Route::get('/ent/admin/ar/uang-masuk', 'EntUangMasukController@index')->name('ent-admin.uang-masuk');
-// Route::get('/ent/admin/ar/history', 'EntHistoryController@index')->name('ent-admin.history');
+// SME Invoice 
+Route::get('/sme/ar/invoice', 'SMEInvoiceController@index')->middleware('auth')->name('sme-invoice.index');
+Route::get('/sme/ar/invoice/new', 'SMEInvoiceController@create')->middleware('auth')->name('sme-invoice.create');

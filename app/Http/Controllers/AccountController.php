@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use DB;
 use Auth;
 use Carbon;
 use App\User;
+use App\Account;
+use App\AccountCategory;
 
 
 class AccountController extends Controller
@@ -23,11 +26,19 @@ class AccountController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $admin = Auth::user();
-        $accounts = User::where(['registered_by' => $admin->id])->get();
+    {          
+        $accounts = DB::table('accounts as a')
+            ->select('a.name as account_name',
+                'a.code as account_code',
+                'ac.name as category_name',
+                'ac.description as category_description')
+            ->join('account_categories as ac', 'a.account_category_id', '=', 'ac.account_category_id')
+            ->where('company_id', Auth::user()->company_id)
+            ->get();
 
-        return view('account.index', compact('accounts'));
+        $categories = AccountCategory::all();
+
+        return view('account.index', compact('accounts', 'categories'));
     }
 
     /**
@@ -47,26 +58,25 @@ class AccountController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $admin = User::where(['id'=> $request->registered_by])->first();
-
-        request()->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    {   
+        $data = request()->validate([
+            'account_name' => 'required|min:3',
+            'account_code' => 'required|min:3',
+            'account_category_id' => 'required'
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'unencrypted_password' => $request->password,
-            'address' => $request->address,
-            'phone_number' => $request->phone_number,
-            'role' => $request->role,
-            'business_id' => $admin->business->id,
-            'registered_by' => $admin->id,
+        $user = Auth::user();
+
+        $account = Account::create([
+            'name' => $data['account_name'],
+            'code' => $data['account_code'],
+            'account_category_id' => $data['account_category_id'],
+            'company_id' => $user->company_id,
+            'initial_balance' => 0,
+            'balance' => 0,
         ]);
 
-        return redirect()->back();
+        return redirect(route('account.index'))->with('success', 'berhasil membuat akun baru');        
     }
 
     /**

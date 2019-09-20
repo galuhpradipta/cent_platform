@@ -11,6 +11,7 @@ use App\Sector;
 use App\AccountCategory;
 use App\Account;
 use App\Role;
+use App\ProductUnit;
 use Auth;
 
 class RegisterController extends Controller
@@ -44,16 +45,16 @@ class RegisterController extends Controller
         ])->first();
 
         $company = Company::create([
-            'subscription_id' => $subscribtion->subscribtion_id,
+            'subscribtion_id' => $subscribtion->subscribtion_id,
             'sector_id' => $data['company_sector_id'],
             'name' => $data['company_name'],
             'income' => $data['company_income'],
             'phone_number' => $data['phone_number'],
         ]);
 
-        // get admin constant
-        $roleAdmin = Role::where([
-            'name' => 'admin',
+        // get director constant
+        $roleDirector = Role::where([
+            'name' => 'director',
         ])->first();
 
         $user = User::create([
@@ -62,13 +63,17 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'unencrypted_password' => $data['password'],
             'phone_number' => $data['phone_number'],
-            'role_id' => $roleAdmin->role_id,
+            'role_id' => $roleDirector->role_id,
             'company_id' => $company->id,
         ]);
 
         $this->createCompanyAccount($user);
 
-        return redirect('login')->with('success', 'Account successfully registered !');
+        $this->createCompanyProductUnit($user);
+
+        
+
+        return redirect(route('sme.index'))->with('success', 'Account successfully registered !');
     }
 
     /**
@@ -259,4 +264,49 @@ class RegisterController extends Controller
             ]);
         }
     }
+
+    private function createCompanyProductUnit($user) {
+        $productUnits = [
+            [
+                'product_unit_id' => 1,
+                'unit_name' => 'buah',
+                'description' => 'Buah'
+            ],
+            [
+                'product_unit_id' => 2,
+                'unit_name' => 'paket',
+                'description' => 'Paket'
+            ],
+            [
+                'product_unit_id' => 3,
+                'unit_name' => 'buah',
+                'description' => 'Buah'
+            ],
+            [
+                'product_unit_id' => 4,
+                'unit_name' => 'pcs',
+                'description' => 'Pcs'
+            ],
+            [
+                'product_unit_id' => 5,
+                'unit_name' => 'set',
+                'description' => 'Set'
+            ],
+            [
+                'product_unit_id' => 6,
+                'unit_name' => 'visit',
+                'description' => 'Visit'
+            ],
+        ];
+
+        foreach ($productUnits as $productUnit) {
+            ProductUnit::create([
+                'product_unit_id' => $productUnit['product_unit_id'],
+                'unit_name' => $productUnit['unit_name'],
+                'description' => $productUnit['description'],
+                'company_id' => $user->company_id,
+            ]);
+        }
+    }
+
 }

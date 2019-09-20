@@ -2,7 +2,9 @@
 
 namespace App;
 
-use App\Business;
+use Auth;
+use App\Company;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,13 +49,22 @@ class User extends Authenticatable
         return $query->where(['role' => 4]);
     }
 
-    public function business() {
-        return $this->belongsTo(Business::class);
+    public function company() {
+        return $this->belongsTo('Company', 'company_id', 'id');
     }
 
-    // public function getRoleAttribute($attribute) {
-    //     return $this->roleOptions()[$attribute];
-    // }
+    public function isEnterprise() {
+
+        $company = Company::where([
+            'company_id' => Auth::user()->company_id,
+        ])->first();
+
+        if ($company->subscribtion_id == 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public function roleOptions() {
         return [           

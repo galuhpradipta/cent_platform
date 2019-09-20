@@ -1,155 +1,90 @@
-@extends('layouts.new-app')
+@extends('layouts.app')
+
+@section('title')
+    <title>Akun</title>
+@endsection
+
+@section('page')
+    Akun
+@endsection
 
 @section('content')
-
-    <div class="container-fluid">
-        <!-- Page Heading -->
-          <div class="row">
-              <div class="col-md-4">
-                  <a href="#" class="btn btn-primary btn-fill btn-icon-split mt-1 mb-2">
-                      <span class="icon text-white-50">
-                          <i class="fas fa-flag"></i>
-                      </span>
-                      <span class="text">User</span>
-                  </a>
-              </div>            
-  
-              <div class="col-md-4" >
-  
-              </div>
-  
-              <div class="col-md-4">
-                  <a href="#" class="btn btn-fill btn-success btn-icon-split mt-1 mb-2 float-right" data-toggle="modal" data-target="#create-account-modal">
-                      <span class="icon text-white-50">
-                          <i class="fas fa-plus"></i>
-                      </span>
-                      <span class="text">Buat</span>
-                  </a>
-              </div>
-          </div>
-
-
-        @if (count($errors) > 0)
-          <div class="alert alert-danger" role="alert">
-              {{ $errors->first() }}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card data-tables">
+            <div class="card-body table-striped table-no-bordered table-hover dataTable dtr-inline table-full-width">
+                <div class="toolbar">
+                    <!--        Here you can write extra buttons/actions for the toolbar              -->
+                </div>
+                <div class="fresh-datatables">
+                    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Kode Akun</th>
+                                <th>Nama Akun</th>
+                                <th>Kategori</th>                                
+                            </tr>
+                        </thead>                        
+                        <tbody>
+                          @if (count($accounts) > 0)
+                              @foreach ($accounts as $account)
+                                  <tr>
+                                      <td>{{ $account->account_code }}</td>
+                                      <td>{{ $account->account_name }}</td>
+                                      <td>{{ $account->category_description }}</td>
+                                  </tr>
+                              @endforeach
+                          @endif
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        @endif
-
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>	
-                <strong>{{ $message }}</strong>
         </div>
-        @endif
-  
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                      <th width="20%">Name</th>
-                      <th width="30%">Address</th>
-                      <th width="10%">Phone</th>
-                      <th width="15%">Email</th>
-                      <th width="10%">Role</th>
-                      <th width="10%">Edit</th>
-                      <th width="10%" style="display: table-cell;">Delete</th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($accounts as $account)
+    </div>
+    <div class="col-md-4">
+        <div class="card stacked-form">
+            <form action="{{ route('account.store' )}}" method="POST">
+              <div class="card-header ">
+                  <h4 class="card-title">Tambah Akun Baru</h4>
+              </div>
+              <div class="card-body">
+                  @csrf
+                  <div class="form-group">
+                      <label>Nama Akun</label>
+                      <input type="text" name="account_name" placeholder="Masukkan nama akun" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                      <label>Kode Akun</label>
+                      <input type="text" name="account_code" placeholder="Masukkan kode akun" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                      <label>Akun Kategori</label>
+                      <select name="account_category_id" id="account_category_id" class="form-control" required>
+                          <option disabled selected>Pilih Kategory Akun</option>
+                          @foreach ($categories as $category)
+                              <option value="{{ $category->account_category_id }}">{{ $category->description }}</option>
+                          @endforeach
+                      </select>
+                  </div>                    
                   
-                  <tr>
-                      
-                      <td class="text-left">{{ $account->name }}</td>
-                      <td class="text-left small">{{ $account->address }}</td>
-                      <td class="text-left">{{ $account->phone_number }}</td>
-                      <td class="text-left">{{ $account->email }}</td>                      
-                      <td class="text-left">{{ $account->role }}</td>
-                      <td class="text-center">                          
-                          <button 
-                            data-toggle="modal"
-                            data-target="#editModal"
-                            data-account-id="{{ $account->id }}"
-                            data-account-name="{{ $account->name }}"
-                            data-account-address="{{ $account->address }}"
-                            data-account-phone-number = {{ $account->phone_number }}
-                            data-account-email="{{ $account->email }}"
-                            data-account-role="{{ $account->role }}"
-                            data-account-unencrypted-password="{{ $account->unencrypted_password }}"
-                            class="btn btn-sm btn-fill btn-primary">
-                              Ubah
-                            <i class="fas fa-edit"></i>
-                          </button>                          
-                      </td>            
-                      <td class="text-center">
-                          <button 
-                            data-toggle="modal" 
-                            data-target="#deleteModal" 
-                            data-account-id="{{ $account->id }}"
-                            class="btn btn-sm btn-fill btn-danger">
-                              Hapus
-                            <i class="fas fa-trash"></i>
-                          </button>
-                      </td>         
-                  </tr>
-                  @endforeach                                  
-
-                </tbody>
-              </table>
-            </div>
-          </div>
+              </div>
+              <div class="card-footer ">
+                  <button type="submit" class="btn btn-fill btn-info">Submit</button>
+              </div>
+            </form>
         </div>
-  
-      {{-- modal --}}
-      @include('account.modals.create')
-      @if (count($accounts) > 0)
-        @include('account.modals.edit')
-        @include('account.modals.delete')
-      @endif
- 
-      </div>
+    </div>
+</div>
 @endsection
+
 
 @section('scripts')
 <script>
     $(document).ready(function() {
-        // edit modal
-        $('#dataTable').DataTable();
+        $('#datatables').DataTable();
 
-        $('#editModal').on('show.bs.modal', function(e) {
-            var button = $(e.relatedTarget);
-
-            var id = button.data('account-id');
-            var name = button.data('account-name')
-            var address = button.data('account-address')
-            var phoneNumber = button.data('account-phone-number')
-            var email = button.data('account-email')
-            var role = button.data('account-role')
-            var password = button.data('account-unencrypted-password')
-
-            $('#fedit-id').val(id);
-            $('#fedit-name').val(name);
-            $('#fedit-address').val(address);
-            $('#fedit-phone-number').val(phoneNumber);
-            $('#fedit-email').val(email);
-            $('#fedit-role').val(role);
-            $('#fedit-password').val(password);
-
-            console.log('role', role);
-            console.log(name, address, phoneNumber, email, role, password);
-        });
-
-        // delete modal
-        $('#deleteModal').on('show.bs.modal', function(e) {
-            var button = $(e.relatedTarget);
-            var accountID = button.data('account-id');
-            console.log(accountID);
-            $('#fdelete-account-id').val(accountID);
-        });
+        $('#account_category_id').select2();
     });
-</script>
+</script>    
+
 @endsection
